@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+dependencies=(tmux sesh fzf)
+for cmd in "${dependencies[@]}"; do
+    command -v "$cmd" >/dev/null 2>&1 || {
+        echo "$cmd not found"
+        exit 1
+    }
+done
+
+if [[ $# -eq 0 ]]; then
+    selection="$(
+        sesh list -i -z -t -c -d |
+            fzf --tmux center,70% --ansi \
+                --header '^a all  ^t tmux  ^g configs  ^x zoxide  ^d kill' \
+                --bind 'tab:down,btab:up,ctrl-j:down,ctrl-k:up,ctrl-n:down,ctrl-p:up' \
+                --bind 'ctrl-a:reload(sesh list -i -d)' \
+                --bind 'ctrl-t:reload(sesh list -i -t -d)' \
+                --bind 'ctrl-g:reload(sesh list -i -c -d)' \
+                --bind 'ctrl-x:reload(sesh list -i -z -d)' \
+                --bind 'ctrl-d:execute-silent(tmux kill-session -t {2..})+reload(sesh list -i -d)' \
+                --preview 'sesh preview {}' --preview-window 'right:55%'
+    )"
+
+    [[ -z "$selection" ]] && exit 0
+    exec sesh connect "$selection"
+fi
+
+dir="$1"
+[[ ! -d "$dir" ]] && {
+    echo "directory $dir does not exist"
+    exit 1
+}
+
+abs_path="$(realpath "$dir")"
+session_name="$(basename "$abs_path")"
+
+# handle session name conflicts by prepending parent dirs
+while tmux has-session -t "$session_name" 2>/dev/null; do
+    existing_dir="$(tmux display-message -p -t "$session_name" '#{session_path}' 2>/dev/null)"
+
+    # reuse existing session if its for the same directory
+    if [[ "$existing_dir" == "$abs_path" ]]; then
+        exec sesh connect "$session_name"
+    fi
+
+    parent="$(dirname "$abs_path")"
+    parent_name="$(basename "$parent")"
+
+    # avoid ugly root level names
+    if [[ "$parent" == "/" ]]; then
+        session_name="${session_name}-$$"
+        break
+    fi
+
+    session_name="${parent_name}-${session_name}"
+done
+
+tmux new-session -d -s "$session_name" -c "$abs_path"
+exec sesh connect "$session_name"

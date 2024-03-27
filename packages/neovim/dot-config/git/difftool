@@ -1,0 +1,7 @@
+[diff]
+    tool = nvimdiff
+    guitool = nvimdiff
+    prompt = false
+
+[merge]
+    tool = nvimdiff

@@ -1,0 +1,11 @@
+# committing .env should be explicit
+*.env
+
+# mise-en-place
+.mise.local.toml
+.mise.*.local.toml
+mise.local.toml
+mise.*.local.toml
+
+# direnv
+.envrc
