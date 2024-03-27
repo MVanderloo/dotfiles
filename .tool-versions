@@ -1,0 +1,3 @@
+shfmt                    latest
+shellcheck               latest
+npm:bash-language-server latest

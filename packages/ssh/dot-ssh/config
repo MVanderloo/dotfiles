@@ -1,0 +1,6 @@
+Host *
+    AddKeysToAgent yes
+    # Make all sessions to the same host share a single connection.
+    ControlMaster auto
+    ControlPersist 120
+    ControlPath ~/.ssh/sockets/socket-%r@%h:%p
