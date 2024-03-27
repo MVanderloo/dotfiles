@@ -1,0 +1,5 @@
+--target=$HOME
+--verbose
+--dotfiles
+--adopt
+--ignore="install.sh"

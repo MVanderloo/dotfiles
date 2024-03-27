@@ -1,0 +1,51 @@
+[core]
+	pager = delta
+
+[delta]
+	syntax-theme = ansi
+	navigate = true
+	max-line-distance = 1.0
+	relative-paths = true
+	inspect-raw-lines = false
+
+	hyperlinks = true
+	hyperlinks-file-link-format = "nvim +{line} {path}"
+
+	zero-style = dim normal
+	plus-style = green normal
+	plus-emph-style = brightgreen normal reverse
+	plus-non-emph-style = green
+	minus-style = red normal
+	minus-emph-style = brightred normal reverse
+	minus-non-emph-style = red
+
+	file-style = bold
+	hunk-header-style = omit
+	hunk-header-file-style = normal
+	hunk-header-line-number-style = normal
+
+	line-numbers = true
+	line-numbers-left-style = normal
+	line-numbers-right-style = normal
+	line-numbers-minus-style = red
+	line-numbers-plus-style = green
+	line-numbers-zero-style = dim normal
+
+	side-by-side = false
+	line-numbers-left-format = " {nm:>}│"
+	line-numbers-right-format = "{np:<} │"
+
+	; side-by-side = true
+	; line-numbers-left-format = " {nm} │ "
+	; line-numbers-right-format = "│ {np} │"
+
+	blame-code-style = "syntax"
+	blame-palette = normal
+	blame-format = {author} - {timestamp}
+
+
+[interactive]
+	diffFilter = delta --color-only
+
+[blame]
+	coloring = highlightRecent

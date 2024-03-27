@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+notARepository: 'quit'
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never
+  overrideGpg: true

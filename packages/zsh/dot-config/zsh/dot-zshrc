@@ -1,0 +1,154 @@
+#------------------------------------------------------------------------------
+# Environment
+#------------------------------------------------------------------------------
+set -a
+for conf in "$HOME/.local/env"/*.conf; do
+    [ -f "$conf" ] && source "$conf"
+done
+set +a
+
+export PATH="$HOME/.local/bin:$PATH"
+source "$ZDOTDIR/aliases.zsh"
+
+#------------------------------------------------------------------------------
+# History
+#------------------------------------------------------------------------------
+export HISTFILE="$HOME/.local/share/zsh/history"
+
+# Format
+setopt EXTENDED_HISTORY   # Format history entries as ':start:elapsed;command'
+setopt HIST_REDUCE_BLANKS # Remove extra whitespace before appending to local history
+
+# Duplicates
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event
+setopt HIST_SAVE_NO_DUPS      # Do not write duplicate events to the history file
+setopt HIST_IGNORE_ALL_DUPS   # Deletes an old event if a new event is a duplicate
+setopt HIST_EXPIRE_DUPS_FIRST # Remove a duplicate event first when trimming history
+
+# Share history
+setopt INC_APPEND_HISTORY_TIME # Append events to history file immediately
+
+# Filtering
+setopt HIST_NO_STORE # Don't store the history command in history
+export HISTORY_IGNORE="cd|cd ..|l[a,l,s,g,]*|cat *|clear" # ignore trivial
+
+
+#------------------------------------------------------------------------------
+# cd tweaks
+#------------------------------------------------------------------------------
+# Directory stack
+setopt AUTO_PUSHD        # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+
+# list cwd contents after changing directories
+function ls_after_cd() {
+	emulate -L zsh
+	eza --all --git-ignore --icons=always --classify --group \
+	--group-directories-first --time-style=long-iso --color-scale
+}
+if [[ "${chpwd_functions[(r)ls_after_cd]}" != "ls_after_cd" ]]; then
+	chpwd_functions=("${chpwd_functions[@]}" "ls_after_cd")
+fi
+
+#------------------------------------------------------------------------------
+# Completions
+#------------------------------------------------------------------------------
+# settings
+setopt ALWAYS_LAST_PROMPT # Return to previous prompt on no argument
+setopt ALWAYS_TO_END      # Always place the cursor to the end of the word completed
+setopt AUTO_LIST          # list choices on ambiguous completion
+setopt LIST_PACKED        # columns are the width of their largest element
+setopt AUTO_MENU          # Display the completion menu after two use of the TAB key
+# setopt MENU_COMPLETE    # Select the first match given by the completion menu
+setopt COMPLETE_IN_WORD   # The completion will happen on both end of the word completed
+setopt GLOB_COMPLETE      # Trigger the completion after a glob * instead of expanding it
+setopt GLOB_DOTS          # Complete hidden files and directories
+setopt LIST_ROWS_FIRST    # Matches are sorted in rows instead of columns
+unsetopt LIST_BEEP        # who tf would keep this on
+
+# setopt GLOB_COMPLETE    # Open completions instead of completing glob
+# setopt AUTO_LIST        # Automatically list choices on ambiguous completion.
+# setopt COMPLETE_IN_WORD # Complete from both ends of a word.
+# setopt ALWAYS_TO_END
+
+# cache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/compdump/"
+
+# completors
+zstyle ':completion:*' completer _extensions _complete _approximate
+
+# completions menu
+zstyle ':completion:*' menu select=0
+zstyle ':completion:*' group-name ''
+# zstyle ':completion:*:default' menu select=0
+zstyle ':completion:*:default' select-scroll 0
+zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+
+# completion matching: case and word delimiter insensitive, try to match partials
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# squeeze slashes to /, not /*/
+zstyle ':completion:*' squeeze-slashes true
+
+# prefer options over directory stack
+zstyle ':completion:*' complete-options true
+
+# color completions
+# zstyle ':completion:*' file-list all
+zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
+
+#------------------------------------------------------------------------------
+# Plugins
+#------------------------------------------------------------------------------
+PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
+
+# Auto-suggestions
+# suggest commands based on history, fallback to completions
+ZSH_AUTOSUGGEST_STRATEGY=( history completion )
+# ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+if [[ ! -e "$PLUGIN_DIR/zsh-autosuggestions" ]]; then
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "$PLUGIN_DIR/zsh-autosuggestions"
+fi
+source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+
+# Syntax Highlighting
+if [[ ! -e "$PLUGIN_DIR/zsh-syntax-highlighting" ]]; then
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$PLUGIN_DIR/zsh-syntax-highlighting"
+fi
+source "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+
+# Vim Bindings
+echo -ne '\e[6 q' # inital cursor style before lazy loading
+MODE_INDICATOR="" # starship handles keymap mode indicator
+KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
+MODE_CURSOR_VIINS="bar"
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_REPLACE="underline"
+MODE_CURSOR_SEARCH="underline"
+MODE_CURSOR_VISUAL="underline"
+MODE_CURSOR_VLINE="underline"
+
+if [[ ! -e "$PLUGIN_DIR/zsh-vim-mode" ]]; then
+    git clone --depth=1 https://github.com/softmoth/zsh-vim-mode.git "$PLUGIN_DIR/zsh-vim-mode"
+fi
+source "$PLUGIN_DIR/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+
+#------------------------------------------------------------------------------
+# Tools
+#------------------------------------------------------------------------------
+eval "$(starship init zsh)"
+# eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
+
+source <(fzf --zsh)
+
+eval "$(atuin init zsh --disable-up-arrow --disable-ctrl-r)"
+bindkey '^r' atuin-search

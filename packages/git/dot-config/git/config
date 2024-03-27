@@ -1,0 +1,107 @@
+[include]
+	path = credentials
+	path = delta
+	path = difftool
+
+[advice]
+	# statusHints = false
+	addEmptyPathSpec = false
+	detachedHead = false
+	forceDeleteBranch = false
+	mergeConflict = false
+	pushNonFastForward = false
+	skippedCherryPicks = false
+
+[branch]
+	sort = -committerdate
+	autosetupmerge = always
+	autosetuprebase = remote
+
+[diff]
+	colorMoved = true
+
+[help]
+	autocorrect = prompt
+
+[tag]
+	sort = -version:refname
+
+[init]
+	defaultBranch = main
+
+[status]
+	branch = true
+	showStash = true
+	showUntrackedFiles = all
+
+[commit]
+	verbose = true
+	gpgSign = true
+	; template = ~/.config/git/commit-template
+
+[core]
+	compression = 9
+	whitespace = trailing-space
+	preloadindex = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = zebra
+	colorMovedWS = allow-indentation-change
+	context = 8
+	renames = copies
+	interHunkContext = 10
+	mnemonicPrefix = true
+
+[interactive]
+	singlekey = true
+
+[push]
+	autosetupremote = true
+	default = current
+
+[pull]
+	rebase = merges
+
+[rerere]
+	enabled = 1
+	autoupdate = true
+
+[rebase]
+	autostash = true
+	autosquash = true
+
+[merge]
+	conflictstyle = zdiff3
+	autostash = true
+
+[submodule]
+	recurse = true
+
+[maintenance]
+	auto = true
+	strategy = incremental
+
+[alias]
+	co = "checkout"
+	sm = "submodule"
+	sw = "switch"
+	wt = "worktree"
+	st = "status"
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	; ignore = "!f() { curl -sL https://www.toptal.com/developers/gitignore/api/$@ ;} f"
+	ignore = "!gi() { local IFS=','; curl -sL https://www.toptal.com/developers/gitignore/api/\"$*\"; }; gi"
+	graph = "log --graph --all --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+	clone-bare = "!f(){ git clone $1 $2 && cd $(ls -dt */ | head -1) && git checkout $(git commit-tree $(git hash-object -t tree /dev/null) < /dev/null) && echo '*' > .gitignore; }; f"
+	; TODO: Check recent versus sorting branch
+	recent = "!git for-each-ref --sort=-committerdate refs/heads --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -ts'|'"
+
+[url "https://github.com/"]
+	insteadOf = "gh:"
+
+[url "https://gitlab.com/"]
+	insteadOf = "gl:"
+
+[url "https://github.com/mvanderloo/"]
+	insteadOf = "my:"
+

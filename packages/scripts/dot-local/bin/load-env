@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# Script to export environment variables from all .conf files in a directory
+# Usage: source ./load_env
+# Usage: source ./load_env [custom_env_directory]
+
+# Detect if the script is being executed (not sourced)
+(return 0 2>/dev/null) || {
+    echo "Error: This script must be sourced, not executed."
+    exit 1
+}
+
+# Determine environment directory
+if [ -n "$1" ]; then
+    # Use provided directory if specified
+    ENV_DIR="$1"
+    if [ ! -d "${ENV_DIR}" ]; then
+        echo "Error: Directory ${ENV_DIR} does not exist."
+        return 1 2>/dev/null || exit 1
+    fi
+else
+    # Default directory
+    ENV_DIR="${HOME}/.config/environment.d"
+    if [ ! -d "${ENV_DIR}" ]; then
+        # This directory does not need to exist
+        return 0
+    fi
+fi
+
+# Use array instead of string concatenation
+declare -a overwritten_vars=()
+
+# Process each .conf file
+for env_file in "${ENV_DIR}"/*.conf; do
+    # Skip if no files match the pattern
+    [ -f "${env_file}" ] || continue
+
+    # Read the entire file at once and process it
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" == \#* ]] && continue
+
+        # Extract variable name and value using parameter expansion
+        variable_name="${line%%=*}"
+        new_val="${line#*=}"
+
+        # Get current value directly
+        eval "current_val=\${$variable_name}"
+
+        # Expand the new value once
+        expanded_new_val=$(eval echo "$new_val")
+
+        # Debug output (remove in final version)
+        # echo "DEBUG: $variable_name - current: '$current_val', new: '$expanded_new_val'"
+
+        # Only mark as overwritten if values are different and the variable exists
+        if [ -n "$current_val" ]; then
+            if [ "$current_val" != "$expanded_new_val" ]; then
+                overwritten_vars+=("$variable_name")
+            fi
+        fi
+
+        # Export the variable directly
+        export "$variable_name=$expanded_new_val"
+    done <"$env_file"
+done
+
+# Print warning only if any variables were overwritten
+if [ ${#overwritten_vars[@]} -gt 0 ]; then
+    echo "Warning: Overwritten environment variables: ${overwritten_vars[*]}"
+fi
