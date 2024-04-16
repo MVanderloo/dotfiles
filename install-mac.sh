@@ -19,3 +19,6 @@ mv .zprofile ~/.zprofile
 # homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew  autoupdate start 43200 --upgrade --cleanup --immediate --sudo
+
+# essential homebrew packages (consider moving these to their own file)
+brew install thefuck
