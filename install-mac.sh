@@ -28,14 +28,15 @@ brew autoupdate start 43200 --upgrade --cleanup --immediate --sudo
 
 # essential homebrew packages
 brew install thefuck
-brew install ripgrep
-brew install bat
-brew install fd
-brew install fzf
-brew install zoxide
-brew install eza
-brew install zellij
-brew install zsh-vi-mode
+brew install fzf          # fuzzy find
+brew install ripgrep      # better grep
+brew install bat          # better cat
+brew install fd           # better find
+brew install zoxide       # fzf cd replacement
+brew install eza          # better ls
+brew install zellij       # terminal multiplexor
+brew install zsh-vi-mode  # better supported vi mode in terminal
+brew install mdless       # markdown preview
 
 # casks
 brew tap homebrew/cask-fonts
