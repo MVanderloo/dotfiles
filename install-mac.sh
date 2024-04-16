@@ -7,5 +7,11 @@ exit 1
 # I currently work on Mac but I'd like to support Ubuntu at least
 
 # move zprofile and zshrc into place. make backup unless --force is set
-# install and configure dependencies
 
+
+######################################
+# install and configure dependencies #
+######################################
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew  autoupdate start 43200 --upgrade --cleanup --immediate --sudo
