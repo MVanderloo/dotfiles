@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-echo "Untested script. Exiting to prevent unintentionally running"
+echo "Untested script. Exiting to prevent unintentionally running. Remove when ready to run"
 exit 1
 
-# this script should be run once on a MacOS machine to setup the rest of this repo to be functional
+##########################################################
+# this script should be run on a MacOS machine initially #
+##########################################################
 
-# move zprofile and zshrc into place. TODO: make backup unless --force is set
+
+##############
+# zsh config #
+##############
+# TODO: make backup unless --force is set
 mv ~/.zshrc ~/.zshrc-backup
 mv .zshrc ~/.zshrc
 
@@ -28,6 +34,8 @@ brew install fd
 brew install fzf
 brew install zoxide
 brew install eza
+brew install zellij
+brew install zsh-vi-mode
 
 # casks
 brew tap homebrew/cask-fonts
