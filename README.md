@@ -3,6 +3,7 @@
 Welcome to my dotfiles repository. These configurations are targetted towards MacOS using zsh. 
 
 ## References
+- https://github.com/paulirish/dotfiles
 - https://github.com/StefanScherer/dotfiles
 
 ## Tools
