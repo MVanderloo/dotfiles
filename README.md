@@ -2,6 +2,9 @@
 
 Welcome to my dotfiles repository. These configurations are targetted towards MacOS using zsh. 
 
+## References
+- https://github.com/StefanScherer/dotfiles
+
 ## Tools
 
 Below is a list of abstract tools, from Terminal Emulator down to command line tools. 
