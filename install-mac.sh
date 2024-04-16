@@ -20,5 +20,18 @@ mv .zprofile ~/.zprofile
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew  autoupdate start 43200 --upgrade --cleanup --immediate --sudo
 
-# essential homebrew packages (consider moving these to their own file)
+# essential homebrew packages
 brew install thefuck
+brew install ripgrep
+brew install bat
+brew install fd
+brew install fzf
+brew install zoxide
+brew install eza
+
+# casks
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code-nerd-font # font
+brew install --cask kitty # terminal emulator
+
+
