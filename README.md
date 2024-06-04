@@ -8,52 +8,33 @@ Welcome to my dotfiles repository. These configurations are targetted towards Ma
 
 ## Tools
 
-### Terminal Emulator
-- **wezterm** - Simple, effective, pretty. It has support for tiling but I don't want to be tied down when tools like tmux and zellij exist
+### Terminal Emulator - **wezterm** 
+
+Simple, effective, pretty. It has support for tiling but I don't want to be tied down when tools like tmux and zellij exist
+https://wezfurlong.org/wezterm/
 
 ### Prompt - **Starship** 
 
   https://starship.rs/
 
-### Autocomplete
-
-### Multiplexor
-
-- **zellij**
-
-  https://zellij.dev/documentation/
-
-- **tmux** - unix classic
-
-### Environment Manager
-
-mise-en-place
-
-### Build/script utility
-
-Just
 
 ### Command Line Tools
-
-#### Change directory
-- zoxide
+- zoxide - change directory to best match based on keyword and visit frequency
     
-#### List directory
+- eza - better ls. file/directory highlighting, tree
 
-- eza
+- bat - better cat. print file with syntax highlighting, line numbers and paging
 
-#### Print file
+- neovim - edit files
 
-- bat 
+- mdless - markdown viewer
 
-#### Edit file
+- fd - find replacement
 
-- neovim
+- fzf - fuzzy finder, used in history search, fuzzy interactive cd, fuzzy completions, any interactive menu really
 
-#### Find files
+- just - command runner based on make
 
-- fd
+- mise - environment manager. can set env based on directory, will set/unset as you move through directories
 
-#### Fuzzy Finder
-
-- fzf
+- tmux / zellij - terminal multiplexor. manage panes, windows, sessions. save layouts. persist processes
