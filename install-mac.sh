@@ -7,16 +7,9 @@ exit 1
 # this script should be run on a MacOS machine initially #
 ##########################################################
 
+# prevent Finder from writing those godforsaken .DS_Store files everywhere
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
-##############
-# zsh config #
-##############
-# TODO: make backup unless --force is set
-mv ~/.zshrc ~/.zshrc-backup
-mv .zshrc ~/.zshrc
-
-mv ~/.zprofile ~/.zprofile-backup
-mv .zprofile ~/.zprofile
 
 ######################################
 # install and configure dependencies #
@@ -27,6 +20,7 @@ mv .zprofile ~/.zprofile
 brew autoupdate start 43200 --upgrade --cleanup --immediate --sudo
 
 # essential homebrew packages
+# replace with Brewfile
 brew install thefuck
 brew install fzf          # fuzzy find
 brew install ripgrep      # better grep
