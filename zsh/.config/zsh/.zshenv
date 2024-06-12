@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+# XDG base directory
+export XDG_DATA_HOME=~/.local/share
+# export XDG_DATA_DIRS
+export XDG_CONFIG_HOME=~/.config
+# export XDG_CONFIG_DIRS
+export XDG_STATE_HOME=~/.local/state
+export XDG_CACHE_HOME=~/.cache
+export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir/
+
 # Term
 export TERM='xterm-256color'
 
@@ -10,7 +19,6 @@ alias vim="nvim"
 export VIMCONFIG="$XDG_CONFIG_HOME/nvim"
 
 # zsh
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file

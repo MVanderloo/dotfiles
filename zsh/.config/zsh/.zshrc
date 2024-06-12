@@ -1,9 +1,4 @@
-# ---------- p10k ----------
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# dont try to configure p10k just switch to starship when u have time
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
 
 
 # ---------- zinit ----------
@@ -14,7 +9,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # zinit plugins
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions; autoload -U compinit && compinit
 zinit light zsh-users/zsh-autosuggestions
@@ -130,7 +124,3 @@ eval "$(zoxide init zsh)"
 
 # ---- bat ----
 alias cat=bat
-
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
