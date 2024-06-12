@@ -11,7 +11,7 @@ config.font_size = 12.5 -- evidently the perfect font size
 config.font = wezterm.font("FiraCode Nerd Font Ret")
 
 -- background style
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.7
 config.native_macos_fullscreen_mode = false -- allows wallpaper to show through transparent background in fullscreen
 config.macos_window_background_blur = 100
 
