@@ -7,8 +7,8 @@ config.color_scheme = "Tokyo Night"
 
 -- font settings
 config.font_size = 12.5 -- evidently the perfect font size
-config.font = wezterm.font("JetbrainsMono Nerd Font")
--- config.font = wezterm.font("FiraCode Nerd Font Ret")
+-- config.font = wezterm.font("JetbrainsMono Nerd Font")
+config.font = wezterm.font("FiraCode Nerd Font Ret")
 
 -- background style
 config.window_background_opacity = 0.6

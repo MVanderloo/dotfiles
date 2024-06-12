@@ -112,6 +112,7 @@ _fzf_comprun() {
 # ---- Eza (better ls) -----
 eza_params=('--git' '--icons=always' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
 alias ls='eza $eza_params'
+alias la='eza $eza_params --all'
 alias tree='eza --tree $eza_params'
 
 
