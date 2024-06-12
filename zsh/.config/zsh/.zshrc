@@ -34,7 +34,6 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 # history setup
 HISTSIZE=5000
 SAVEHIST=5000
-HISTFILE=$XDG_CONFIG_HOME/.zhistory
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
