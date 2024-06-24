@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+export PATH="$:/snap/bin"
+
 # XDG base directory
 export XDG_DATA_HOME=~/.local/share
 # export XDG_DATA_DIRS
