@@ -1,4 +1,8 @@
+# prompt
 eval $(starship init bash)
+
+# bash vi mode
+set -o vi
 
 # eza
 eza_params="--git --icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale"
