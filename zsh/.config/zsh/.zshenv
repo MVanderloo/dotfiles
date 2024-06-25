@@ -61,6 +61,16 @@ export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
 # prompt:gray,\
 # hl+:red"
 
-
+# if tldr is run without arguments run a fzf search over tldr --list
+# if in a tmux session it will be a popup
+function tldr() {
+    if [[ $# -eq 0 ]]; then
+        # Run tldr with --list to get all available commands
+        tldr "$(tldr --list | fzf-tmux --preview "tldr {1} --color=always --compact" --preview-window=right,60% --reverse -p)"
+    else
+        # Pass arguments to the original tldr command
+        command tldr "$@"
+    fi
+}
 
 
