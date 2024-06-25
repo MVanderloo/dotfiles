@@ -1,6 +1,10 @@
 sudo apt update && sudo apt upgrade -y
 
-sudo apt install -y eza git-lfs ripgrep fd-find neovim tmux htop zoxide stow fzf thefuck just git-delta tealdeer 
+sudo apt install -y eza git-lfs ripgrep neovim tmux htop zoxide stow fzf thefuck just git-delta tealdeer 
+
+# fd
+sudo apt install -y fd-find
+alias fdfind=fd
 
 # bat
 sudo apt install -y bat
