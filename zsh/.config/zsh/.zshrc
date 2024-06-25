@@ -1,6 +1,5 @@
 eval "$(starship init zsh)"
 
-
 # ---------- zinit ----------
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Download zinit, if it doesnt exist
@@ -123,4 +122,5 @@ unalias zi
 eval "$(zoxide init zsh)"
 
 # ---- bat ----
-alias cat=bat
+alias bat=batcat
+alias cat=batcat

@@ -6,3 +6,13 @@ This repo is designed to be used with GNU Stow. Use the following command get an
 ```code
 stow -S zsh -t ~ 
 ```
+
+# Dependencies
+- bash
+- zsh
+- zoxide
+- thefuck
+- neovim
+- eza
+- stow
+- starship
