@@ -1,28 +1,30 @@
-eval "$(starship init zsh)"
-
-# ---------- zinit ----------
+# zinit plugin manager
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Download zinit, if it doesnt exist
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# zinit plugins
+# Plugins
+atload'unalias zi' # zinit alias's zi, which is used for zoxide interactive
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions; autoload -U compinit && compinit
 zinit light zsh-users/zsh-autosuggestions
-#zinit ice \
-#  as"command" \
-#  from"gh-r" \
-#  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-#  atpull"%atclone" \
-#  src"init.zsh"
-# zinit light starship/starship
-# zsh vi mode plugin
 
+# Starship prompt
+zinit ice \
+  as"command" \
+  from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+  zinit light starship/starship
+
+# zsh-vi-mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 KEYTIMEOUT=1              # remove delay for entering insert mode
 bindkey -rpM viins '^[^[' # remove all bindings starting with <ESC>
+# set cursor style
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
 MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
 MODE_CURSOR_VICMD="green block"
@@ -30,9 +32,10 @@ MODE_CURSOR_SEARCH="#ff00ff steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
-# history setup
+# History
 HISTSIZE=5000
 SAVEHIST=5000
+HISTFILE=$XDG_CONFIG_HOME/zsh/.zhistory
 HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
@@ -43,16 +46,14 @@ setopt hist_find_no_dups
 setopt hist_expire_dups_first
 setopt hist_verify
 
-# Relevant history search using vi arrow keys
+# Make history searching match what you've typed so far
 bindkey -M vicmd "k" history-beginning-search-backward
 bindkey -M vicmd "j" history-beginning-search-forward
 
-# Completion styling
+# Completion styling, allow case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-# Vi motions in terminal
-# source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 __conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -107,20 +108,20 @@ _fzf_comprun() {
   esac
 }
 
-# ---- Eza (better ls) -----
+# Eza
 eza_params=('--git' '--icons=always' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
 alias ls='eza $eza_params'
 alias la='eza $eza_params --all'
 alias tree='eza --tree $eza_params'
 
-
-# ---- TheFuck -----
+# thefuck
 eval $(thefuck --alias frick)
 
-# ---- Zoxide (better cd) ----
-unalias zi
+# zoxide 
 eval "$(zoxide init zsh)"
 
-# ---- bat ----
-alias bat=batcat
-alias cat=batcat
+# bat
+alias cat=bat
+
+# mise
+eval "$(mise activate zsh)"
