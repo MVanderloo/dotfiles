@@ -1,3 +1,11 @@
+# XDG Base Directory 
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir/
+
+
 # If not running interactively, don't do anything
 case $- in 
   *i*) ;;
@@ -8,6 +16,7 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
+
 
 eval $(starship init bash)
 
