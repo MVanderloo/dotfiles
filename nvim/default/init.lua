@@ -1,0 +1,5 @@
+require('globals')
+require('options')
+require('autocmds')
+require('lazy-setup')
+require('keymaps')
