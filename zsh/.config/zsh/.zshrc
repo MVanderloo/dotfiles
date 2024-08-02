@@ -12,14 +12,13 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions; autoload -U compinit && compinit
 zinit light zsh-users/zsh-autosuggestions
-#zinit ice \
-#  as"command" \
-#  from"gh-r" \
-#  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-#  atpull"%atclone" \
-#  src"init.zsh"
-# zinit light starship/starship
-# zsh vi mode plugin
+zinit ice \
+ as"command" \
+ from"gh-r" \
+ atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+ atpull"%atclone" \
+ src"init.zsh"
+zinit light starship/starship
 
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 KEYTIMEOUT=1              # remove delay for entering insert mode
@@ -43,10 +42,6 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt hist_expire_dups_first
 setopt hist_verify
-
-# Relevant history search using vi arrow keys
-bindkey -M vicmd "k" history-beginning-search-backward
-bindkey -M vicmd "j" history-beginning-search-forward
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
