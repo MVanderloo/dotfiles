@@ -1,13 +1,13 @@
 return {
     {
         'numToStr/Comment.nvim',
-        opts = { ignore = '^$' } -- block comment doesn't include blank lines 
+        config = true,
+        -- opts = { ignore = '^$' } -- block comment doesn't include blank lines 
     },
     { -- TODO: make this work
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
-        lazy = false,
-        opts = {}
+        config = true,
     }
 }
 
