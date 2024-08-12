@@ -1,2 +1,1 @@
-export ZDOTDIR=~/.config/zsh
-. $ZDOTDIR/.zshenv
+dot-config/zsh/dot-zshenv

@@ -1,5 +1,5 @@
 require('globals')
 require('options')
 require('auto-commands')
-require('config.lazy-setup')
+require('lazy-setup')
 require('keymaps')
