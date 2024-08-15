@@ -17,8 +17,25 @@ return {
             enabled = false,
         }
     },
-
     'nvim-lualine/lualine.nvim', 
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = true,
+    },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+    { "Mofiqul/vscode.nvim", priority = 1000 },
+    { "0xstepit/flow.nvim", priority = 1000 },
+    { "folke/tokyonight.nvim", priority = 1000 },
+    { "rebelot/kanagawa.nvim", priority = 1000 },
+    { "rose-pine/neovim", name = "rose-pine", priority = 1000 },
+    {
+        'zaldih/themery.nvim',
+        opts = {
+            themes = {"catppuccin", "vscode", "flow", "tokyonight", "kanagawa", "rose-pine",  },
+            livePreview = true,
+        }
+    },
 }
 
 -- -- Fixes Notify opacity issues
@@ -83,69 +100,69 @@ return {
                                                     -- 	--  },
                                                     -- 	--
                                                     -- 	--  'ray-x/guihua.lua',
-                                                        -- 	--
-                                                        -- 	--  { -- LSP Configuration & Plugins
-                                                            -- 	--    'neovim/nvim-lspconfig',
-                                                            -- 	--    dependencies = {
-                                                                -- 	--      'williamboman/mason.nvim',
-                                                                -- 	--      'williamboman/mason-lspconfig.nvim',
-                                                                -- 	--      'j-hui/fidget.nvim',
-                                                                -- 	--    }
+                                                    -- 	--
+                                                    -- 	--  { -- LSP Configuration & Plugins
+                                                        -- 	--    'neovim/nvim-lspconfig',
+                                                        -- 	--    dependencies = {
+                                                            -- 	--      'williamboman/mason.nvim',
+                                                            -- 	--      'williamboman/mason-lspconfig.nvim',
+                                                            -- 	--      'j-hui/fidget.nvim',
+                                                            -- 	--    }
+                                                            -- 	--  },
+                                                            -- 	--
+                                                            -- 	--  { -- Autocompletion
+                                                                -- 	--    'hrsh7th/nvim-cmp',
+                                                                -- 	--    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
                                                                 -- 	--  },
                                                                 -- 	--
-                                                                -- 	--  { -- Autocompletion
-                                                                    -- 	--    'hrsh7th/nvim-cmp',
-                                                                    -- 	--    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-                                                                    -- 	--  },
-                                                                    -- 	--
-                                                                    -- 	--  { -- Highlight, edit, and navigate code
-                                                                        -- 	--    'nvim-treesitter/nvim-treesitter',
-                                                                        -- 	--    build = function()
-                                                                            -- 	--      pcall(require('nvim-treesitter.install').update { with_sync = true })
-                                                                            -- 	--    end,
-                                                                            -- 	--    dependencies = {
-                                                                                -- 	--      'nvim-treesitter/nvim-treesitter-textobjects',
-                                                                                -- 	--    }
-                                                                                -- 	--  },
-                                                                                -- 	--
-                                                                                -- 	--  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-                                                                                -- 	--  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines 
-                                                                                -- 	--  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-                                                                                -- 	--
-                                                                                -- 	--  -- Fuzzy Finder (files, lsp, etc)
-                                                                                -- 	--  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-                                                                                -- 	--  'nvim-telescope/telescope-symbols.nvim',
-                                                                                -- 	--  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-                                                                                -- 	--  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
-                                                                                -- 	--
-                                                                                -- 	--  {
-                                                                                    -- 	--    "debugloop/telescope-undo.nvim",
-                                                                                    -- 	--    dependencies = {
-                                                                                        -- 	--      {
-                                                                                            -- 	--        "nvim-telescope/telescope.nvim",
-                                                                                            -- 	--        dependencies = { "nvim-lua/plenary.nvim" },
-                                                                                            -- 	--      },
+                                                                -- 	--  { -- Highlight, edit, and navigate code
+                                                                    -- 	--    'nvim-treesitter/nvim-treesitter',
+                                                                    -- 	--    build = function()
+                                                                        -- 	--      pcall(require('nvim-treesitter.install').update { with_sync = true })
+                                                                        -- 	--    end,
+                                                                        -- 	--    dependencies = {
+                                                                            -- 	--      'nvim-treesitter/nvim-treesitter-textobjects',
+                                                                            -- 	--    }
+                                                                            -- 	--  },
+                                                                            -- 	--
+                                                                            -- 	--  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+                                                                            -- 	--  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines 
+                                                                            -- 	--  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+                                                                            -- 	--
+                                                                            -- 	--  -- Fuzzy Finder (files, lsp, etc)
+                                                                            -- 	--  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+                                                                            -- 	--  'nvim-telescope/telescope-symbols.nvim',
+                                                                            -- 	--  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+                                                                            -- 	--  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+                                                                            -- 	--
+                                                                            -- 	--  {
+                                                                                -- 	--    "debugloop/telescope-undo.nvim",
+                                                                                -- 	--    dependencies = {
+                                                                                    -- 	--      {
+                                                                                        -- 	--        "nvim-telescope/telescope.nvim",
+                                                                                        -- 	--        dependencies = { "nvim-lua/plenary.nvim" },
+                                                                                        -- 	--      },
+                                                                                        -- 	--    },
+                                                                                        -- 	--    keys = {
+                                                                                            -- 	--      { "<leader>u", "<cmd>Telescope undo<cr>", desc = "undo history", },
                                                                                             -- 	--    },
-                                                                                            -- 	--    keys = {
-                                                                                                -- 	--      { "<leader>u", "<cmd>Telescope undo<cr>", desc = "undo history", },
-                                                                                                -- 	--    },
-                                                                                                -- 	--    opts = {
-                                                                                                    -- 	--      extensions = {
-                                                                                                        -- 	--        undo = { use_delta = true },
-                                                                                                        -- 	--      },
-                                                                                                        -- 	--    },
-                                                                                                        -- 	--    config = function(_, opts)
-                                                                                                            -- 	--      require("telescope").setup(opts)
-                                                                                                            -- 	--      require("telescope").load_extension("undo")
-                                                                                                            -- 	--    end,
-                                                                                                            -- 	--  },
-                                                                                                            -- 	--  {
-                                                                                                                -- 	--    "folke/which-key.nvim",
-                                                                                                                -- 	--    event = "VeryLazy",
-                                                                                                                -- 	--    init = function()
-                                                                                                                    -- 	-- vim.o.timeout = true
-                                                                                                                    -- 	-- vim.o.timeoutlen = 500
-                                                                                                                    -- 	--    end,
-                                                                                                                    -- 	--    opts = {}
-                                                                                                                    -- 	--  },
-                                                                                                                    -- })
+                                                                                            -- 	--    opts = {
+                                                                                                -- 	--      extensions = {
+                                                                                                    -- 	--        undo = { use_delta = true },
+                                                                                                    -- 	--      },
+                                                                                                    -- 	--    },
+                                                                                                    -- 	--    config = function(_, opts)
+                                                                                                        -- 	--      require("telescope").setup(opts)
+                                                                                                        -- 	--      require("telescope").load_extension("undo")
+                                                                                                        -- 	--    end,
+                                                                                                        -- 	--  },
+                                                                                                        -- 	--  {
+                                                                                                            -- 	--    "folke/which-key.nvim",
+                                                                                                            -- 	--    event = "VeryLazy",
+                                                                                                            -- 	--    init = function()
+                                                                                                                -- 	-- vim.o.timeout = true
+                                                                                                                -- 	-- vim.o.timeoutlen = 500
+                                                                                                                -- 	--    end,
+                                                                                                                -- 	--    opts = {}
+                                                                                                                -- 	--  },
+                                                                                                                -- })
