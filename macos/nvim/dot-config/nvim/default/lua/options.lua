@@ -39,7 +39,6 @@ opt.autochdir = false
 opt.iskeyword:append("-")
 opt.selection = "exclusive"
 opt.mouse = "a"
--- opt.clipboard:append("unnamedplus")
 opt.modifiable = true
 opt.encoding = "UTF-8"
 opt.updatetime = 250
@@ -48,7 +47,4 @@ opt.updatetime = 250
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldlevel = 99
-
--- Concealer for Neorg
-opt.conceallevel=2
 
