@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+<<<<<<< HEAD
 
 -- return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -47,3 +48,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     end,
 })
 
+=======
+>>>>>>> 91dc396888d8e545c42e510741467ce698ab6c2f

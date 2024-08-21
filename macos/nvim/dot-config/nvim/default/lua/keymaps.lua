@@ -22,7 +22,12 @@ vim.api.nvim_set_keymap("n", "TT", ":TransparentToggle<CR>", {noremap=true})
 --   {silent = true, noremap = true}
 -- )
 
+<<<<<<< HEAD
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+=======
+-- Keymaps for better default experience
+-- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+>>>>>>> 91dc396888d8e545c42e510741467ce698ab6c2f
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -32,6 +37,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Indent block and keep highlight
 vim.keymap.set("v", "<", "<gv", { silent = true, noremap = true })
 vim.keymap.set("v", ">", ">gv", { silent = true, noremap = true })
+<<<<<<< HEAD
 
 -- Toggle format on save
 vim.keymap.set(
@@ -47,3 +53,5 @@ vim.keymap.set(
     end,
     { noremap = true, silent = true }
 )
+=======
+>>>>>>> 91dc396888d8e545c42e510741467ce698ab6c2f
