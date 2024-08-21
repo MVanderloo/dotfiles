@@ -1,0 +1,22 @@
+# Formulae
+brew 'bat'
+brew 'chezmoi'
+brew 'cowsay'
+brew 'eza'
+brew 'fd'
+brew 'fzf'
+brew 'mise'
+brew 'ripgrep'
+brew 'starship'
+brew 'tealdeer'
+brew 'thefuck'
+brew 'tmux'
+brew 'zoxide'
+
+# Casks
+cask 'font-0xproto-nerd-font'
+cask 'font-fira-code-nerd-font'
+cask 'font-jetbrains-mono-nerd-font'
+cask 'karabiner-elements'
+cask 'raycast'
+cask 'wezterm'
