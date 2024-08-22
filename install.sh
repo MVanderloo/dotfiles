@@ -9,10 +9,3 @@ if [ "$(id -u)" -ne 0 ];
         exit 1
 fi
 
-# package managers
-sudo apt update
-sudo apt install snapd
-
-# install packages
-sudo apt install fzf thefuck zoxide starship bat
-sudo snap install --edge starship
