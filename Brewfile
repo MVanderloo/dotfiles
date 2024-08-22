@@ -12,6 +12,7 @@ brew 'tealdeer'
 brew 'thefuck'
 brew 'tmux'
 brew 'zoxide'
+brew 'just'
 
 # Casks
 cask 'font-0xproto-nerd-font'
