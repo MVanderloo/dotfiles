@@ -1,27 +1,68 @@
+# zsh history
+HISTFILE="$XDG_DATA_HOME/zsh/zhistory"
+HISTSIZE=1000000   # Maximum events for internal history
+SAVEHIST=$HISTSIZE # Maximum events in history file
+HISTDUP=erase      # Erase duplicates during history expansion
+
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST    # Remove a duplicate event first when trimming history.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_ALL_DUPS      # Deletes an old recorded event if a new event is a duplicate
+setopt HIST_IGNORE_SPACE         # Do not record events starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write duplicate events to the history file.
+setopt SHARE_HISTORY             # Write events to history file immediately
+setopt INC_APPEND_HISTORY_TIME   # History entries are only added from before the current shell session started
+
 # zinit plugin manager
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 # Download zinit, if it doesnt exist
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
+zinit ice atinit'unalias zi' # unalias 'zi' zoxide interactive mode
 
 # Plugins
-atload'unalias zi' # zinit alias's zi, which is used for zoxide interactive
+# highlight executables based on if they are on $PATH
 zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions; autoload -U compinit && compinit
-zinit light zsh-users/zsh-autosuggestions
-zinit ice \
- as"command" \
- from"gh-r" \
- atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
- atpull"%atclone" \
- src"init.zsh"
-zinit light starship/starship
 
-# zsh-vi-mode
+# generate completions
+mkdir -p $XDG_CACHE_HOME/zsh
+ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
+zinit light zsh-users/zsh-completions; autoload -U compinit && compinit -d "$ZSH_COMPDUMP"
+
+# ghost text based on nearest command in history
+zinit light zsh-users/zsh-autosuggestions
+
+# Starship prompt
+zinit ice \
+  as"command" \
+  from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+  zinit light starship/starship
+
+
+# zsh-vi-mode plugin
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 KEYTIMEOUT=1              # remove delay for entering insert mode
 bindkey -rpM viins '^[^[' # remove all bindings starting with <ESC>
+
+# # Searching through history will filter match based on what is to the left of the cursor
+bindkey -M vicmd "k" history-beginning-search-backward
+bindkey -M vicmd "j" history-beginning-search-forward
+bindkey -M vicmd "^r" history-beginning-search-forward
+
+
+# use bat instead of cat
+cat() {
+   if hash bat 2>/dev/null; then
+        bat -pp "$@"
+   else
+        command cat "$@"
+   fi
+}
+
 # set cursor style
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
 MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
@@ -30,58 +71,40 @@ MODE_CURSOR_SEARCH="#ff00ff steady underline"
 MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
 MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
-# History
-HISTSIZE=5000
-SAVEHIST=5000
-HISTFILE=$XDG_CONFIG_HOME/zsh/.zhistory
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
-setopt hist_expire_dups_first
-setopt hist_verify
 
-# Make history searching match what you've typed so far
-bindkey -M vicmd "k" history-beginning-search-backward
-bindkey -M vicmd "j" history-beginning-search-forward
-
-# Completion styling, allow case insensitive completion
+# Completion styling to allow case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 
-__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-
-# ------------- fuzzy find ------------- 
 eval "$(fzf --zsh)"
-# fzf theme
-fg="#CBE0F0"
-bg="#011628"
-bg_highlight="#143652"
-purple="#B388FF"
-blue="#06BCE4"
-cyan="#2CF9ED"
 
-# export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+
+# better icons and tokyo night colors
+export FZF_DEFAULT_OPTS=" \
+  --height 60% \
+  --border sharp \
+  --layout reverse \
+  --prompt '∷ ' \
+  --pointer ▶ \
+  --marker ⇒ \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+  "
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
 
 
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# Use fd for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
@@ -112,14 +135,51 @@ alias ls='eza $eza_params'
 alias la='eza $eza_params --all'
 alias tree='eza --tree $eza_params'
 
+
 # thefuck
 eval $(thefuck --alias frick)
+
 
 # zoxide 
 eval "$(zoxide init zsh)"
 
-# bat
-alias cat=bat
 
 # mise
 eval "$(mise activate zsh)"
+
+
+# wget (disable history file in ~)
+alias wget='wget --no-hsts'
+
+
+# Neovim config switcher
+export NVIM_APPNAME="nvim"
+function nvims() {
+  local config_dir="$XDG_CONFIG_HOME/nvim"
+  
+  # List of all the directory names of neovim configs, including symlinked ones to handle dotfiles
+  local configs=($(fd --type f --max-depth 2 --relative-path --glob 'init.lua' --follow $config_dir | xargs dirname | xargs basename))
+  
+  # Use fzf to select a config
+  local selected=$(printf "%s\n" "${configs[@]}" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0)
+  echo $selected
+
+  if [[ -z $selected ]]; then
+    return 0
+  fi
+
+  # Adjust the path to match the expected format
+  export NVIM_APPNAME="nvim/${selected}"
+}
+
+
+# fzf over tldr if called without arguments
+function tldr() {
+    if [[ $# -eq 0 ]]; then
+        # Run tldr with --list to get all available commands
+        tldr "$(tldr --list | fzf-tmux --preview "tldr {1} --color=always --compact" --preview-window=right,60% --reverse -p)"
+    else
+        # Pass arguments to the original tldr command
+        command tldr "$@"
+    fi
+}
