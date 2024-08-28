@@ -1,17 +1,18 @@
-# zsh history
+# zsh history settings
 HISTFILE="$XDG_DATA_HOME/zsh/zhistory"
 HISTSIZE=1000000   # Maximum events for internal history
 SAVEHIST=$HISTSIZE # Maximum events in history file
 HISTDUP=erase      # Erase duplicates during history expansion
 
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt HIST_EXPIRE_DUPS_FIRST    # Remove a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_ALL_DUPS      # Deletes an old recorded event if a new event is a duplicate
-setopt HIST_IGNORE_SPACE         # Do not record events starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write duplicate events to the history file.
-setopt SHARE_HISTORY             # Write events to history file immediately
-setopt INC_APPEND_HISTORY_TIME   # History entries are only added from before the current shell session started
+setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format.
+setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history.
+setopt HIST_FIND_NO_DUPS       # Do not display a previously found event.
+setopt HIST_IGNORE_ALL_DUPS    # Deletes an old recorded event if a new event is a duplicate
+setopt HIST_IGNORE_SPACE       # Do not record events starting with a space.
+setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file.
+setopt SHARE_HISTORY           # Write events to history file immediately
+setopt INC_APPEND_HISTORY_TIME # History entries are only added from before the current shell session started
+
 
 # zinit plugin manager
 ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
@@ -21,17 +22,20 @@ ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 zinit ice atinit'unalias zi' # unalias 'zi' zoxide interactive mode
 
-# Plugins
+
 # highlight executables based on if they are on $PATH
 zinit light zsh-users/zsh-syntax-highlighting
+
 
 # generate completions
 mkdir -p $XDG_CACHE_HOME/zsh
 ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
 zinit light zsh-users/zsh-completions; autoload -U compinit && compinit -d "$ZSH_COMPDUMP"
 
+
 # ghost text based on nearest command in history
 zinit light zsh-users/zsh-autosuggestions
+
 
 # Starship prompt
 zinit ice \
@@ -42,28 +46,21 @@ zinit ice \
   src"init.zsh"
   zinit light starship/starship
 
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+
 
 # zsh-vi-mode plugin
+# need to check out https://github.com/softmoth/zsh-vim-mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 KEYTIMEOUT=1              # remove delay for entering insert mode
-bindkey -rpM viins '^[^[' # remove all bindings starting with <ESC>
+bindkey -rpM viins '^[^[' # remove all bindings starting with <ESC><ESC>
 
 # # Searching through history will filter match based on what is to the left of the cursor
 bindkey -M vicmd "k" history-beginning-search-backward
 bindkey -M vicmd "j" history-beginning-search-forward
-bindkey -M vicmd "^r" history-beginning-search-forward
 
-
-# use bat instead of cat
-cat() {
-   if hash bat 2>/dev/null; then
-        bat -pp "$@"
-   else
-        command cat "$@"
-   fi
-}
-
-# set cursor style
+# set cursor style based on vi mode
 MODE_CURSOR_VIINS="#00ff00 blinking bar"
 MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
 MODE_CURSOR_VICMD="green block"
@@ -74,24 +71,30 @@ MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
 
 # Completion styling to allow case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+# color completions using ANSI codes to inherit from terminal palette
+zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
 
 
+# use bat instead of cat
+cat() {
+   if hash bat 2>/dev/null; then
+        bat -pp "$@"
+   else # if bat does not exist call cat
+        command cat "$@"
+   fi
+}
+
+
+# fzf
 eval "$(fzf --zsh)"
 
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-
-# better icons and tokyo night colors
 export FZF_DEFAULT_OPTS=" \
   --height 60% \
   --border sharp \
   --layout reverse \
-  --prompt '∷ ' \
-  --pointer ▶ \
-  --marker ⇒ \
-  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+  --ansi \
+  --color=16
   "
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -101,7 +104,6 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
 export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
-
 
 # Use fd for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
@@ -129,11 +131,12 @@ _fzf_comprun() {
   esac
 }
 
-# Eza
-eza_params=('--git' '--icons=always' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
-alias ls='eza $eza_params'
-alias la='eza $eza_params --all'
-alias tree='eza --tree $eza_params'
+
+# eza
+EZA_PARAMS=('--git' '--icons=always' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
+alias ls='eza $EZA_PARAMS'
+alias la='eza $EZA_PARAMS --all'
+alias tree='eza --tree $EZA_PARAMS'
 
 
 # thefuck
@@ -148,27 +151,30 @@ eval "$(zoxide init zsh)"
 eval "$(mise activate zsh)"
 
 
+# btop
+alias top=btop
+
+
 # wget (disable history file in ~)
 alias wget='wget --no-hsts'
 
 
 # Neovim config switcher
-export NVIM_APPNAME="nvim"
+export NVIM_APPNAME="nvim/kickstart" # default
 function nvims() {
   local config_dir="$XDG_CONFIG_HOME/nvim"
   
-  # List of all the directory names of neovim configs, including symlinked ones to handle dotfiles
+  # List all neovim configs (directories in ~/.config/nvim with an init.lua)
   local configs=($(fd --type f --max-depth 2 --relative-path --glob 'init.lua' --follow $config_dir | xargs dirname | xargs basename))
   
   # Use fzf to select a config
   local selected=$(printf "%s\n" "${configs[@]}" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0)
-  echo $selected
 
+  # fzf is exited without a selection
   if [[ -z $selected ]]; then
     return 0
   fi
 
-  # Adjust the path to match the expected format
   export NVIM_APPNAME="nvim/${selected}"
 }
 
