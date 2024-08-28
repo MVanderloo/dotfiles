@@ -1,43 +1,56 @@
 [user]
-    name = Michael van der Loo
-    email = michaeljvanderloo@gmail.com
-    username = MVanderloo
-
-[init]
-    defaultBranch = main
-
-[pull]
-    rebase = true
+  name = Michael van der Loo
+  email = michaeljvanderloo@gmail.com
+  username = MVanderloo
 
 [core]
-    pager = delta
+  editor = nvim
+  pager = delta
+  excludesFile = ~/.config/git/ignore
 
-[interactive]
-    diffFilter = delta --color-only --features=interactive
+[init]
+  defaultBranch = main
 
+[branch]
+  autosetupmerge = always
+  autosetuprebase = always
+
+[rerere]
+  enabled = 1
 
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
+
+[pull]
+  rebase = true
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
 
 [diff]
-    colorMoved = default 
+  colorMoved = default
 
 [delta]
-    navigate = true
-    features = decorations
-    line-numbers = true
-    hyperlinks = true
-    hyperlinks-file-link-format = "vscode://file/{path}:{line}"
-
+  navigate = true
+  features = decorations
+  line-numbers = true
+  hyperlinks = true
+  hyperlinks-file-link-format = "nvim +{line} {path}"
 
 [delta "interactive"]
-    keep-plus-minus-markers = false
+  keep-plus-minus-markers = false
 
 [delta "decorations"]
-    commit-decoration-style = blue ol
-    commit-style = raw
-    file-style = omit
-    hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
-    hunk-header-style = file line-number syntax
+  commit-decoration-style = blue ol
+  commit-style = raw
+  file-style = omit
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
