@@ -137,6 +137,7 @@ EZA_PARAMS=('--git' '--icons=always' '--classify' '--group-directories-first' '-
 alias ls='eza $EZA_PARAMS'
 alias la='eza $EZA_PARAMS --all'
 alias tree='eza --tree $EZA_PARAMS'
+alias trea='eza --all --tree $EZA_PARAMS'
 
 
 # thefuck
@@ -149,6 +150,7 @@ eval "$(zoxide init zsh)"
 
 # mise
 eval "$(mise activate zsh)"
+eval "$(mise completion zsh)"
 
 
 # btop
@@ -180,6 +182,7 @@ function nvims() {
 
 
 # fzf over tldr if called without arguments
+# TODO: move this to .local/bin
 function tldr() {
     if [[ $# -eq 0 ]]; then
         # Run tldr with --list to get all available commands
