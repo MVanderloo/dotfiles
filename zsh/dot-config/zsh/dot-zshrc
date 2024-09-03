@@ -1,17 +1,22 @@
-# zsh history settings
-HISTFILE="$XDG_DATA_HOME/zsh/zhistory"
-HISTSIZE=1000000   # Maximum events for internal history
+# History settings
+# Storing
+HISTFILE="$XDG_DATA_HOME/zsh/history"
+HISTSIZE=1000000   # Maximum events for local history
 SAVEHIST=$HISTSIZE # Maximum events in history file
-HISTDUP=erase      # Erase duplicates during history expansion
-
-setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format.
-setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history.
-setopt HIST_FIND_NO_DUPS       # Do not display a previously found event.
+# Format
+setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format
+setopt HIST_REDUCE_BLANKS      # Remove extra whitespace when adding to local history
+# Duplicates
+setopt HIST_FIND_NO_DUPS       # Do not display a previously found event
+setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file
+setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history
 setopt HIST_IGNORE_ALL_DUPS    # Deletes an old recorded event if a new event is a duplicate
+# Sharing
+setopt INC_APPEND_HISTORY_TIME # Append to history file immediately, don't read new events from the file
+# Filtering
+setopt HIST_NO_STORE           # Don't store the history command in history
 setopt HIST_IGNORE_SPACE       # Do not record events starting with a space.
-setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file.
-setopt SHARE_HISTORY           # Write events to history file immediately
-setopt INC_APPEND_HISTORY_TIME # History entries are only added from before the current shell session started
+export HISTORY_IGNORE="cd|cd *|ls|ls *|pwd|clear|exit|export *|unset *" # Events stored in local history but not written to history file
 
 
 # zinit plugin manager
