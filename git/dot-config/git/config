@@ -23,7 +23,7 @@ graph2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%a
   enabled = 1
 
 [merge]
-  conflictstyle = diff3
+  conflictstyle = zdiff3
 
 [pull]
   rebase = true
