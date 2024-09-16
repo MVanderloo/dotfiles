@@ -1,212 +1,222 @@
-# History settings
-# Storing
-HISTFILE="$XDG_DATA_HOME/zsh/history"
-HISTSIZE=1000000   # Maximum events for local history
-SAVEHIST=$HISTSIZE # Maximum events in history file
-# Format
-setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format
-setopt HIST_REDUCE_BLANKS      # Remove extra whitespace when adding to local history
-# Duplicates
-setopt HIST_FIND_NO_DUPS       # Do not display a previously found event
-setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file
-setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history
-setopt HIST_IGNORE_ALL_DUPS    # Deletes an old recorded event if a new event is a duplicate
-# Sharing
-setopt INC_APPEND_HISTORY_TIME # Append to history file immediately, don't read new events from the file
-# Filtering
-setopt HIST_NO_STORE           # Don't store the history command in history
-setopt HIST_IGNORE_SPACE       # Do not record events starting with a space.
-export HISTORY_IGNORE="cd|cd *|ls|ls *|pwd|clear|exit|export *|unset *" # Events stored in local history but not written to history file
+#!/usr/bin/env zsh
 
-
+#------------------------------------------------------------------------------
+# Plugin Manager
+#------------------------------------------------------------------------------
 ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
-# zinit plugin manager
-# Download zinit, if it doesnt exist
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-zinit ice atinit'unalias zi' # zi is zoxide interactive mode
+
+#------------------------------------------------------------------------------
+# Aliases
+#------------------------------------------------------------------------------
+# vim
+alias vim='NVIM_APPNAME=nvim/kickstart nvim'
+alias lazyvim='NVIM_APPNAME=nvim/LazyVim nvim'
 
 
-# highlight executables based on if they are on $PATH
-zinit light zsh-users/zsh-syntax-highlighting
-
-
-# generate completions
-mkdir -p $XDG_CACHE_HOME/zsh
-ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/zcompdump-$HOST"
-zinit light zsh-users/zsh-completions; autoload -U compinit && compinit -d "$ZSH_COMPDUMP"
-
-
-# ghost text based on nearest command in history
-zinit light zsh-users/zsh-autosuggestions
-
-
-# Starship prompt
-zinit ice \
-  as"command" \
-  from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" \
-  src"init.zsh"
-  zinit light starship/starship
-
-export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
-export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
-
-
-# zsh-vi-mode plugin
-# need to check out https://github.com/softmoth/zsh-vim-mode
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-KEYTIMEOUT=1            # remove delay for entering insert mode
-
-# Searching through history will filter match based on what is to the left of the cursor
-bindkey -M vicmd "k" history-beginning-search-backward
-bindkey -M vicmd "j" history-beginning-search-forward
-
-# this is not for the same vi plugin that I am using
-# set cursor style based on vi mode
-# MODE_CURSOR_VIINS="#00ff00 blinking bar"
-# MODE_CURSOR_REPLACE="$MODE_CURSOR_VIINS #ff0000"
-# MODE_CURSOR_VICMD="green block"
-# MODE_CURSOR_SEARCH="#ff00ff steady underline"
-# MODE_CURSOR_VISUAL="$MODE_CURSOR_VICMD steady bar"
-# MODE_CURSOR_VLINE="$MODE_CURSOR_VISUAL #00ffff"
-
-
-# Completion styling to allow case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-# color completions using ANSI codes to inherit from terminal palette
-zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
-
-
-# Use bat as cat replacement
-cat() {
-    if hash bat 2>/dev/null; then # if bat exists
-        # highlighted plaintext output
-        bat --style=plain --paging=never "$@"
-    else # fallback to cat
-        command cat "$@"
-    fi
-}
-
-
-# fzf
-eval "$(fzf --zsh)"
-
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS="--height 60% --border sharp --layout reverse --ansi --color=16"
-
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
-
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
-export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
-
-# Use fd for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-_fzf_compgen_path() {
-  fd --hidden --exclude .git . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type=d --hidden --exclude .git . "$1"
-}
-
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
-  esac
-}
-
-
-# eza
+# ls (eza)
 EZA_PARAMS=('--git' '--icons=always' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
 alias ls='eza $EZA_PARAMS'
 alias la='eza $EZA_PARAMS --all'
 alias tree='eza --tree $EZA_PARAMS'
 alias trea='eza --all --tree $EZA_PARAMS'
 
-# function to call ls
-function ls_after_cd() {
-    emulate -L zsh
-    la
+
+# wget
+alias wget='wget --no-hsts'
+
+
+# top
+alias top=btop
+
+
+# cat
+cat() {
+    if hash bat 2>/dev/null; then
+        bat --style=plain --paging=never "$@"
+    else
+        command cat "$@"
+    fi
 }
 
-# call the list_all function after using cd
+#------------------------------------------------------------------------------
+# History
+#------------------------------------------------------------------------------
+# Storing
+HISTFILE="$XDG_DATA_HOME/zsh/history"
+HISTSIZE=1000000   # Maximum events for local history
+SAVEHIST=$HISTSIZE # Maximum events in history file
+
+# Format
+setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format
+setopt HIST_REDUCE_BLANKS      # Remove extra whitespace when adding to local history
+
+# Duplicates
+setopt HIST_FIND_NO_DUPS       # Do not display a previously found event
+setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file
+setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history
+setopt HIST_IGNORE_ALL_DUPS    # Deletes an old recorded event if a new event is a duplicate
+
+# Sharing
+setopt INC_APPEND_HISTORY_TIME # Append to history file immediately, don't read new events from the file
+
+# Filtering
+setopt HIST_NO_STORE           # Don't store the history command in history
+
+# Entries stored in local history but not written to history file
+# force zsh-autosuggestions to fallback to completions for CWD based commands
+export HISTORY_IGNORE="cd *|ls *|mv *|cp *|cat *" 
+
+# History search bindings
+bindkey -M vicmd "k" history-beginning-search-backward
+bindkey -M vicmd "j" history-beginning-search-forward
+
+#------------------------------------------------------------------------------
+# Completions
+#------------------------------------------------------------------------------
+mkdir -p $XDG_CACHE_HOME/zsh
+
+autoload -Uz compinit; compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
+
+# Load fast-syntax-highlighting with deferred completion initialization
+# zinit ice wait lucid atinit"zicompinit; zicdreplay" # possible optimization but caused problems
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Load zsh-autosuggestions and start the autosuggestion after loading 
+zinit ice wait lucid atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+# Styling
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
+
+# Todo
+# source $XDG_CONFIG_HOME/zsh/completions.zsh
+
+#------------------------------------------------------------------------------
+# Prompt
+#------------------------------------------------------------------------------
+# Starship
+zinit ice \
+  as"command" \
+  from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" \
+  src"init.zsh"
+
+zinit light starship/starship
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
+
+#------------------------------------------------------------------------------
+# Navigation
+#------------------------------------------------------------------------------
+# cd pushes directories stack
+setopt AUTO_PUSHD
+
+# ls after cd
+function ls_after_cd() {
+    emulate -L zsh
+    la --git-ignore
+}
 if [[ ${chpwd_functions[(r)ls_after_cd]} != "ls_after_cd" ]];then
     chpwd_functions=(${chpwd_functions[@]} "ls_after_cd")
 fi
 
-# thefuck
-eval $(thefuck --alias frick)
-
-
-# zoxide 
+# zoxide
+zinit ice atinit'unalias zi' # 'zi' used for zoxide interactive
 eval "$(zoxide init zsh)"
 
+#------------------------------------------------------------------------------
+# Vim Mode
+#------------------------------------------------------------------------------
+# Vim mode
+MODE_INDICATOR="" # starship handles mode indicator
+zinit ice depth=1; zinit light softmoth/zsh-vim-mode
+KEYTIMEOUT=1 # reduce delay after hitting ESCAPE 
+MODE_CURSOR_VIINS="bar"
+MODE_CURSOR_REPLACE="underline"
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_SEARCH="underline"
+MODE_CURSOR_VISUAL="underline"
+MODE_CURSOR_VLINE="underline"
+
+#------------------------------------------------------------------------------
+# Misc
+#------------------------------------------------------------------------------
+# fzf
+zinit pack for fzf
+# eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS="--height 60% --border sharp --layout reverse --ansi --color=16"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+# export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+# export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+# export FZF_COMPLETION_DIR_COMMANDS="cd pushd rmdir tree ls"
+
+# fzf functions
+# _fzf_compgen_path() {
+#   fd --hidden --exclude .git . "$1"
+# }
+#
+# _fzf_compgen_dir() {
+#   fd --type=d --hidden --exclude .git . "$1"
+# }
+#
+# _fzf_comprun() {
+#   local command=$1
+#   shift
+#
+#   case "$command" in
+#     cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+#     export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+#     ssh)          fzf --preview 'dig {}'                   "$@" ;;
+#     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+#   esac
+# }
 
 # mise
 eval "$(mise activate zsh)"
 eval "$(mise completion zsh)"
 
+# thefuck
+eval $(thefuck --alias frick)
 
-# btop
-alias top=btop
-
-
-# wget (disable history file in ~)
-alias wget='wget --no-hsts'
-
-
-# nvim config switcher
+#------------------------------------------------------------------------------
+# Custom Functions
+#------------------------------------------------------------------------------
+# Neovim config switcher
 function nvims() {
     local config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 
-    # Function to list all Neovim configs
     list_configs() {
         find "$config_dir" -maxdepth 2 -name 'init.lua' -exec dirname {} \; | xargs -n 1 basename
     }
 
-    # List all configs
     local configs=($(list_configs))
 
-    # Check if an argument was provided
     if [ $# -eq 0 ]; then
-        # No argument: use fzf to select from all configs
         local selected=$(printf "%s\n" "${configs[@]}" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0)
     else
-        # Argument provided: check for exact match first
         if [[ " ${configs[@]} " =~ " $1 " ]]; then
             local selected="$1"
         else
-            # No exact match: perform a fuzzy search
             local matches=$(printf "%s\n" "${configs[@]}" | fzf --filter="$1")
             local match_count=$(echo "$matches" | wc -l)
             
             if [ "$match_count" -eq 1 ]; then
-                # Single match found
                 local selected="$matches"
             elif [ "$match_count" -gt 1 ]; then
-                # Multiple matches: use fzf with the argument as initial query
                 local selected=$(echo "$matches" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0 --query="$1")
             fi
         fi
     fi
 
-    # Check if a selection was made
     if [ -n "$selected" ]; then
         export NVIM_APPNAME="nvim/$selected"
         echo "Using neovim \"$selected\""
@@ -216,11 +226,9 @@ function nvims() {
     fi
 }
 
-
-# fzf over tldr if called without arguments
+# fzf over tldr
 function tldr() {
     if [[ $# -eq 0 ]]; then
-        # Run tldr with --list to get all available commands
         local selected=$(tldr --list | fzf --preview="tldr {1} --color=always --compact" --height=40% --reverse --tmux)
 
         if [ "$selected" ]; then
@@ -228,9 +236,33 @@ function tldr() {
         else
             return
         fi
-
     else
-        # Pass arguments to the original tldr command
         command tldr "$@"
     fi
 }
+
+#------------------------------------------------------------------------------
+# Tmux Wrapper
+#------------------------------------------------------------------------------
+# Uncomment and modify as needed
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#     tmux-window-name() {
+#             ($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
+#     }
+#
+#     add-zsh-hook chpwd tmux-window-name
+#
+#     if ! tmux ls > /dev/null 2>&1; then
+#         exec tmux new-session -As workspace
+#     else
+#         if tmux has-session -t workspace 2>/dev/null; then
+#             # exec tmux attach-session -t workspace
+#             tmux attach-session -t workspace
+#         else
+#             # exec tmux attach-session
+#             tmux attach-session
+#         fi
+#     fi
+# elif ! command -v tmux &> /dev/null; then
+#     echo "You might wanna install tmux"
+# fi
