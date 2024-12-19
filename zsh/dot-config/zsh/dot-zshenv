@@ -1,26 +1,30 @@
 #!/usr/bin/env zsh
 
-# XDG
+# XDG Base Directories
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
-export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir/
+export XDG_RUNTIME_DIR=$(getconf DARWIN_USER_TEMP_DIR) # MacOS
 
-# Add local scripts to PATH
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
+export LESSHISTFILE="$XDG_DATA_HOME/less/history"
+export PYTHON_HISTORY="$XDG_DATA_HOME/python/history" # only works for python 3.13
+export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite3"
+
+# Path
 export PATH="$HOME/.local/bin:$PATH"
 
-# TERM
+# Term
 export TERM='xterm-256color'
 
 # Neovim as editor
-# TODO: consider making bespoke neovim configs
-# BUG: does $NVIM_APPNAME need to be defined for these to work with the ~/.config/nvim/$NVIM_APPNAME structure? 
-# Without defining $NVIM_APPNAME neovim will search for ~/.config/nvim/init.lua. It should be set in .zshrc and these are all interactive shell features
+export NVIM_APPNAME='nvim/lazy'
 export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
 
-# Clean home directory
-export LESSHISTFILE=$XDG_CACHE_HOME/less/history
-export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
+# Homebrew
+export HOMEBREW_BAT="bat"
+export HOMEBREW_NO_ENV_HINTS="true"
