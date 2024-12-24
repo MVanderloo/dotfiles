@@ -9,11 +9,11 @@ config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Eldritch"
 
 -- font settings
--- font-0xproto-nerd-font
--- font-fira-code-nerd-font
--- font-jetbrains-mono-nerd-font
+-- JetBrains Mono Nerd Font
+-- Hack Nerd Font
+-- DM Mono
 config.font_size = 13
-config.font = wezterm.font_with_fallback({ "JetbrainsMono Nerd Font", "Symbols Nerd Font Mono" })
+config.font = wezterm.font_with_fallback({ "DM Mono" })
 
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
