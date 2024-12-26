@@ -6,26 +6,16 @@
     },
   },
   "display": {
-    "separator": " -> ",
+    "separator": " ",
   },
   "modules": [
     "title",
     "separator",
     {
       "type": "os",
-      "key": " OS",
+      "key": "{icon} OS",
       "keyColor": "yellow",
       "format": "{2}",
-    },
-    {
-      "type": "os",
-      "key": "├{icon}", // Just get your distro's logo off nerdfonts.com
-      "keyColor": "yellow",
-    },
-    {
-      "type": "kernel",
-      "key": "├",
-      "keyColor": "yellow",
     },
     {
       "type": "packages",
@@ -37,39 +27,11 @@
       "key": "└",
       "keyColor": "yellow",
     },
-    "break",
-
-    {
-      "type": "wm",
-      "key": " DE/WM",
-      "keyColor": "blue",
-    },
-    {
-      "type": "lm",
-      "key": "├󰧨",
-      "keyColor": "blue",
-    },
-    {
-      "type": "wmtheme",
-      "key": "├󰉼",
-      "keyColor": "blue",
-    },
-    {
-      "type": "icons",
-      "key": "├󰀻",
-      "keyColor": "blue",
-    },
     {
       "type": "terminal",
       "key": "├",
-      "keyColor": "blue",
+      "keyColor": "yellow",
     },
-    {
-      "type": "wallpaper",
-      "key": "└󰸉",
-      "keyColor": "blue",
-    },
-
     "break",
     {
       "type": "host",
@@ -94,16 +56,6 @@
     {
       "type": "memory",
       "key": "├󰑭",
-      "keyColor": "green",
-    },
-    {
-      "type": "swap",
-      "key": "├󰓡",
-      "keyColor": "green",
-    },
-    {
-      "type": "display",
-      "key": "├󰍹",
       "keyColor": "green",
     },
     {
