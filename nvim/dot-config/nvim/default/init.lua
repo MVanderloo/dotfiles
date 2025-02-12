@@ -1,5 +1,0 @@
-require('globals')
-require('options')
-require('auto-commands')
-require('lazy-setup')
-require('keymaps')
