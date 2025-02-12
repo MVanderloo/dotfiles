@@ -20,7 +20,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export TERM='xterm-256color'
 
 # Neovim as editor
-export NVIM_APPNAME='nvim/lazy'
 export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
