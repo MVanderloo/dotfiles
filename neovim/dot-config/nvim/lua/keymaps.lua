@@ -47,9 +47,6 @@ set({ 'n', 'x', 'o' }, 'N', "v:searchforward ? 'Nzz' : 'nzz'", { expr = true, de
 -- Add diagnostics to the quickfix list
 set('n', '<leader>qd', vim.diagnostic.setloclist, { desc = '[D]iagnostic' })
 
--- Oil.nvim
-set({ 'n', 'x' }, '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-
 -- Lazy.nvim
 set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 
@@ -57,71 +54,33 @@ set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 -- load the session for the current directory
 set('n', '<leader>pl', function()
   require('persistence').load()
-end)
+end, { desc = 'Load CWD session' })
 
 -- select a session to load
 set('n', '<leader>ps', function()
   require('persistence').select()
-end)
+end, { desc = 'Select session' })
 
 -- load the last session
-set('n', '<leader>pL', function()
+set('n', '<leader>p.', function()
   require('persistence').load { last = true }
-end)
+end, { desc = 'Load last session' })
 
---  session won't be saved on exit
+-- session won't be saved on exit
 set('n', '<leader>pd', function()
   require('persistence').stop()
 end)
-
--- read scrolloff value from input
-vim.keymap.set('n', '<leader>ts', function()
-  local input = tonumber(vim.fn.input 'Scrolloff: ')
-  vim.opt.scrolloff = input
-end, { noremap = true, silent = true, desc = 'Set scrolloff value' })
-
--- Oil.nvim
-set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
-
--- persistence.nvim
-set('n', '<leader>ps', function()
-  require('persistence').load()
-end) -- load the session for the current directory
-set('n', '<leader>pS', function()
-  require('persistence').select()
-end) -- select a session to load
-set('n', '<leader>pl', function()
-  require('persistence').load { last = true }
-end) -- load the last session
-set('n', '<leader>pd', function()
-  require('persistence').stop()
-end) --  session won't be saved on exit
-
--- dial.vim
--- vim.keymap.set('n', '<C-a>', function()
---   require('dial.map').manipulate('increment', 'normal')
--- end)
--- vim.keymap.set('n', '<C-x>', function()
---   require('dial.map').manipulate('decrement', 'normal')
--- end)
-
--- read scrolloff value from input
--- set('n', '<leader>ts', function()
---   local input = tonumber(vim.fn.input 'Scrolloff: ')
---   vim.opt.scrolloff = input
--- end, { noremap = true, silent = true, desc = 'Set scrolloff value' })
 
 set('n', '<leader>la', function()
   vim.lsp.buf.code_action { apply = true }
-end)
+end, { desc = 'Code actions' })
 
 set('n', '<leader>lr', function()
   -- vim.lsp.buf.rename()
   vim.lsp.buf.rename()
-end)
+end, { desc = 'Rename' })
 
-vim.keymap.set("n", "<leader>th", function()
+vim.keymap.set('n', '<leader>th', function()
   local enabled = vim.lsp.inlay_hint.is_enabled { bufnr = 0 }
   vim.lsp.inlay_hint.enable(not enabled, { bufnr = 0 })
-end, { desc = "Toggle LSP inlay hints" })
-
+end, { desc = 'Toggle LSP inlay hints' })

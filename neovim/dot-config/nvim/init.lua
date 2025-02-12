@@ -1,6 +1,5 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.g.have_nerd_font = true
 
 require 'options'
 require 'keymaps'
@@ -41,17 +40,6 @@ require('lazy').setup {
       },
       config = true,
     },
-    -- {
-    --   -- kinda cool idk
-    --   'nacro90/numb.nvim',
-    --   opts = {
-    --     show_numbers = true,
-    --     show_cursorline = true,
-    --     hide_relativenumbers = true,
-    --     number_only = false,
-    --     centered_peeking = true,
-    --   },
-    -- },
     {
       'folke/snacks.nvim',
       priority = 1000,
@@ -70,27 +58,11 @@ require('lazy').setup {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         -- scroll = { enabled = true },
-        statuscolumn = {
-          enabled = true,
-        },
+        statuscolumn = { enabled = true },
         -- mini cursorword a bit nicer defaults
         -- words = { enabled = true },
       },
       keys = {
-        -- {
-        --   '<leader>,',
-        --   function()
-        --     Snacks.picker.buffers()
-        --   end,
-        --   desc = 'Buffers',
-        -- },
-        -- {
-        --   '<leader>/',
-        --   function()
-        --     Snacks.picker.grep()
-        --   end,
-        --   desc = 'Grep',
-        -- },
         {
           '<leader>:',
           function()
@@ -98,15 +70,6 @@ require('lazy').setup {
           end,
           desc = 'Command History',
         },
-        -- use <leader>ff
-        -- {
-        --   '<leader><space>',
-        --   function()
-        --     Snacks.picker.files()
-        --   end,
-        --   desc = 'Find Files',
-        -- },
-        -- find
         {
           '<leader>fb',
           function()
