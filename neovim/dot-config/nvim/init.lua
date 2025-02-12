@@ -31,16 +31,6 @@ require('lazy').setup {
     --   end,
     -- },
     {
-      'utilyre/barbecue.nvim',
-      version = '*',
-      event = 'BufReadPre',
-      dependencies = {
-        'SmiteshP/nvim-navic',
-        'nvim-tree/nvim-web-devicons',
-      },
-      config = true,
-    },
-    {
       'folke/snacks.nvim',
       priority = 1000,
       lazy = false,
@@ -451,6 +441,7 @@ require('lazy').setup {
         -- require("mini.visits").setup()
       end,
     },
+    require 'plugins.ui',
     require 'plugins.colors',
     require 'plugins.treesitter',
     require 'plugins.picker',
