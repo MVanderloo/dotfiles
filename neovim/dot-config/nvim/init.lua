@@ -55,105 +55,77 @@ require('lazy').setup {
       keys = {
         {
           '<leader>:',
-          function()
-            Snacks.picker.command_history()
-          end,
+          function() Snacks.picker.command_history() end,
           desc = 'Command History',
         },
         {
           '<leader>fb',
-          function()
-            Snacks.picker.buffers()
-          end,
+          function() Snacks.picker.buffers() end,
           desc = 'Buffers',
         },
         {
           '<leader>fc',
-          function()
-            Snacks.picker.files { cwd = vim.fn.stdpath 'config' }
-          end,
+          function() Snacks.picker.files { cwd = vim.fn.stdpath 'config' } end,
           desc = 'Find Config File',
         },
         {
           '<leader>ff',
-          function()
-            Snacks.picker.files()
-          end,
+          function() Snacks.picker.files() end,
           desc = 'Find Files',
         },
         {
           '<leader>fg',
-          function()
-            Snacks.picker.git_files()
-          end,
+          function() Snacks.picker.git_files() end,
           desc = 'Find Git Files',
         },
         {
           '<leader>fr',
-          function()
-            Snacks.picker.recent()
-          end,
+          function() Snacks.picker.recent() end,
           desc = 'Recent',
         },
         -- git
         {
           '<leader>gl',
-          function()
-            Snacks.picker.git_log()
-          end,
+          function() Snacks.picker.git_log() end,
           desc = 'Git Log',
         },
         {
           '<leader>gs',
-          function()
-            Snacks.picker.git_status()
-          end,
+          function() Snacks.picker.git_status() end,
           desc = 'Git Status',
         },
         -- redundant with <leader>gf
         {
           '<leader>gf',
-          function()
-            Snacks.picker.git_files()
-          end,
+          function() Snacks.picker.git_files() end,
           desc = 'Find Git Files',
         },
         -- Grep
         {
           '<leader>sb',
-          function()
-            Snacks.picker.lines()
-          end,
+          function() Snacks.picker.lines() end,
           desc = 'Grep Buffer',
         },
         {
           '<leader>sB',
-          function()
-            Snacks.picker.grep_buffers()
-          end,
+          function() Snacks.picker.grep_buffers() end,
           desc = 'Grep Open Buffers',
         },
         {
           '<leader>sg',
-          function()
-            Snacks.picker.grep()
-          end,
+          function() Snacks.picker.grep() end,
           desc = 'Grep',
         },
         {
           '<leader>sw',
-          function()
-            Snacks.picker.grep_word()
-          end,
+          function() Snacks.picker.grep_word() end,
           desc = 'Visual selection or word',
           mode = { 'n', 'x' },
         },
         -- search
         {
           '<leader>sr',
-          function()
-            Snacks.picker.registers()
-          end,
+          function() Snacks.picker.registers() end,
           desc = 'Registers',
         },
         -- {
@@ -179,123 +151,89 @@ require('lazy').setup {
         -- },
         {
           '<leader>sd',
-          function()
-            Snacks.picker.diagnostics()
-          end,
+          function() Snacks.picker.diagnostics() end,
           desc = 'Diagnostics',
         },
         {
           '<leader>sh',
-          function()
-            Snacks.picker.help()
-          end,
+          function() Snacks.picker.help() end,
           desc = 'Help Pages',
         },
         {
           '<leader>sj',
-          function()
-            Snacks.picker.jumps()
-          end,
+          function() Snacks.picker.jumps() end,
           desc = 'Jumps',
         },
         {
           '<leader>sk',
-          function()
-            Snacks.picker.keymaps()
-          end,
+          function() Snacks.picker.keymaps() end,
           desc = 'Keymaps',
         },
         {
           '<leader>sl',
-          function()
-            Snacks.picker.loclist()
-          end,
+          function() Snacks.picker.loclist() end,
           desc = 'Location List',
         },
         {
           '<leader>sM',
-          function()
-            Snacks.picker.man()
-          end,
+          function() Snacks.picker.man() end,
           desc = 'Man Pages',
         },
         {
           '<leader>sm',
-          function()
-            Snacks.picker.marks()
-          end,
+          function() Snacks.picker.marks() end,
           desc = 'Marks',
         },
         {
           '<leader>s.',
-          function()
-            Snacks.picker.resume()
-          end,
+          function() Snacks.picker.resume() end,
           desc = 'Resume',
         },
         {
           '<leader>sq',
-          function()
-            Snacks.picker.qflist()
-          end,
+          function() Snacks.picker.qflist() end,
           desc = 'Quickfix List',
         },
         {
           '<leader>uc',
-          function()
-            Snacks.picker.colorschemes()
-          end,
+          function() Snacks.picker.colorschemes() end,
           desc = 'Colorschemes',
         },
         {
           '<leader>uh',
-          function()
-            Snacks.picker.highlights()
-          end,
+          function() Snacks.picker.highlights() end,
           desc = 'Highlights',
         },
         {
           '<leader>qp',
-          function()
-            Snacks.picker.projects()
-          end,
+          function() Snacks.picker.projects() end,
           desc = 'Projects',
         },
         -- LSP
         {
           'gd',
-          function()
-            Snacks.picker.lsp_definitions()
-          end,
+          function() Snacks.picker.lsp_definitions() end,
           desc = 'Goto Definition',
         },
         {
           'gr',
-          function()
-            Snacks.picker.lsp_references()
-          end,
+          function() Snacks.picker.lsp_references() end,
           nowait = true,
           desc = 'References',
         },
         {
           'gI',
-          function()
-            Snacks.picker.lsp_implementations()
-          end,
+          function() Snacks.picker.lsp_implementations() end,
           desc = 'Goto Implementation',
         },
         {
           'gy',
-          function()
-            Snacks.picker.lsp_type_definitions()
-          end,
+          function() Snacks.picker.lsp_type_definitions() end,
           desc = 'Goto T[y]pe Definition',
         },
         {
           '<leader>ls',
-          function()
-            Snacks.picker.lsp_symbols()
-          end,
+          function() Snacks.picker.lsp_symbols() end,
           desc = 'LSP Symbols',
         },
       },
@@ -405,7 +343,7 @@ require('lazy').setup {
             scroll = 0,
           },
         }
-        -- require('mini.icons').setup()
+
         require('mini.indentscope').setup {
           symbol = '│',
           draw = {
