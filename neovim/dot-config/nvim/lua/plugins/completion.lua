@@ -90,7 +90,7 @@ return {
         },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets' },
+        default = { 'lsp', 'path' },
         cmdline = {},
       },
     },
