@@ -52,25 +52,18 @@ return {
     'catppuccin/nvim',
     name = 'catppuccin',
     lazy = false,
-    -- config = function()
-    --   vim.cmd 'colorscheme catppuccin-mocha'
-    -- end,
+    config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
   },
   { '0xstepit/flow.nvim', lazy = false },
   {
     'folke/tokyonight.nvim',
     lazy = false,
-    config = function()
-      vim.cmd 'colorscheme tokyonight'
-    end,
+    -- config = function() vim.cmd 'colorscheme tokyonight' end,
+    config = true,
   },
   {
     'rebelot/kanagawa.nvim',
     lazy = false,
-    -- config = function()
-    --   vim.cmd 'colorscheme kanagawa-wave'
-    -- end,
   },
   { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
-  { 'projekt0n/github-nvim-theme', name = 'github-theme', lazy = false },
 }

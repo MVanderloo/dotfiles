@@ -50,30 +50,7 @@ set('n', '<leader>qd', vim.diagnostic.setloclist, { desc = '[D]iagnostic' })
 -- Lazy.nvim
 set({ 'n', 'x' }, '<leader>L', '<CMD>Lazy<CR>', { desc = 'Open Lazy' })
 
--- persistence.nvim
--- load the session for the current directory
-set('n', '<leader>pl', function()
-  require('persistence').load()
-end, { desc = 'Load CWD session' })
-
--- select a session to load
-set('n', '<leader>ps', function()
-  require('persistence').select()
-end, { desc = 'Select session' })
-
--- load the last session
-set('n', '<leader>p.', function()
-  require('persistence').load { last = true }
-end, { desc = 'Load last session' })
-
--- session won't be saved on exit
-set('n', '<leader>pd', function()
-  require('persistence').stop()
-end)
-
-set('n', '<leader>la', function()
-  vim.lsp.buf.code_action { apply = true }
-end, { desc = 'Code actions' })
+set('n', '<leader>la', function() vim.lsp.buf.code_action { apply = true } end, { desc = 'Code actions' })
 
 set('n', '<leader>lr', function()
   -- vim.lsp.buf.rename()
