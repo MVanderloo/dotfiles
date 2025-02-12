@@ -10,6 +10,13 @@ return {
         end,
         desc = 'Open Diffview',
       },
+      {
+        '<leader>gd',
+        function()
+          vim.cmd 'DiffviewClose'
+        end,
+        desc = 'Close Diffview',
+      },
     },
     config = function()
       local actions = require 'diffview.actions'
