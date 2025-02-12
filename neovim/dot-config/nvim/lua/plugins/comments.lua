@@ -6,6 +6,7 @@ return {
   },
   {
     'danymat/neogen',
+    event = 'VeryLazy',
     config = true,
     keys = {
       {
@@ -15,8 +16,6 @@ return {
         end
       },
     },
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*"
   },
   -- {
   --   'numToStr/Comment.nvim',
