@@ -1,5 +1,5 @@
---target=$HOME 
+--target=$HOME
 --verbose
 --dotfiles
 --adopt
-
+--ignore="Brewfile"

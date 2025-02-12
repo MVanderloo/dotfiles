@@ -1,0 +1,6 @@
+brew "basedpyright"
+brew "ruff"
+brew "lua-language-server"
+brew "stylua"
+brew "prettier"
+brew "prettierd"
