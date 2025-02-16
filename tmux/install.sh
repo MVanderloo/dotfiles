@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-install=""${XDG_DATA_HOME:-$HOME/.local/share}/tmux/plugins/tpm"
+install="${XDG_DATA_HOME:-$HOME/.local/share}/tmux/plugins/tpm"
 
 echo "Cloning TPM to $install"
 
