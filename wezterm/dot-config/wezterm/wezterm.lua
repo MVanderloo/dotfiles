@@ -2,9 +2,9 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- color scheme
--- config.color_scheme = "Dark+" -- OneDark
+config.color_scheme = "Dark+" -- OneDark
 -- config.color_scheme = "Dark Pastel" -- Clean ANSI dark
-config.color_scheme = "Tokyo Night"
+-- config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Eldritch"
 
