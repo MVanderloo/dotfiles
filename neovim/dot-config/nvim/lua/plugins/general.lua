@@ -1,5 +1,4 @@
 return {
-  { 'stevearc/dressing.nvim', config = true },
   {
     'nvim-neo-tree/neo-tree.nvim',
     version = '*',
