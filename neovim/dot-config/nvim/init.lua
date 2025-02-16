@@ -12,7 +12,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out,                            'WarningMsg' },
+      { out, 'WarningMsg' },
       { '\nPress any key to exit...' },
     }, true, {})
     vim.fn.getchar()
@@ -38,11 +38,16 @@ require('lazy').setup {
         bigfile = { enabled = true },
         -- dashboard = { enabled = true },
         -- mini.indent has text objects
+        explorer = {
+          enabled = true,
+          replace_netrw = true,
+        },
         indent = {
           enabled = false,
           animate = { enabled = false },
           -- chunk = { enabled = true }
         },
+        image = { enabled = true },
         input = { enabled = true },
         picker = { enabled = true },
         notifier = { enabled = true },
@@ -53,6 +58,9 @@ require('lazy').setup {
         -- words = { enabled = true },
       },
       keys = {
+        { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History' },
+        { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
+        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
         {
           '<leader>:',
           function() Snacks.picker.command_history() end,
@@ -386,7 +394,6 @@ require('lazy').setup {
     require 'plugins.completion',
     require 'plugins.lsp',
     require 'plugins.session',
-    require 'plugins.general',
     require 'plugins.diagnostics',
     require 'plugins.comments',
     require 'plugins.git',
