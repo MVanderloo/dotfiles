@@ -1,3 +1,7 @@
+# dependencies
+brew "imagemagick"
+
+# language servers
 brew "basedpyright"
 brew "ruff"
 brew "lua-language-server"
