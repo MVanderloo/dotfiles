@@ -1,8 +1,9 @@
 local opt = vim.opt
 
 -- Tab / Indentation
-opt.shiftwidth = 2
-opt.softtabstop = 2
+opt.tabstop = 4
+opt.softtabstop = 0 -- copy tabstop
+opt.shiftwidth = 0 -- copy tabstop
 opt.expandtab = true
 opt.smartindent = true
 opt.wrap = true
