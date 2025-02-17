@@ -1,4 +1,6 @@
 [tools]
 duckdb = "latest"
+npm = "latest"
+pipx = "latest"
 python = "latest"
 sqlite = "latest"
