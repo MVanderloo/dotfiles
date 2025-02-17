@@ -1,11 +1,13 @@
 return {
+  -- check these out
+  -- https://cmp.saghen.dev/recipes.html
   {
     'saghen/blink.cmp',
     dependencies = {
       'rafamadriz/friendly-snippets',
       {
         'xzbdmw/colorful-menu.nvim',
-        opts = { max_width = 30 },
+        -- opts = { max_width = 30 },
       },
     },
     event = 'InsertEnter',
@@ -13,45 +15,44 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      --  You may want to set `completion.trigger.show_in_snippet = false` or use `completion.list.selection.preselect = function(ctx) return not require('blink.cmp').snippet_active({ direction = 1 }) end` when using this mapping:
       keymap = {
-        -- preset = 'super-tab'
-        -- modified super-tab
-        --  tab, C-n, down cycles forward
-        --  S-tab, C-p, up cycles backwards
-        --  C-e to cancel
-        --  keep typing to accept
-        ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
-        ['<C-e>'] = { 'cancel', 'fallback' },
-        ['<Tab>'] = {
-          function(cmp)
-            if cmp.snippet_active() then
-              return cmp.accept()
-            else
-              return cmp.select_next()
-            end
-          end,
-          'snippet_forward',
-          'fallback',
-        },
-        ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
-        ['<Up>'] = { 'select_prev', 'fallback' },
-        ['<Down>'] = { 'select_next', 'fallback' },
-        ['<C-p>'] = { 'select_prev', 'fallback' },
-        ['<C-n>'] = { 'select_next', 'fallback' },
-        ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
-        ['<C-y>'] = { 'accept' },
-        -- ['<CR>'] = {
+        preset = 'super-tab',
+        -- -- preset = 'super-tab'
+        -- -- modified super-tab
+        -- --  tab, C-n, down cycles forward
+        -- --  S-tab, C-p, up cycles backwards
+        -- --  C-e to cancel
+        -- --  keep typing to accept
+        -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        -- ['<C-e>'] = { 'cancel', 'fallback' },
+        -- ['<Tab>'] = {
         --   function(cmp)
-        --     if cmp.get_selected_item().kind == 15 then
+        --     if cmp.snippet_active() then
         --       return cmp.accept()
+        --     else
+        --       return cmp.select_next()
         --     end
         --   end,
-        --   'fallback'
-        -- }
+        --   'snippet_forward',
+        --   'fallback',
+        -- },
+        -- ['<S-Tab>'] = { 'snippet_backward', 'select_prev', 'fallback' },
+        -- ['<Up>'] = { 'select_prev', 'fallback' },
+        -- ['<Down>'] = { 'select_next', 'fallback' },
+        -- ['<C-p>'] = { 'select_prev', 'fallback' },
+        -- ['<C-n>'] = { 'select_next', 'fallback' },
+        -- ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+        -- ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
+        -- ['<C-y>'] = { 'accept' },
+        -- -- ['<CR>'] = {
+        -- --   function(cmp)
+        -- --     if cmp.get_selected_item().kind == 15 then
+        -- --       return cmp.accept()
+        -- --     end
+        -- --   end,
+        -- --   'fallback'
+        -- -- }
       },
-      appearance = { nerd_font_variant = 'mono' },
       completion = {
         keyword = { range = 'prefix' },
         trigger = {
@@ -71,15 +72,11 @@ return {
         -- colorful-menu integration
         menu = {
           draw = {
-            -- columns = { { 'kind_icon' }, { 'label', gap = 1 } },
+            columns = { { 'kind_icon' }, { 'label', gap = 1 } },
             components = {
               label = {
-                text = function(ctx)
-                  return require('colorful-menu').blink_components_text(ctx)
-                end,
-                highlight = function(ctx)
-                  return require('colorful-menu').blink_components_highlight(ctx)
-                end,
+                text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
+                highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
               },
             },
           },
@@ -89,10 +86,10 @@ return {
           auto_show_delay_ms = 0,
         },
       },
-      sources = {
-        default = { 'lsp', 'path' },
-        cmdline = {},
-      },
+      -- sources = {
+      --   default = { 'lsp', 'path' },
+      --   cmdline = {},
+      -- },
     },
   },
 }

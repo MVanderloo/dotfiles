@@ -23,13 +23,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
   spec = {
-    -- this is a bit half baked right now but check in on this
-    -- {
-    --   'SunnyTamang/select-undo.nvim',
-    --   config = function()
-    --     require('select-undo').setup()
-    --   end,
-    -- },
+    {
+      'SunnyTamang/select-undo.nvim',
+      config = function()
+        require('select-undo').setup()
+      end,
+    },
     {
       'folke/snacks.nvim',
       priority = 1000,
@@ -37,15 +36,11 @@ require('lazy').setup {
       opts = {
         bigfile = { enabled = true },
         -- dashboard = { enabled = true },
+        explorer = { enabled = true, replace_netrw = true },
         -- mini.indent has text objects
-        explorer = {
-          enabled = true,
-          replace_netrw = true,
-        },
         indent = {
           enabled = false,
           animate = { enabled = false },
-          -- chunk = { enabled = true }
         },
         image = { enabled = true },
         input = { enabled = true },
@@ -53,19 +48,23 @@ require('lazy').setup {
         notifier = { enabled = true },
         quickfile = { enabled = true },
         -- scroll = { enabled = true },
-        statuscolumn = { enabled = true },
+        statuscolumn = {
+          left = { 'mark', 'git', 'sign' },
+          right = { 'fold' },
+          folds = { open = true },
+        },
         -- mini cursorword a bit nicer defaults
         -- words = { enabled = true },
       },
       keys = {
         { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History' },
         { '<leader>e', function() Snacks.explorer() end, desc = 'File Explorer' },
-        { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-        {
-          '<leader>:',
-          function() Snacks.picker.command_history() end,
-          desc = 'Command History',
-        },
+        { '<leader><space>', function() Snacks.picker.smart() end, desc = 'Smart Find Files' },
+        -- {
+        --   '<leader>:',
+        --   function() Snacks.picker.command_history() end,
+        --   desc = 'Command History',
+        -- },
         {
           '<leader>fb',
           function() Snacks.picker.buffers() end,
@@ -143,13 +142,11 @@ require('lazy').setup {
         --   end,
         --   desc = 'Autocmds',
         -- },
-        -- {
-        --   '<leader>sc',
-        --   function()
-        --     Snacks.picker.command_history()
-        --   end,
-        --   desc = 'Command History',
-        -- },
+        {
+          '<leader>sc',
+          function() Snacks.picker.command_history() end,
+          desc = 'Command History',
+        },
         -- {
         --   '<leader>sC',
         --   function()
@@ -352,19 +349,19 @@ require('lazy').setup {
           },
         }
 
-        require('mini.indentscope').setup {
-          symbol = '│',
-          draw = {
-            delay = 0,
-            animation = require('mini.indentscope').gen_animation.none(),
-          },
-          mappings = {
-            object_scope = 'ii',
-            object_scope_with_border = 'ai',
-            goto_top = '[i',
-            goto_bottom = ']i',
-          },
-        }
+        -- require('mini.indentscope').setup {
+        --   symbol = '│',
+        --   draw = {
+        --     delay = 0,
+        --     animation = require('mini.indentscope').gen_animation.none(),
+        --   },
+        --   mappings = {
+        --     object_scope = 'ii',
+        --     object_scope_with_border = 'ai',
+        --     goto_top = '[i',
+        --     goto_bottom = ']i',
+        --   },
+        -- }
         -- require("mini.jump").setup()
         -- require("mini.jump2d").setup()
         require('mini.misc').setup()

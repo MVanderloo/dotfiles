@@ -27,25 +27,8 @@ return {
       },
     },
     config = function(_, opts)
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-      local servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              -- completion = {
-              --   callSnippet = 'Replace',
-              -- },
-              -- diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
-      }
-
       local lspconfig = require 'lspconfig'
       for server, config in pairs(opts.servers) do
-        -- passing config.capabilities to blink.cmp merges with the capabilities in your
-        -- `opts[server].capabilities, if you've defined it
         config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
       end
@@ -58,9 +41,7 @@ return {
     keys = {
       {
         '<leader>lf',
-        function()
-          require('conform').format { async = true }
-        end,
+        function() require('conform').format { async = true } end,
         mode = '',
         desc = 'Format buffer',
       },
@@ -74,6 +55,7 @@ return {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd' },
         json5 = { 'prettierd' },
+        sh = { 'shfmt' }
       },
       default_format_opts = { lsp_format = 'fallback' },
       -- format_on_save = { timeout_ms = 500 },
