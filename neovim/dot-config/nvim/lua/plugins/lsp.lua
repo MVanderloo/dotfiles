@@ -57,6 +57,7 @@ return {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd' },
         json5 = { 'prettierd' },
+        jsonc = { 'prettierd' },
         sh = { 'shfmt' },
         go = { 'goimports', 'gofmt' },
         rust = { 'rustfmt', lsp_format = 'fallback' },
@@ -65,6 +66,7 @@ return {
       },
       default_format_opts = { lsp_format = 'fallback' },
       formatters = {
+        -- config formatters
         -- shfmt = { prepend_args = { '-i', '2' } },
       },
     },
