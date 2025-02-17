@@ -1,12 +1,7 @@
-# My Dotfiles (WIP)
+Use `brew bundle` to install dependencies in each Brewfile.
 
-Welcome to my dotfiles repository. Don't assume anything here works.
-
-Aside from configuration files there are a couple shell scripts used to install/configure things that can't be done from a file.
-
-Most things are contained in an OS specific directory. Some things are cross-platform enough to be outside of that. 
-
-There are various directories that are designed to be used by stow. I don't have a good way of notating which those are, but this command should handle symlinking
-```code
-stow DIRECTORY -t ~/.config
-```
+The .stowrc file and directory structures are setup to link each set of configs into the proper location with the command `stow {NAME}`. The --adopt option is used to prevent data loss. If the location of a symlink already exists, the file will be adopted into this repository.
+- To see if something existed/was adopted, use git diff
+- To throw away the existing file and use this repository, use git reset <file-name>
+- To restore the existing file, use stow -D <package-name>
+- To keep something system specific, just keep it as an uncommitted change
