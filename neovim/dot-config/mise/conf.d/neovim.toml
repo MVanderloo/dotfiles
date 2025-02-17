@@ -1,3 +1,9 @@
 [tools]
+go = "latest"
+rust = "latest"
+shfmt = "latest"
 taplo = 'latest'
 zig = 'latest'
+stylua = "latest"
+lua-language-server = "latest"
+ruff = "latest"
