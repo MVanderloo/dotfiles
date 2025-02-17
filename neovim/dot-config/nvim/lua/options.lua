@@ -52,7 +52,7 @@ opt.completeopt = 'menuone,noinsert,noselect'
 -- Folds
 opt.foldmethod = 'expr'
 opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldtext="" -- enables syntax highlighting
+opt.foldtext = '' -- enables syntax highlighting
 opt.foldlevel = 99
 
 -- Diff
