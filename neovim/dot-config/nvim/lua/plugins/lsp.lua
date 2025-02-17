@@ -26,6 +26,7 @@ return {
         bashls = {},
         gopls = {},
         zls = {},
+        taplo = {},
       },
     },
     config = function(_, opts)
