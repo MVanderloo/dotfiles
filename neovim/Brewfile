@@ -4,7 +4,6 @@ brew "imagemagick"
 
 # language tools
 brew "gopls"
-brew "basedpyright"
 brew "prettier"
 brew "prettierd"
 brew "bash-language-server"
