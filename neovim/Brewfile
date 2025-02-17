@@ -2,7 +2,10 @@
 brew "neovim"
 brew "imagemagick"
 
-# language servers
+# language tools
+brew "rust"
+brew "go"
+brew "gopls"
 brew "basedpyright"
 brew "ruff"
 brew "lua-language-server"
@@ -10,3 +13,4 @@ brew "stylua"
 brew "prettier"
 brew "prettierd"
 brew "bash-language-server"
+brew "shfmt"

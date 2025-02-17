@@ -24,6 +24,8 @@ return {
         lua_ls = {},
         basedpyright = {},
         bashls = {},
+        gopls = {},
+        zls = {},
       },
     },
     config = function(_, opts)
@@ -55,12 +57,15 @@ return {
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         json = { 'prettierd' },
         json5 = { 'prettierd' },
-        sh = { 'shfmt' }
+        sh = { 'shfmt' },
+        go = { 'goimports', 'gofmt' },
+        rust = { 'rustfmt', lsp_format = 'fallback' },
+        yaml = { 'yamlfix' },
+        ['_'] = { 'trim_whitespace' },
       },
       default_format_opts = { lsp_format = 'fallback' },
-      -- format_on_save = { timeout_ms = 500 },
       formatters = {
-        shfmt = { prepend_args = { '-i', '2' } },
+        -- shfmt = { prepend_args = { '-i', '2' } },
       },
     },
     init = function()
