@@ -1,2 +1,4 @@
 [tools]
+duckdb = "latest"
 python = "latest"
+sqlite = "latest"
