@@ -1,6 +1,4 @@
 [tools]
-go = "latest"
-rust = "latest"
 shfmt = "latest"
 taplo = 'latest'
 zig = 'latest'
@@ -9,3 +7,4 @@ lua-language-server = "latest"
 ruff = "latest"
 "pipx:basedpyright" = "latest"
 "npm:prettier" = "latest"
+"go:goimports" = "latest"
