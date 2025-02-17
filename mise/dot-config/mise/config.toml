@@ -1,6 +1,10 @@
 [tools]
 duckdb = "latest"
+go = "latest"
 npm = "latest"
 pipx = "latest"
 python = "latest"
 sqlite = "latest"
+
+[settings]
+experimental = true
