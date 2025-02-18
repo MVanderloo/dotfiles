@@ -56,24 +56,22 @@ HISTSIZE=1000000   # Maximum events for local history
 SAVEHIST=$HISTSIZE # Maximum events in history file
 
 # Format
-setopt EXTENDED_HISTORY        # Write the history file in the ':start:elapsed;command' format
-setopt HIST_REDUCE_BLANKS      # Remove extra whitespace when adding to local history
+setopt EXTENDED_HISTORY   # Format history entries as ':start:elapsed;command'
+setopt HIST_REDUCE_BLANKS # Remove extra whitespace before appending to local history
 
 # Duplicates
-setopt HIST_FIND_NO_DUPS       # Do not display a previously found event
-setopt HIST_SAVE_NO_DUPS       # Do not write duplicate events to the history file
-setopt HIST_EXPIRE_DUPS_FIRST  # Remove a duplicate event first when trimming history
-setopt HIST_IGNORE_ALL_DUPS    # Deletes an old recorded event if a new event is a duplicate
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event
+setopt HIST_SAVE_NO_DUPS      # Do not write duplicate events to the history file
+setopt HIST_IGNORE_ALL_DUPS   # Deletes an old event if a new event is a duplicate
+setopt HIST_EXPIRE_DUPS_FIRST # Remove a duplicate event first when trimming history
 
 # Sharing
-setopt INC_APPEND_HISTORY_TIME # Append to history file immediately, don't read new events from the file
+setopt INC_APPEND_HISTORY_TIME # Append events to history file immediately
 
-# Filtering
-setopt HIST_NO_STORE           # Don't store the history command in history
+# Misc
+setopt HIST_NO_STORE # Don't store the history command in history
+export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific 
 
-# Entries stored in local history but not written to history file
-# force zsh-autosuggestions to fallback to completions for CWD based commands
-export HISTORY_IGNORE="cd *|ls *|mv *|cp *|cat *"
 
 # History search bindings
 bindkey -M vicmd "k" history-beginning-search-backward
