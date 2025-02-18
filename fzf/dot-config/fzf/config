@@ -4,7 +4,7 @@
 --margin=0
 --border=bold
 --color=border:7
---prompt='❯'
+--prompt='> '
 --color=prompt:2
 --info=inline-right
 --color=info:3
