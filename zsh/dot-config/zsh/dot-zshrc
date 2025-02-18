@@ -3,11 +3,6 @@
 #------------------------------------------------------------------------------
 # Plugin Manager
 #------------------------------------------------------------------------------
-# ZINIT_HOME="$XDG_DATA_HOME/zinit/zinit.git"
-# [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
-# [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-# source "${ZINIT_HOME}/zinit.zsh"
-
 # znap
 [[ -r "$XDG_DATA_HOME/zsh/plugins/znap/znap.zsh" ]] ||
     git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git "$XDG_DATA_HOME/zsh/plugins/znap"
@@ -117,7 +112,6 @@ if [[ ${chpwd_functions[(r)ls_after_cd]} != "ls_after_cd" ]];then
 fi
 
 # zoxide
-# unalias zi # needed using zinit
 # eval "$(zoxide init zsh)"
 _ZO_DATA_DIR=$XDG_DATA_HOME
 znap eval zoxide 'zoxide init zsh'
@@ -126,7 +120,6 @@ znap eval zoxide 'zoxide init zsh'
 # Vim Mode
 #------------------------------------------------------------------------------
 # Vim mode
-# zinit ice depth=1; zinit light softmoth/zsh-vim-mode
 MODE_INDICATOR="" # starship handles mode indicator
 KEYTIMEOUT=1 # reduce delay after hitting ESCAPE
 MODE_CURSOR_VIINS="bar"
