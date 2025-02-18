@@ -34,6 +34,20 @@ alias trea='eza --all --tree $EZA_PARAMS'
 
 # wget
 alias wget='wget --no-hsts'
+# zsh-vim-mode plugin
+MODE_INDICATOR="" # starship handles keymap mode indicator
+KEYTIMEOUT=1      # reduce delay after hitting ESCAPE 
+MODE_CURSOR_VIINS="bar"
+MODE_CURSOR_VICMD="block"
+# MODE_CURSOR_REPLACE="underline"
+# MODE_CURSOR_SEARCH="underline"
+# MODE_CURSOR_VISUAL="underline"
+# MODE_CURSOR_VLINE="underline"
+znap source softmoth/zsh-vim-mode
+
+# Search history in normal mode
+bindkey -M vicmd "k" history-search-backward
+bindkey -M vicmd "j" history-search-forward
 
 # top
 alias top=btop
@@ -46,6 +60,11 @@ cat() {
         command cat "$@"
     fi
 }
+# Completions
+bindkey '^n' expand-or-complete
+bindkey '^p' reverse-menu-complete
+# bindkey -M menuselect '^?' send-break
+bindkey -M menuselect '^[' send-break
 
 #------------------------------------------------------------------------------
 # History
@@ -72,13 +91,19 @@ setopt INC_APPEND_HISTORY_TIME # Append events to history file immediately
 setopt HIST_NO_STORE # Don't store the history command in history
 export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific 
 
+#------------------------------------------------------------------------------
+# Auto-suggestions
+#------------------------------------------------------------------------------
+# suggest commands based on history, fallback to completions
+ZSH_AUTOSUGGEST_STRATEGY=( history completion )
 
-# History search bindings
-bindkey -M vicmd "k" history-beginning-search-backward
-bindkey -M vicmd "j" history-beginning-search-forward
+# ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ 
+# source plugin
+znap source zsh-users/zsh-autosuggestions
 
 #------------------------------------------------------------------------------
-# Completions
+# Syntax Highlighting
 #------------------------------------------------------------------------------
 mkdir -p $XDG_CACHE_HOME/zsh
 autoload -Uz compinit; compinit -d "$XDG_CACHE_HOME/zsh/zcompdump"
@@ -120,19 +145,6 @@ fi
 _ZO_DATA_DIR=$XDG_DATA_HOME
 znap eval zoxide 'zoxide init zsh'
 
-#------------------------------------------------------------------------------
-# Vim Mode
-#------------------------------------------------------------------------------
-# Vim mode
-MODE_INDICATOR="" # starship handles mode indicator
-KEYTIMEOUT=1 # reduce delay after hitting ESCAPE
-MODE_CURSOR_VIINS="bar"
-MODE_CURSOR_REPLACE="underline"
-MODE_CURSOR_VICMD="block"
-MODE_CURSOR_SEARCH="underline"
-MODE_CURSOR_VISUAL="underline"
-MODE_CURSOR_VLINE="underline"
-znap source softmoth/zsh-vim-mode
 
 #------------------------------------------------------------------------------
 # Misc
