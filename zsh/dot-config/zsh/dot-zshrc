@@ -99,8 +99,13 @@ zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=
 #------------------------------------------------------------------------------
 # Navigation
 #------------------------------------------------------------------------------
-# cd pushes directories stack
-setopt AUTO_PUSHD
+# Directory stack
+setopt AUTO_PUSHD        # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+# aliases for listing and moving throught directory stack
+alias ds='dirs -v'
+for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # ls after cd
 function ls_after_cd() {
