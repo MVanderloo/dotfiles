@@ -107,10 +107,11 @@ setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
 alias ds='dirs -v'
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
-# ls after cd
+
+# list cwd contents after changing directories
 function ls_after_cd() {
     emulate -L zsh
-    eza --all --git --icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale
+    eza $EZA_PARAMS --all --git-ignore
 }
 if [[ ${chpwd_functions[(r)ls_after_cd]} != "ls_after_cd" ]];then
     chpwd_functions=(${chpwd_functions[@]} "ls_after_cd")
