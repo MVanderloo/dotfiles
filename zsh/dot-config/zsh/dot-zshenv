@@ -24,6 +24,13 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
 
+# less
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
+
 # Homebrew
 export HOMEBREW_BAT="bat"
-export HOMEBREW_NO_ENV_HINTS="true"
+export HOMEBREW_NO_ENV_HINTS=1
+
+# Just
+export JUST_CHOOSER='fzf --multi --preview "just --unstable --color always --show {} | bat -pp -l=make --color=always --tabs=2"'
+
