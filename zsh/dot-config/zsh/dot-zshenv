@@ -1,30 +1,13 @@
 #!/usr/bin/env zsh
 
-# XDG Base Directories
-export XDG_CONFIG_HOME=$HOME/.config
-export XDG_CACHE_HOME=$HOME/.cache
-export XDG_DATA_HOME=$HOME/.local/share
-export XDG_STATE_HOME=$HOME/.local/state
-export XDG_RUNTIME_DIR=$(getconf DARWIN_USER_TEMP_DIR) # MacOS
-
-export STARSHIP_CACHE="$XDG_CACHE_HOME/starship"
-export LESSHISTFILE="$XDG_DATA_HOME/less/history"
-export PYTHON_HISTORY="$XDG_DATA_HOME/python/history" # only works for python 3.13
-export SQLITE_HISTORY="$XDG_DATA_HOME/sqlite3"
-
-# Path
-export PATH="$HOME/.local/bin:$PATH"
-
 # Term
+# someone recommended to not set this manually
 export TERM='xterm-256color'
 
 # Neovim as editor
 export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
-
-# less
-export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
 # Homebrew
 export HOMEBREW_BAT="bat"
