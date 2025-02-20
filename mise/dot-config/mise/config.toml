@@ -1,10 +1,14 @@
 [tools]
+bun = "latest"
 duckdb = "latest"
 go = "latest"
-npm = "latest"
+# npm = "latest"
 pipx = "latest"
 python = "latest"
 sqlite = "latest"
 
 [settings]
 experimental = true
+
+[settings.npm]
+bun = true
