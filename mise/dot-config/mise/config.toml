@@ -2,6 +2,7 @@
 duckdb = "latest"
 go = "latest"
 npm = "latest"
+"npm:@microsoft/compose-language-service" = "latest"
 pipx = "latest"
 python = "latest"
 sqlite = "latest"
