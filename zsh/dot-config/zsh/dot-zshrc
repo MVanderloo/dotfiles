@@ -22,12 +22,21 @@ znap eval starship "starship init zsh"
 # print prompt and continue initialization
 znap prompt
 
+
+
+#------------------------------------------------------------------------------
+# Tools
+#------------------------------------------------------------------------------
+# mise
+znap eval mise "mise activate zsh"
+
+
 #------------------------------------------------------------------------------
 # Keymaps
 #------------------------------------------------------------------------------
 # zsh-vim-mode plugin
 MODE_INDICATOR="" # starship handles keymap mode indicator
-KEYTIMEOUT=1      # reduce delay after hitting ESCAPE 
+KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
 MODE_CURSOR_VIINS="bar"
 MODE_CURSOR_VICMD="block"
 # MODE_CURSOR_REPLACE="underline"
@@ -69,7 +78,7 @@ setopt INC_APPEND_HISTORY_TIME # Append events to history file immediately
 
 # Misc
 setopt HIST_NO_STORE # Don't store the history command in history
-export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific 
+export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific
 
 #------------------------------------------------------------------------------
 # Auto-suggestions
@@ -78,7 +87,7 @@ export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific
 ZSH_AUTOSUGGEST_STRATEGY=( history completion )
 
 # ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
- 
+
 # source plugin
 znap source zsh-users/zsh-autosuggestions
 
@@ -114,7 +123,10 @@ alias wget='wget --no-hsts'
 alias top='btop --update 100'
 
 # cat
-alias cat='bat --paging=never'
+alias cat='bat'
+
+# lazygit
+alias lg='lazygit'
 
 #------------------------------------------------------------------------------
 # Completions
@@ -125,7 +137,7 @@ setopt ALWAYS_TO_END      # Always place the cursor to the end of the word compl
 setopt AUTO_LIST          # list choices on ambiguous completion
 setopt LIST_PACKED        # columns are the width of their largest element
 setopt AUTO_MENU          # Display the completion menu after two use of the TAB key
-# setopt MENU_COMPLETE    # Select the first match given by the completion menu 
+# setopt MENU_COMPLETE    # Select the first match given by the completion menu
 setopt COMPLETE_IN_WORD   # The completion will happen on both end of the word completed
 setopt GLOB_COMPLETE      # Trigger the completion after a glob * instead of expanding it
 setopt GLOB_DOTS          # Complete hidden files and directories
@@ -208,7 +220,7 @@ setopt EXTENDED_GLOB
 # add my scripts to path
 export PATH=$PATH:"$HOME/.local/scripts"
 
-# fzf 
+# fzf
 znap eval fzf "fzf --zsh"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/config"
@@ -232,9 +244,6 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
-
-# mise
-znap eval mise "mise activate zsh"
 
 #------------------------------------------------------------------------------
 # Custom Functions
