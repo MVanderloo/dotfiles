@@ -1,12 +1,8 @@
 [tools]
-bun = "latest"
-node = "22"
-duckdb = "latest"
-go = "latest"
-npm = "latest"
-pipx = "latest"
 python = "latest"
-sqlite = "latest"
+node = "lts"
+bun = "latest"
+pipx = "latest"
 
 # neovim
 shfmt = "latest"
