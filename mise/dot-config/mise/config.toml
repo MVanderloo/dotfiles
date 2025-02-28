@@ -3,6 +3,7 @@ python = "latest"
 node = "lts"
 bun = "latest"
 pipx = "latest"
+uv = "latest"
 
 # neovim
 shfmt = "latest"
