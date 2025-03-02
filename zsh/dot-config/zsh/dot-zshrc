@@ -181,7 +181,7 @@ zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=
 
 
 # load completions
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 # znap eval git "curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh"
 # znap fpath _docker 'docker completion zsh'
 
