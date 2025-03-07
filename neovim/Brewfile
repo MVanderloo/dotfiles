@@ -1,9 +1,0 @@
-# dependencies
-brew "neovim"
-brew "imagemagick"
-
-# language tools
-brew "gopls"
-brew "prettier"
-brew "prettierd"
-brew "bash-language-server"
