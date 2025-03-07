@@ -22,7 +22,7 @@ config.show_new_tab_button_in_tab_bar = false
 
 -- window settings
 -- config.window_background_opacity = 0.8
-config.macos_window_background_blur = 20
+-- config.macos_window_background_blur = 20 -- macos specific
 config.window_decorations = "RESIZE"
 config.swallow_mouse_click_on_window_focus = false
 config.adjust_window_size_when_changing_font_size = false
