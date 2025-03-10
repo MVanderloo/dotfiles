@@ -22,5 +22,5 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "vscode-neovim.NVIM_APPNAME": "nvim/vscode"
+  "vscode-neovim.NVIM_APPNAME": "vscode-neovim"
 }
