@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+# Script to export environment variables from all .conf files
+# Usage: source ./load_env [custom_env_directory]
+
+# Determine environment directory
+if [ -n "$1" ]; then
+    # Use provided directory if specified
+    ENV_DIR="$1"
+    if [ ! -d "${ENV_DIR}" ]; then
+        echo "Error: Directory ${ENV_DIR} does not exist."
+        return 1 2>/dev/null || exit 1
+    fi
+else
+    # Default directory
+    ENV_DIR="${HOME}/.config/environment.d"
+    if [ ! -d "${ENV_DIR}" ]; then
+        # This directory does not need to exist
+        return 0
+    fi
+fi
+
+# Initialize string to track overwritten variables
+overwritten_vars=""
+
+# Process each .conf file
+for env_file in "${ENV_DIR}"/*.conf; do
+    # Skip if no files match the pattern
+    [ -f "${env_file}" ] || continue
+
+    # Read each line in the file
+    while IFS= read -r line || [ -n "${line}" ]; do
+        # Skip empty lines and comments
+        [ -z "${line}" ] && continue
+        [ "${line:0:1}" = "#" ] && continue
+
+        # Extract variable name (everything before the first = sign)
+        variable_name=$(echo "$line" | cut -d= -f1)
+
+        # Check if variable already exists and has a value
+        eval val=\$${variable_name}
+        if [ -n "$val" ]; then
+            if [ -z "$overwritten_vars" ]; then
+                overwritten_vars="${variable_name}"
+            else
+                overwritten_vars="${overwritten_vars} ${variable_name}"
+            fi
+        fi
+
+        # Expand environment variables in the value
+        expanded_line=$(eval echo "${line}")
+
+        # Export variable
+        export "${expanded_line}"
+    done <"${env_file}"
+done
+
+# Print warning for overwritten variables only if any were overwritten
+if [ -n "$overwritten_vars" ]; then
+    echo "Warning: Overwritten environment variables: $overwritten_vars"
+fi
