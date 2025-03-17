@@ -1,9 +1,4 @@
 #!/usr/bin/env zsh
-
-# Term
-# someone recommended to not set this manually
-export TERM='xterm-256color'
-
 # Neovim as editor
 export EDITOR='nvim'
 export VISUAL='nvim'
