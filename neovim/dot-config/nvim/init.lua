@@ -24,6 +24,28 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
   spec = {
     {
+      'MagicDuck/grug-far.nvim',
+      opts = { headerMaxWidth = 80 },
+      cmd = 'GrugFar',
+      keys = {
+        {
+          '<leader>sr',
+          function()
+            local grug = require 'grug-far'
+            local ext = vim.bo.buftype == '' and vim.fn.expand '%:e'
+            grug.open {
+              transient = true,
+              prefills = {
+                filesFilter = ext and ext ~= '' and '*.' .. ext or nil,
+              },
+            }
+          end,
+          mode = { 'n', 'v' },
+          desc = 'Search and Replace',
+        },
+      },
+    },
+    {
       'SunnyTamang/select-undo.nvim',
       opts = {
         persistent_undo = true,
@@ -37,7 +59,7 @@ require('lazy').setup {
       priority = 1000,
       lazy = false,
       opts = {
-        bigfile = { enabled = true },
+        -- bigfile = { enabled = true },
         quickfile = { enabled = true },
         -- scroll = { enabled = true },
         -- mini cursorword a bit nicer defaults
@@ -185,6 +207,7 @@ require('lazy').setup {
         -- require("mini.visits").setup()
       end,
     },
+
     require 'plugins.ui',
     require 'plugins.colors',
     require 'plugins.treesitter',
