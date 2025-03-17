@@ -1,0 +1,14 @@
+# macos cache
+.DS_Store
+
+# need to explicity add .env files
+*.env
+
+# mise-en-place
+.mise.local.toml
+.mise.*.local.toml
+mise.local.toml
+mise.*.local.toml
+
+# justfile
+.justfile

@@ -5,53 +5,61 @@
     editor = nvim
     pager = delta
     excludesFile = ./ignore
+    ; hooksPath = ./hooks
 
 [alias]
     graph = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 
 [init]
-    autosetupmerge = always
-    autosetuprebase = always
     defaultBranch = main
 
-[commit]
-    gpg = true
+[branch]
+    autosetupmerge = always
+    autosetuprebase = always
+
+[push]
+    default = upstream
+    followTags = true
+
+[submodule]
+    recurse = true
+
+[pull]
+    ff = only
 
 [rerere]
-  enabled = 1
-; [pull]
-    ; rebase = true
-    ; ff = only
+    enabled = 1
 
 [merge]
-  conflictstyle = zdiff3
+    conflictstyle = zdiff3
+
+[fetch]
+    prune = true
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
 
-[merge]
-    conflictstyle = diff3
-
 [diff]
-    colorMoved = zebra
+    colorMoved = default
 
 [delta]
+    syntax-theme = "ansi"
+    tabs = 4
+    ; side-by-side = true
     navigate = true
     features = decorations
     line-numbers = true
     hyperlinks = true
+    hyperlinks-file-link-format = "nvim +{line} {path}"
 
 [delta "interactive"]
     keep-plus-minus-markers = false
-    show-syntax-highlighting = true
-    color-syntax = true
 
 [delta "decorations"]
     commit-decoration-style = blue ol
     commit-style = raw
     file-style = omit
     hunk-header-decoration-style = blue box
-    hunk-header-file-style = red
-    hunk-header-line-number-style = "#067a00"
+    hunk-header-file-style = blue
+    hunk-header-line-number-style = green
     hunk-header-style = file line-number syntax
-
