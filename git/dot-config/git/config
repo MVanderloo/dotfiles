@@ -1,7 +1,5 @@
-[user]
-  name = Michael van der Loo
-  email = michaeljvanderloo@gmail.com
-  username = MVanderloo
+[include]
+path = "$XDG_CONFIG_HOME/git/credentials"
 
 [core]
   editor = nvim
@@ -24,9 +22,6 @@ graph2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%a
 
 [merge]
   conflictstyle = zdiff3
-
-[pull]
-  rebase = true
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
