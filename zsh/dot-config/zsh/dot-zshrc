@@ -9,6 +9,8 @@
         https://github.com/marlonrichert/zsh-snap.git \
         "$XDG_DATA_HOME/zsh/plugins/znap"
 source "$XDG_DATA_HOME/zsh/plugins/znap/znap.zsh"
+zstyle ':znap:*' auto-compile no
+zstyle ':znap:*:<glob pattern>' git-maintenance off
 
 #------------------------------------------------------------------------------
 # Prompt
