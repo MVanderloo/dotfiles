@@ -1,14 +1,13 @@
 [include]
-path = "$XDG_CONFIG_HOME/git/credentials"
+    path = ./credentials
 
 [core]
-  editor = nvim
-  pager = delta
-  excludesFile = ~/.config/git/ignore
+    editor = nvim
+    pager = delta
+    excludesFile = ./ignore
 
 [alias]
-graph = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
-graph2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    graph = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 
 [init]
   defaultBranch = main
@@ -47,9 +46,3 @@ graph2 = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%a
   hunk-header-file-style = red
   hunk-header-line-number-style = "#067a00"
   hunk-header-style = file line-number syntax
-
-[filter "lfs"]
-  process = git-lfs filter-process
-  required = true
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
