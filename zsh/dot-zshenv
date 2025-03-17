@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
 
-ZDOTDIR=~/.config/zsh
+# this should define $ZDOTDIR
+. ~/.local/scripts/load-env
 . $ZDOTDIR/.zshenv
