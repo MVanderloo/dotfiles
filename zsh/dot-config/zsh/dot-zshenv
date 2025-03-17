@@ -4,7 +4,3 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER='nvim +Man!'
 
-# Homebrew
-export HOMEBREW_BAT="bat"
-export HOMEBREW_NO_ENV_HINTS=1
-
