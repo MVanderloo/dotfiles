@@ -181,7 +181,7 @@ require('lazy').setup {
         require('mini.surround').setup()
         -- require('mini.tabline').setup()
         -- require("mini.test").setup()
-        require('mini.trailspace').setup()
+        -- require('mini.trailspace').setup()
         -- require("mini.visits").setup()
       end,
     },

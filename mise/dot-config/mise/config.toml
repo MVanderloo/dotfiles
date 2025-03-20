@@ -1,0 +1,28 @@
+[tools]
+# python = "latest"
+# node = "23"
+# bun = "latest"
+# pipx = "latest"
+# uv = "latest"
+
+# neovim
+shfmt = "latest"
+taplo = 'latest'
+stylua = "latest"
+lua-language-server = "latest"
+ruff = "latest"
+# "npm:bash-language-server" = "latest"
+# "npm:@microsoft/compose-language-service" = "latest"
+# "npm:@fsouza/prettierd" = "latest"
+zls = "latest"
+zig = "ref:master"
+"pipx:yamlfix" = "latest"
+"pipx:basedpyright" = "latest"
+lazydocker = "latest"
+bun = "latest"
+
+[settings]
+experimental = true
+npm.bun = true
+python.uv_venv_auto = true
+activate_aggressive = true
