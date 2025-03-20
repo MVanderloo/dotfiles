@@ -1,3 +1,3 @@
-function copy --wraps=pbcopy --description 'alias copy pbcopy'
-  pbcopy $argv
+function copy --wraps=gpaste-client
+    xclip -selection clipboard
 end

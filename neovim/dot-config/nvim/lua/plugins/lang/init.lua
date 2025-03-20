@@ -17,7 +17,7 @@ return {
         taplo = {},
         dockerls = {},
         docker_compose_language_service = {},
-        yamlls = {},
+        -- yamlls = {},
       },
     },
     config = function(_, opts)

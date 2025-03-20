@@ -1,9 +1,9 @@
 [tools]
-python = "latest"
-node = "lts"
-bun = "latest"
-pipx = "latest"
-uv = "latest"
+# python = "latest"
+# node = "23"
+# bun = "latest"
+# pipx = "latest"
+# uv = "latest"
 
 # neovim
 shfmt = "latest"
@@ -16,8 +16,13 @@ ruff = "latest"
 # "npm:@fsouza/prettierd" = "latest"
 zls = "latest"
 zig = "ref:master"
+"pipx:yamlfix" = "latest"
+"pipx:basedpyright" = "latest"
+lazydocker = "latest"
+bun = "latest"
 
 [settings]
 experimental = true
 npm.bun = true
 python.uv_venv_auto = true
+activate_aggressive = true
