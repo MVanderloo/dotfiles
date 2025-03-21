@@ -17,6 +17,9 @@
 	autosetupmerge = always
 	autosetuprebase = always
 
+[push]
+	autosetupremove = true
+
 [rerere]
 	enabled = 1
 
