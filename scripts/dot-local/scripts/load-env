@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
-
-# Script to export environment variables from all .conf files
+# Script to export environment variables from all .conf files in a directory
+# Usage: source ./load_env
 # Usage: source ./load_env [custom_env_directory]
+
+# Detect if the script is being executed (not sourced)
+(return 0 2>/dev/null) || {
+    echo "Error: This script must be sourced, not executed."
+    exit 1
+}
 
 # Determine environment directory
 if [ -n "$1" ]; then
@@ -20,42 +26,45 @@ else
     fi
 fi
 
-# Initialize string to track overwritten variables
-overwritten_vars=""
+# Use array instead of string concatenation
+declare -a overwritten_vars=()
 
 # Process each .conf file
 for env_file in "${ENV_DIR}"/*.conf; do
     # Skip if no files match the pattern
     [ -f "${env_file}" ] || continue
 
-    # Read each line in the file
-    while IFS= read -r line || [ -n "${line}" ]; do
+    # Read the entire file at once and process it
+    while IFS= read -r line; do
         # Skip empty lines and comments
-        [ -z "${line}" ] && continue
-        [ "${line:0:1}" = "#" ] && continue
+        [[ -z "$line" || "$line" == \#* ]] && continue
 
-        # Extract variable name (everything before the first = sign)
-        variable_name=$(echo "$line" | cut -d= -f1)
+        # Extract variable name and value using parameter expansion
+        variable_name="${line%%=*}"
+        new_val="${line#*=}"
 
-        # Check if variable already exists and has a value
-        eval val=\$${variable_name}
-        if [ -n "$val" ]; then
-            if [ -z "$overwritten_vars" ]; then
-                overwritten_vars="${variable_name}"
-            else
-                overwritten_vars="${overwritten_vars} ${variable_name}"
+        # Get current value directly
+        eval "current_val=\${$variable_name}"
+
+        # Expand the new value once
+        expanded_new_val=$(eval echo "$new_val")
+
+        # Debug output (remove in final version)
+        # echo "DEBUG: $variable_name - current: '$current_val', new: '$expanded_new_val'"
+
+        # Only mark as overwritten if values are different and the variable exists
+        if [ -n "$current_val" ]; then
+            if [ "$current_val" != "$expanded_new_val" ]; then
+                overwritten_vars+=("$variable_name")
             fi
         fi
 
-        # Expand environment variables in the value
-        expanded_line=$(eval echo "${line}")
-
-        # Export variable
-        export "${expanded_line}"
-    done <"${env_file}"
+        # Export the variable directly
+        export "$variable_name=$expanded_new_val"
+    done <"$env_file"
 done
 
-# Print warning for overwritten variables only if any were overwritten
-if [ -n "$overwritten_vars" ]; then
-    echo "Warning: Overwritten environment variables: $overwritten_vars"
+# Print warning only if any variables were overwritten
+if [ ${#overwritten_vars[@]} -gt 0 ]; then
+    echo "Warning: Overwritten environment variables: ${overwritten_vars[*]}"
 fi
