@@ -15,12 +15,12 @@ While it would be cool to support a wide range of OS this repo is purely an axe 
 Well you have to get the repo somehow.
 
 ### Stow
-GNU Stow is a symlink manager and it is the reason for the directory structure of this repository. It takes a package from the root of this repository and symlinks it to the proper location. See below for an example.
+GNU Stow is a symlink manager and it is the reason for the directory structure of this repository. It takes a package from the root of this repository and symlinks it to the proper location. This is not mandatory but it takes away all the work of symlinks. See below for an example. 
 
 ### Bash
-To run the install.sh scripts.
+Many packages include an install.sh script for things that require more than just a file in the right place.
 
-### System Package manager
+### Package manager
 This depends on the system, on MacOS you have to install Homebrew and on Fedora it comes with dnf.
 
 ## Stow Packages Example
