@@ -1,5 +1,0 @@
-default:
-    just --choose
-
-test:
-    echo "hi"

@@ -1,48 +1,49 @@
 [include]
-    path = ./credentials
+	path = ./credentials
 
 [core]
-    editor = nvim
-    pager = delta
-    excludesFile = ./ignore
+	editor = nvim
+	pager = delta
+	excludesFile = ./ignore
+	hooksPath = ./hooks
 
 [alias]
-    graph = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
+	graph = log --graph --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all
 
 [init]
-  defaultBranch = main
+	defaultBranch = main
 
 [branch]
-  autosetupmerge = always
-  autosetuprebase = always
+	autosetupmerge = always
+	autosetuprebase = always
 
 [rerere]
-  enabled = 1
+	enabled = 1
 
 [merge]
-  conflictstyle = zdiff3
+	conflictstyle = zdiff3
 
 [interactive]
-  diffFilter = delta --color-only --features=interactive
+	diffFilter = delta --color-only --features=interactive
 
 [diff]
-  colorMoved = default
+	colorMoved = default
 
 [delta]
-  navigate = true
-  features = decorations
-  line-numbers = true
-  hyperlinks = true
-  hyperlinks-file-link-format = "nvim +{line} {path}"
+	navigate = true
+	features = decorations
+	line-numbers = true
+	hyperlinks = true
+	hyperlinks-file-link-format = "nvim +{line} {path}"
 
 [delta "interactive"]
-  keep-plus-minus-markers = false
+	keep-plus-minus-markers = false
 
 [delta "decorations"]
-  commit-decoration-style = blue ol
-  commit-style = raw
-  file-style = omit
-  hunk-header-decoration-style = blue box
-  hunk-header-file-style = red
-  hunk-header-line-number-style = "#067a00"
-  hunk-header-style = file line-number syntax
+	commit-decoration-style = blue ol
+	commit-style = raw
+	file-style = omit
+	hunk-header-decoration-style = blue box
+	hunk-header-file-style = red
+	hunk-header-line-number-style = "#067a00"
+	hunk-header-style = file line-number syntax

@@ -3,8 +3,8 @@
 theme = tokyonight-storm
 
 # font
-# font-family = MonaspiceNe Nerd Font Mono
-font-family = MonaspiceKr Nerd Font Mono
+font-family = MonaspiceNe Nerd Font Mono
+# font-family = MonaspiceKr Nerd Font Mono
 # font-family = MonaspiceRn Nerd Font Mono
 
 # enable ligatures

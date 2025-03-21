@@ -113,6 +113,7 @@ EZA_PARAMS=('--git' '--icons=always' '--classify' '--group-directories-first' \
     '--time-style=long-iso' '--group' '--color-scale')
 alias ls='eza $EZA_PARAMS'
 alias la='eza $EZA_PARAMS --all'
+alias lg='eza $EZA_PARAMS --git-ignore'
 alias tree='eza --tree $EZA_PARAMS'
 alias trea='eza --all --tree $EZA_PARAMS'
 
@@ -124,9 +125,6 @@ alias top='btop --update 100'
 
 # cat
 alias cat='bat'
-
-# lazygit
-alias lg='lazygit'
 
 #------------------------------------------------------------------------------
 # Completions
@@ -217,9 +215,6 @@ znap eval zoxide "zoxide init zsh"
 # enable extra globbing features
 setopt EXTENDED_GLOB
 
-# add my scripts to path
-export PATH=$PATH:"$HOME/.local/scripts"
-
 # fzf
 znap eval fzf "fzf --zsh"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -244,86 +239,3 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
-
-#------------------------------------------------------------------------------
-# Custom Functions
-#------------------------------------------------------------------------------
-# Neovim config switcher
-function nvims() {
-    local config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
-
-    list_configs() {
-        find "$config_dir" -maxdepth 2 -name 'init.lua' -exec dirname {} \; | xargs -n 1 basename
-    }
-
-    local configs=($(list_configs))
-
-    if [ $# -eq 0 ]; then
-        local selected=$(printf "%s\n" "${configs[@]}" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0)
-    else
-        if [[ " ${configs[@]} " =~ " $1 " ]]; then
-            local selected="$1"
-        else
-            local matches=$(printf "%s\n" "${configs[@]}" | fzf --filter="$1")
-            local match_count=$(echo "$matches" | wc -l)
-
-            if [ "$match_count" -eq 1 ]; then
-                local selected="$matches"
-            elif [ "$match_count" -gt 1 ]; then
-                local selected=$(echo "$matches" | fzf --prompt="Neovim Config -> " --height=~50% --layout=reverse --border --exit-0 --query="$1")
-            fi
-        fi
-    fi
-
-    if [ -n "$selected" ]; then
-        export NVIM_APPNAME="nvim/$selected"
-        echo "Using neovim \"$selected\""
-    else
-        echo "No configuration selected." >&2
-        return 1
-    fi
-}
-
-# fzf over tldr
-function tldr() {
-    if [[ $# -eq 0 ]]; then
-        local selected=$(tldr --list | fzf --preview="tldr {1} --color=always --compact" --height=40% --reverse --tmux)
-
-        if [ "$selected" ]; then
-            tldr "$selected"
-        else
-            return
-        fi
-    else
-        command tldr "$@"
-    fi
-}
-
-#------------------------------------------------------------------------------
-# Tmux Wrapper
-#------------------------------------------------------------------------------
-# Uncomment and modify as needed
-# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#     tmux-window-name() {
-#             ($TMUX_PLUGIN_MANAGER_PATH/tmux-window-name/scripts/rename_session_windows.py &)
-#     }
-#
-#     add-zsh-hook chpwd tmux-window-name
-#
-#     if ! tmux ls > /dev/null 2>&1; then
-#         exec tmux new-session -As workspace
-#     else
-#         if tmux has-session -t workspace 2>/dev/null; then
-#             # exec tmux attach-session -t workspace
-#             tmux attach-session -t workspace
-#         else
-#             # exec tmux attach-session
-#             tmux attach-session
-#         fi
-#     fi
-# elif ! command -v tmux &> /dev/null; then
-#     echo "You might wanna install tmux"
-# fi
-znap eval fuck "thefuck --alias"
-znap eval watchexec "watchexec --completions zsh"
-alias copy=pbcopy
