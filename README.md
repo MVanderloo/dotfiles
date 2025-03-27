@@ -1,62 +1,57 @@
 # Welcome to my dotfiles
 
 ## Supported Systems
-See branches for all supported systems.
+See branches for all supported systems. As of writing this it is
+- MacOS
+- Fedora
 
-The main branch can be considered a system independent set of configuration files. Whenever I have an OS that I need dotfiles for, I can create a new branch off main and make changes as needed. Configurations that are system specific stay in their own branch. When I want to make changes to a configuration on any system, I should be able to make edits on main and rebase.
-
-While main is the meat and potatoes of my configurations, I'd like to maintain dependency files and install scripts with each packages since they are highly system dependent. Additionally many configurations need certain patches in order to work.
+The main branch can be considered a system independent set of configuration files. All branches are rebased off main, and configurations that are system specific are created as changes on top of main. To update all systems I commit to main, then rebase all branches. 
 
 While it would be cool to support a wide range of OS this repo is purely an axe sharpening exercise, so I will only really be maintaining the things that I am using. My hope is that by organizing it in this way I will minimize the duplicate configuration I need to do for each system.
 
+## Structure
+
 ## Dependencies
 
-### Git
-Well you have to get the repo somehow.
+While each package has it's own dependencies, I have minimized install dependencies to the following
+1. Git - To clone the repo
+2. Stow - GNU Stow uses the directory structure to manage symlinks to this repo. Not strictly necessary but a lot easier than doing it yourself. Symlinks also allow `git pull` to update configurations directly
+3. Bash - Many packages include an install.sh for anything that is more complex than stow can handle
+4. Package Manager - Ideally where tools are installed from. In some cases install.sh will handle dependencies (see tmux/install.sh)
 
-### Stow
-GNU Stow is a symlink manager and it is the reason for the directory structure of this repository. It takes a package from the root of this repository and symlinks it to the proper location. This is not mandatory but it takes away all the work of symlinks. See below for an example. 
-
-### Bash
-Many packages include an install.sh script for things that require more than just a file in the right place.
-
-### Package manager
-This depends on the system, on MacOS you have to install Homebrew and on Fedora it comes with dnf.
-
-## Stow Packages Example
-The .stowrc in the repo root configures the behavior of stow, which sets the dotfiles option, targets the home directory, and ignores install.sh and Brewfile (Which I use on MacOS for dependencies). The dotfiles option tells stow that `dot-config` is really `.config`. It is so that files are more visible when looking at the repo in a terminal or file explorer that hides dotfiles by default.
+## Stow Usage
+The .stowrc in the repo root configures the behavior of stow, which sets the dotfiles option, and targets the home directory. It also ignore certain files that are not meant to be symlinked, like `install.sh` and `Brewfile` in the case of MacOS. The dotfiles option tells stow that `dot-config` is really `.config`. This is for viewing this repository in an explorer that doesn't display dot prefixed files and director.
 
 ### Directory Structure
-Stow will mirror the structure of the package in the repo. Tmux reads it's configuration from `~/.config/tmux/tmux.conf`, this is what that looks like from the home directory.
+Stow will mirror the structure of the package in the repo. Take the tmux package as an example
+
+Tmux reads it's configuration from `~/.config/tmux/tmux.conf`, this is what that looks like from the home directory.
 ```
- ~
-└──  .config
-    └──  tmux
+~
+└── .config
+    └── tmux
         └── tmux.conf
 ```
 
 Therefore the tmux package has the following structure (without ignored files):
 ```
- tmux
-└──  dot-config
-    └──  tmux
+tmux
+└── dot-config
+    └── tmux
         └── tmux.conf
 ```
 
 Here is what this looks like after running stow:
 ```
- ~
-└──  .config
-    └──  tmux
+~
+└── .config
+    └── tmux
         └── tmux.conf -> ~/dotfiles/tmux/dot-config/tmux/tmux.conf
 ```
 
 
 ### Adopt Option
-In the .stowrc also sets the adopt flag. This means that if there is already a `~/.config/tmux/tmux.conf` on your system, stowing tmux will create the symlink but move the existing file into this repo. You can use git diff, or other git commands to manage files already on your system. Thus you can be sure that if anything is overwritten, you will know.
-
-### install.sh
-For a more complex install process I use an `install.sh` bash script. This is useful as a catchall for things that can't be done with the stow or the package manager. For example tmux uses the Tmux Plugin Manager, which is not available on most package managers. `install.sh` clones the repo into the correct location and that's it. For more complex setups like docker, I use the official docker install script.
+In the .stowrc also sets the adopt flag. This means that if there is already a `~/.config/tmux/tmux.conf` on your system, stowing tmux will create the symlink but move the existing file into this repo. You can then use git diff or other git commands to manage the files that already existed on your system without deleting them. If you are confident you don't want them, use git restore to delete them. If you get scared and want to undo, stow -D will put everything back how it was. Thus you can be sure that if anything is overwritten, you will know.
 
 ### Commands
 - `stow tmux`: symlinks tmux.conf
@@ -67,39 +62,32 @@ For a more complex install process I use an `install.sh` bash script. This is us
 See the man page for more information
 
 ## Packages
-Each directory in the room of the repo is considered a package. The goal is for each package to be as independent as possible. However, sometimes packages may assume the existence of environment variables that are set in a shell package.
+Each directory in the root of the repo is considered a package. My goal is for each package to be functional on their own. Ideally they should each declare their dependencies (however is idiomatic for the package manager), declare their own environment variables, and include an idempotent install script if there is something to install.
 
-One goal to aspire towards is to have each package declare it's dependencies and include an install.sh. MacOS uses homebrew, which reads from Brewfiles.
-
+Here are some of the tools I have configured
 ### Shells
 - fish
 - zsh
-- bash
 
 ### Editors
-- neovim
 - helix
+- neovim
 - vscode
 
 ### CLI
 - bat
+- delta
+- fastfetch
 - fzf
 - git
+- just
+- lazygit
 - mise
+- python
+- starship
 
 ### Terminals
 - ghostty
-- wezterm
 - tmux
+- wezterm
 - zellij
-
-### Todo
-Just a list of a few things I would like to include
-- Window manager per system using a set of unified keybindings
-- nushell
-- helix
-- Include other terminals like kitty or alacritty
-- better VSCode package, which does not currently follow the stow package structure
-- break up scripts, put tmux-sessionizer into tmux package for example
-- Find a shell independent way to declare environment variables per package, so that they don't need to be in each shell. I tried .profile but it's not quite what I need. One idea is to put them in ~/.config/env/<package-name>.env, which gets sourced by all shells.
-
