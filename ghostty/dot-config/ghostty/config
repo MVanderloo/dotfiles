@@ -1,11 +1,16 @@
 # ansi colors
-# theme = catppuccin-mocha
-theme = tokyonight-storm
+theme = catppuccin-mocha
+# theme = tokyonight-storm
 
 # font
 font-family = MonaspiceNe Nerd Font Mono
 # font-family = MonaspiceKr Nerd Font Mono
 # font-family = MonaspiceRn Nerd Font Mono
+
+# cursor-style = block
+# cursor-style-blink = false
+# shell-integration-features = no-cursor
+shell-integration = none
 
 # enable ligatures
 font-feature = ss01
@@ -21,25 +26,19 @@ font-feature = calt
 font-feature = liga
 
 font-size = 14
-adjust-cell-height = 6
+# adjust-cell-height = 6
 # adjust-font-baseline = 0
 
 # background
-background-opacity = 1
-background-blur-radius = 20
+# background-opacity = 1
+# background-blur-radius = 20
 
 # window
-window-padding-x = 8
-window-padding-balance = true
-window-padding-color = extend
-window-step-resize = true
-adjust-font-baseline = 0
-
-# app icon
-macos-icon = custom-style
-macos-icon-screen-color = black
-macos-icon-frame = plastic
-macos-icon-ghost-color = black
+# window-padding-x = 8
+# window-padding-balance = true
+# window-padding-color = extend
+# window-step-resize = true
+# adjust-font-baseline = 0
 
 # keybindings
 # keybind = ctrl+a>ctrl+a=text:\x01
