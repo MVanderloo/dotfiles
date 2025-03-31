@@ -1,11 +1,26 @@
 # Welcome to my dotfiles
 
+## Getting Started
+
+### Install
+
+```shell
+branch="macos" # set this variable to the desired branch
+```
+
+```shell
+git clone -b "$branch" https://github.com/mvanderloo/dotfiles
+cd dotfiles
+git switch -c local --track "$branch"
+stow */
+```
+
 ## Supported Systems
 See branches for all supported systems. As of writing this it is
 - MacOS
 - Fedora
 
-The main branch can be considered a system independent set of configuration files. All branches are rebased off main, and configurations that are system specific are created as changes on top of main. To update all systems I commit to main, then rebase all branches. 
+The main branch can be considered a system independent set of configuration files. All branches are rebased off main, and configurations that are system specific are created as changes on top of main. To update all systems I commit to main, then rebase all branches.
 
 While it would be cool to support a wide range of OS this repo is purely an axe sharpening exercise, so I will only really be maintaining the things that I am using. My hope is that by organizing it in this way I will minimize the duplicate configuration I need to do for each system.
 
