@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for i in {0..255}; do
+    printf "\e[48;5;${i}m  \e[0m\e[38;5;${i}mcolor%03d\e[0m  " "$i"
+    [ $(((i + 1) % 6)) -eq 4 ] && echo
+done
