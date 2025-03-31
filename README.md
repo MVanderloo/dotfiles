@@ -11,6 +11,7 @@ branch="macos" # set this variable to the desired branch
 ```shell
 git clone -b "$branch" https://github.com/mvanderloo/dotfiles
 cd dotfiles
+git config pull.rebase true
 git switch -c local --track "$branch"
 stow */
 ```
