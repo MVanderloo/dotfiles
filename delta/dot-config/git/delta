@@ -3,6 +3,7 @@
 
 [interactive]
 	diffFilter = delta --color-only --features=interactive
+
 [delta]
 	navigate = true
 	features = decorations
