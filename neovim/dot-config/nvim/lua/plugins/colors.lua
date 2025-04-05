@@ -39,10 +39,34 @@ return {
   --   config = function() vim.cmd 'colorscheme tokyonight' end,
   --   -- config = true,
   -- },
+  -- {
+  --   'olimorris/onedarkpro.nvim',
+  --   -- priority = 1000,
+  --   lazy = false,
+  --   config = function()
+  --     -- vim.cmd 'colorscheme onedark_dark'
+  --     -- return {
+  --     --   options = {
+  --     --     -- transparency = true,
+  --     --   },
+  --     -- }
+  --   end,
+  -- },
+  -- {
+  --   'catppuccin/nvim',
+  --   name = 'catppuccin',
+  --   lazy = false,
+  --   -- config = function() vim.cmd 'colorscheme catppuccin-mocha' end,
+  -- },
   {
-    'navarasu/onedark.nvim',
+    'folke/tokyonight.nvim',
     lazy = false,
-    init = function() vim.cmd 'colorscheme onedark' end,
-    opts = { style = 'darker' },
+    config = function() vim.cmd 'colorscheme tokyonight' end,
+    -- config = true,
   },
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   lazy = false,
+  -- },
+  -- { 'rose-pine/neovim', name = 'rose-pine', lazy = true },
 }
