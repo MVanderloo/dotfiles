@@ -1,4 +1,8 @@
-#!/usr/bin/env zsh
+#------------------------------------------------------------------------------
+# Environment
+#------------------------------------------------------------------------------
+source "$HOME/.local/bin/load-env"
+export PATH="$HOME/.local/bin:$PATH"
 
 #------------------------------------------------------------------------------
 # Plugin Manager
@@ -125,6 +129,12 @@ alias top='btop --update 100'
 
 # cat
 alias cat='bat'
+
+alias lag='lazygit'
+alias lad='lazydocker'
+
+alias vim='nvim'
+
 
 #------------------------------------------------------------------------------
 # Completions
