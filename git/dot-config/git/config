@@ -23,3 +23,7 @@
 
 [diff]
 	colorMoved = zebra
+
+[advice]
+	skippedCherryPicks = false
+	mergeConflict = false
