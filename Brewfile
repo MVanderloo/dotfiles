@@ -1,0 +1,15 @@
+brew "ca-certificates"
+brew "btop"
+brew "eza"
+brew "jq"
+brew "node"
+brew "stow"
+brew "tealdeer"
+brew "thefuck"
+brew "wget"
+brew "yazi"
+brew "zoxide"
+
+cask "karabiner-elements"
+cask "raycast"
+
