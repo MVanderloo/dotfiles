@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "Removing:"
+
+# use fd if available
+if command -v fd &> /dev/null; then
+    fd -H -t f ".DS_Store" . | while IFS= read -r file; do
+        echo "$file"
+        rm "$file"
+    done
+else
+    find . -name ".DS_Store" -print0 | while IFS= read -r -d '' file; do
+        echo "$file"
+        rm "$file"
+    done
+fi
