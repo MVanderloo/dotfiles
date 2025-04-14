@@ -15,7 +15,7 @@
 --color=label:15:bold
 --color=spinner:9
 --color=header:4
---color=fg:7:bold,fg+:15,selected-fg:15:bold
+--color=fg:8:bold,fg+:15,selected-fg:15:bold
 --color=bg:-1,bg+:-1,selected-bg:-1
 --color=hl:10:bold,hl+:10:bold,selected-hl:10:bold
 
