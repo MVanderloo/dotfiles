@@ -46,11 +46,14 @@ mkdir -p "$install_path" \
 For computers that I use to work on this repository, I use git worktrees to use different branches without breaking symlinks.
 
 ```shell
-git clone -b "$branch" https://github.com/mvanderloo/dotfiles
-cd dotfiles
-git config pull.rebase true
-git switch -c local --track "$branch"
-stow */
+git clone --bare https://github.com/mvanderloo/dotfiles "$install_path/.git"
+cd "$install_path"
+git worktree add main main
+git worktree add "$branch" "$branch"
+git branch local --track "$branch"
+git worktree add --lock "contains system symlinks" local local
+cd local
+git config push.remote no-push        # invalid ref will prevent pushing
 ```
 
 ## Supported Systems
