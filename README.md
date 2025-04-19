@@ -30,7 +30,8 @@ Clone the desired branch to the desired path and setup submodules.
 
 ```shell
 git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
-	-b "$branch" --recurse-submodules
+	-b "$branch" --recurse-submodules \
+cd "$branch"
 ```
 
 ### Setup with local worktree
@@ -38,11 +39,13 @@ git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
 This is the same as the above but it uses a bare repo to clone two worktrees, $branch and local.
 
 ```shell
-git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles/.git"
+git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles/.git" --recurse-submodules
 cd "$dotfiles"
 git worktree add "$branch"
 git worktree add local -b local --track "$branch"
 git config branch.local.pushRemote no-push
+cd local
+git submodule update --init --recursive
 ```
 
 ## Install
