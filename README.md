@@ -31,34 +31,18 @@ Clone the desired branch to the desired path and setup submodules.
 ```shell
 git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
 	-b "$branch" --recurse-submodules
-cd "$dotfiles"
 ```
 
-### Setup Local Branch
+### Setup with local worktree
 
-This is the same as the above but it sets up the local branch and disables push.
-
-```shell
-git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
-	-b "$branch" --recurse-submodules
-cd "$dotfiles"
-git switch -c local --track "$branch"
-git config branch.local.pushRemote no-push
-```
-
-### Worktree Setup
-
-For computers that I use to work on this repository, I use git worktrees to use different branches without breaking symlinks. This creates a bare repo, clones main, the desired branch, and creates the local branch. It also locks the worktree for good measure.
+This is the same as the above but it uses a bare repo to clone two worktrees, $branch and local.
 
 ```shell
-git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles.git"
+git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles/.git"
 cd "$dotfiles"
-git worktree add main
 git worktree add "$branch"
-git branch local --track "$branch"
-git worktree add --lock --reason "contains system symlinks" local
+git worktree add local -b local --track "$branch"
 git config branch.local.pushRemote no-push
-cd local
 ```
 
 ## Install
