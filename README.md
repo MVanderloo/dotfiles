@@ -51,7 +51,7 @@ git config branch.local.pushRemote no-push
 For computers that I use to work on this repository, I use git worktrees to use different branches without breaking symlinks. This creates a bare repo, clones main, the desired branch, and creates the local branch. It also locks the worktree for good measure.
 
 ```shell
-git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles/.git"
+git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles.git"
 cd "$dotfiles"
 git worktree add main
 git worktree add "$branch"
