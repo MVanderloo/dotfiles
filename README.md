@@ -58,6 +58,7 @@ git worktree add "$branch"
 git branch local --track "$branch"
 git worktree add --lock --reason "contains system symlinks" local
 git config branch.local.pushRemote no-push
+cd local
 ```
 
 ## Install
