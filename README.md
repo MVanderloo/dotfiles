@@ -6,54 +6,67 @@ This repo contains configurations and scripts that setup my devlopment environme
 
 ### Local Branch
 
-The local branch I create on every machine I clone these to. This is a place for source controlling changes local to the computer, but I don't want on every computer, without having to keep unstaged changes around.
+The local branch I create on every machine I clone these to. This is a place for source controlling changes local to the computer.
 
-It is also a protection against pushing secrets on accident, if they happen to appear in a tracked file or symlinked directory. Another option is to make sure that secret files are on the file system before calling stow, or by using the --no-folding flag in stow. Both of these prevent stow from symlinking whole directories (this flag may cause stow to leave empty directories behind when unstowing).
+Source controlling dotfiles also comes with the risk of committing secrets. If committed, you are 1 git push away from putting them on the internet. Not committing can also be annoying while pulling from upstream.
+
+By setting the pushRemote to an invalid ref `no-push`, it makes it much harder to accidentally push this branch.
 
 ### Setup Variables
 
-Each branch off main targets an operating system. The commands below reference a branch and a path, set these variables to allow you to paste the commands.
+Each branch off main targets an operating system. The setup commands below reference a branch and a path. Setting these two variables will allow you to paste the commands.
 
 ```shell
 branch="macos"
 ```
 
 ```shell
-install_path="$HOME/.dotfiles"
+dotfiles="$HOME/.dotfiles"
 ```
 
 ### Simple Setup
 
+Clone the desired branch to the desired path and setup submodules.
+
 ```shell
-git clone -b "$branch" https://github.com/mvanderloo/dotfiles "$install_path" \
-	--recurse-submodules --shallow-submodules \
-&& cd "$install_path"
+git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
+	-b "$branch" --recurse-submodules
+cd "$dotfiles"
 ```
 
 ### Setup Local Branch
 
+This is the same as the above but it sets up the local branch and disables push.
+
 ```shell
-mkdir -p "$install_path" \
-&& cd "$install_path" \
-&& git clone -b "$branch" https://github.com/mvanderloo/dotfiles "$install_path" \
-	--recurse-submodules --shallow-submodules \
-&& git switch -c local --track "$branch" \
-&& git config branch.local.pushRemote no-push
+git clone https://github.com/mvanderloo/dotfiles "$dotfiles" \
+	-b "$branch" --recurse-submodules
+cd "$dotfiles"
+git switch -c local --track "$branch"
+git config branch.local.pushRemote no-push
 ```
 
 ### Worktree Setup
 
-For computers that I use to work on this repository, I use git worktrees to use different branches without breaking symlinks.
+For computers that I use to work on this repository, I use git worktrees to use different branches without breaking symlinks. This creates a bare repo, clones main, the desired branch, and creates the local branch. It also locks the worktree for good measure.
 
 ```shell
-git clone --bare https://github.com/mvanderloo/dotfiles "$install_path/.git"
-cd "$install_path"
-git worktree add main main
-git worktree add "$branch" "$branch"
+git clone --bare https://github.com/mvanderloo/dotfiles "$dotfiles/.git"
+cd "$dotfiles"
+git worktree add main
+git worktree add "$branch"
 git branch local --track "$branch"
-git worktree add --lock "contains system symlinks" local local
-cd local
-git config push.remote no-push        # invalid ref will prevent pushing
+git worktree add --lock --reason "contains system symlinks" local
+git config branch.local.pushRemote no-push
+```
+
+## Install
+
+Every directory is a stow package. You can either select the packages you want, or install all of them.
+
+```shell
+stow */
+stow git neovim fzf
 ```
 
 ## Supported Systems
