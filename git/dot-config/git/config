@@ -29,3 +29,6 @@
 [advice]
 	skippedCherryPicks = false
 	mergeConflict = false
+
+[submodule]
+	recurse = true
