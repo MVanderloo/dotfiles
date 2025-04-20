@@ -152,6 +152,7 @@ Here are some of the tools I have configured
 - lazygit
 - mise
 - python
+- ssh
 - starship
 
 ### Terminals
