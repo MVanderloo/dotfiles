@@ -7,67 +7,25 @@ export PATH="$HOME/.local/bin:$PATH"
 #------------------------------------------------------------------------------
 # Plugin Manager
 #------------------------------------------------------------------------------
-# znap
-zstyle ':znap:*' auto-compile no
-zstyle ':znap:*:*' git-maintenance off
-[[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/plugins/znap/znap.zsh" ]] ||
-    git clone --depth 1 -- \
-    https://github.com/marlonrichert/zsh-snap.git \
-    "$XDG_DATA_HOME/zsh/plugins/znap"
-source "$XDG_DATA_HOME/zsh/plugins/znap/znap.zsh"
-
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+unalias zi # zoxide uses z
 
 #------------------------------------------------------------------------------
 # Prompt
 #------------------------------------------------------------------------------
-# setup anything visual that should show up when using instant prompt
-echo -ne '\e[6 q' # set initial cursor style for instant prompt
-
-# Starship
-znap eval starship "starship init zsh"
-
-# print prompt and continue initialization
-znap prompt
-
-
-#------------------------------------------------------------------------------
-# Tools
-#------------------------------------------------------------------------------
-# mise
-znap eval mise "mise activate zsh"
-
-
-#------------------------------------------------------------------------------
-# Keymaps
-#------------------------------------------------------------------------------
-# zsh-vim-mode plugin
-MODE_INDICATOR="" # starship handles keymap mode indicator
-KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
-MODE_CURSOR_VIINS="bar"
-MODE_CURSOR_VICMD="block"
-MODE_CURSOR_REPLACE="underline"
-MODE_CURSOR_SEARCH="underline"
-MODE_CURSOR_VISUAL="underline"
-MODE_CURSOR_VLINE="underline"
-znap source softmoth/zsh-vim-mode
-
-# Search history in normal mode
-bindkey -M vicmd "k" history-search-backward
-bindkey -M vicmd "j" history-search-forward
-
-# Completions
-bindkey '^n' expand-or-complete
-bindkey '^p' reverse-menu-complete
-# bindkey -M menuselect '^?' send-break
-bindkey -M menuselect '^[' send-break
+zinit ice as"command" from"gh-r" \
+	atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+	atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 #------------------------------------------------------------------------------
 # History
 #------------------------------------------------------------------------------
 # Storing
-HISTFILE="$XDG_DATA_HOME/zsh/history"
-HISTSIZE=1000000   # Maximum events for local history
-SAVEHIST=$HISTSIZE # Maximum events in history file
+HISTFILE="$HOME/.local/share/zsh/history"
 
 # Format
 setopt EXTENDED_HISTORY   # Format history entries as ':start:elapsed;command'
@@ -87,46 +45,70 @@ setopt HIST_NO_STORE # Don't store the history command in history
 export HISTORY_IGNORE="cd|cd *|ls *|mv *|cp *|cat *" # ignore context specific
 
 #------------------------------------------------------------------------------
+# cd tweaks
+#------------------------------------------------------------------------------
+# Directory stack
+setopt AUTO_PUSHD        # Push the current directory visited on the stack.
+setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+
+# list cwd contents after changing directories
+function ls_after_cd() {
+	emulate -L zsh
+	eza "${EZA_PARAMS[@]}" --all --git-ignore
+}
+if [[ "${chpwd_functions[(r)ls_after_cd]}" != "ls_after_cd" ]]; then
+	chpwd_functions=("${chpwd_functions[@]}" "ls_after_cd")
+fi
+
+#------------------------------------------------------------------------------
 # Auto-suggestions
 #------------------------------------------------------------------------------
 # suggest commands based on history, fallback to completions
 ZSH_AUTOSUGGEST_STRATEGY=( history completion )
-
 # ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-# source plugin
-znap source zsh-users/zsh-autosuggestions
+zinit ice wait lucid atload"!_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
+
 
 #------------------------------------------------------------------------------
 # Syntax Highlighting
 #------------------------------------------------------------------------------
-ZSH_HIGHLIGHT_HIGHLIGHTERS=( main brackets )
-znap source zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 #------------------------------------------------------------------------------
-# Auto-complete
+# Keymaps
 #------------------------------------------------------------------------------
-# znap source marlonrichert/zsh-autocomplete
+MODE_INDICATOR="" # starship handles keymap mode indicator
+KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
+MODE_CURSOR_VIINS="bar"
+MODE_CURSOR_VICMD="block"
+MODE_CURSOR_REPLACE="underline"
+MODE_CURSOR_SEARCH="underline"
+MODE_CURSOR_VISUAL="underline"
+MODE_CURSOR_VLINE="underline"
+
+zinit light softmoth/zsh-vim-mode
 
 #------------------------------------------------------------------------------
 # Aliases
 #------------------------------------------------------------------------------
 # ls
 EZA_PARAMS=('--icons=always' '--classify' '--group-directories-first' \
-    '--time-style=long-iso' '--group' '--color-scale')
+	'--time-style=long-iso' '--group' '--color-scale')
 alias ls='eza $EZA_PARAMS'
 alias la='eza $EZA_PARAMS --all'
 alias lg='eza $EZA_PARAMS --git-ignore --all'
 alias tree='eza --tree $EZA_PARAMS'
 alias trea='eza --all --tree $EZA_PARAMS'
 
-# cat
-alias cat='bat'
-
 alias lag='lazygit'
 alias lad='lazydocker'
 
 alias vim='nvim'
+alias fv='fzf --multi --bind "enter:become(vim {})"'
 
 
 #------------------------------------------------------------------------------
@@ -152,7 +134,7 @@ unsetopt LIST_BEEP        # who tf would keep this on
 
 # cache
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/compdump"
+zstyle ':completion:*' cache-path "~/.cache/zsh/compdump/"
 
 # completors
 zstyle ':completion:*' completer _extensions _complete _approximate
@@ -182,62 +164,10 @@ zstyle ':completion:*' complete-options true
 # zstyle ':completion:*' file-list all
 zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
 
-
-# load completions
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-# znap eval git "curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh"
-# znap fpath _docker 'docker completion zsh'
-
 #------------------------------------------------------------------------------
-# Navigation
+# Tools
 #------------------------------------------------------------------------------
-# Directory stack
-setopt AUTO_PUSHD        # Push the current directory visited on the stack.
-setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
-setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
-# aliases for listing and moving throught directory stack
-alias ds='dirs -v'
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
+source <(fzf --zsh)
+eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
 
-
-# list cwd contents after changing directories
-function ls_after_cd() {
-    emulate -L zsh
-    eza $EZA_PARAMS --all --git-ignore
-}
-if [[ ${chpwd_functions[(r)ls_after_cd]} != "ls_after_cd" ]];then
-    chpwd_functions=(${chpwd_functions[@]} "ls_after_cd")
-fi
-
-# zoxide
-znap eval zoxide "zoxide init zsh"
-
-#------------------------------------------------------------------------------
-# Misc
-#------------------------------------------------------------------------------
-# enable extra globbing features
-setopt EXTENDED_GLOB
-
-# fzf
-znap eval fzf "fzf --zsh"
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-export FZF_DEFAULT_OPTS_FILE="$XDG_CONFIG_HOME/fzf/config"
-
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
-
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
-# fzf functions
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
-    ssh)          fzf --preview 'dig {}'                   "$@" ;;
-    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
-  esac
-}
