@@ -140,18 +140,6 @@ zstyle ':completion:*' complete-options true
 zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
 
 #------------------------------------------------------------------------------
-# Tools
-#------------------------------------------------------------------------------
-# source <(fzf --zsh)
-# eval "$(mise activate zsh)"
-# eval "$(zoxide init zsh)"
-
-# use zinit to run expensive commands async
-zinit wait lucid as"null" id-as"shell-init" \
-    atload'source <(fzf --zsh); eval "$(mise activate zsh)"; eval "$(zoxide init zsh)"'\
-	for zdharma-continuum/null
-
-#------------------------------------------------------------------------------
 # Auto-suggestions
 #------------------------------------------------------------------------------
 # suggest commands based on history, fallback to completions
@@ -173,7 +161,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 #------------------------------------------------------------------------------
 # Vim Bindings
 #------------------------------------------------------------------------------
-set -o vi         # initial keybindings before lazy loading
 echo -ne '\e[6 q' # inital cursor style before lazy loading
 MODE_INDICATOR="" # starship handles keymap mode indicator
 KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
@@ -184,5 +171,16 @@ MODE_CURSOR_SEARCH="underline"
 MODE_CURSOR_VISUAL="underline"
 MODE_CURSOR_VLINE="underline"
 
-zinit ice wait lucid
 zinit light softmoth/zsh-vim-mode
+
+#------------------------------------------------------------------------------
+# Tools
+#------------------------------------------------------------------------------
+# use zinit to run expensive commands async
+# eval "$(mise activate zsh)"
+# eval "$(zoxide init zsh)"
+zinit wait lucid as"null" id-as"shell-init" \
+    atload'eval "$(mise activate zsh)"; eval "$(zoxide init zsh)"'\
+	for zdharma-continuum/null
+
+source <(fzf --zsh)
