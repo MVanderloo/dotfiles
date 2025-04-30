@@ -12,7 +12,7 @@
 
 [branch]
 	autosetupmerge = always
-	autosetuprebase = always
+	; autosetuprebase = always
 
 [init]
 	defaultBranch = main
@@ -43,6 +43,7 @@
 
 [push]
 	autosetupremote = true
+    default = current
 
 [rerere]
 	enabled = 1
