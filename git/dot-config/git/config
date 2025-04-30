@@ -24,7 +24,7 @@
 	showUntrackedFiles = all
 
 [commit]
-	gpgSign = true
+	; gpgSign = true
 	template = commit_template
 
 [core]
