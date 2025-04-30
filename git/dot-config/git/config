@@ -18,14 +18,14 @@
 	defaultBranch = main
 
 [status]
-    branch = true
-    short = true
-    showStash = true
-    showUntrackedFiles = all
+	branch = true
+	short = true
+	showStash = true
+	showUntrackedFiles = all
 
 [commit]
 	gpgSign = true
-    template = commit_template
+	template = commit_template
 
 [core]
 	compression = 9
