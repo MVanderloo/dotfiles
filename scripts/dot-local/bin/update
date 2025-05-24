@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+brew upgrade
+mise upgrade
+nvim --headless "+Lazy! sync" +qa
