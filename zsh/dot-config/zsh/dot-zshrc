@@ -187,11 +187,13 @@ zinit light softmoth/zsh-vim-mode
 #------------------------------------------------------------------------------
 # Tools
 #------------------------------------------------------------------------------
+# https://github.com/mroth/evalcache.git
+
 # use zinit to run expensive commands async
 # eval "$(mise activate zsh)"
 # eval "$(zoxide init zsh)"
-zinit wait lucid as"null" id-as"shell-init" \
-    atload'eval "$(mise activate zsh)"; eval "$(zoxide init zsh)"'\
-	for zdharma-continuum/null
+# zinit wait lucid as"null" id-as"shell-init" \
+#     atload'eval "$(mise activate zsh)"; eval "$(zoxide init zsh)"'\
+# 	for zdharma-continuum/null
 
 source <(fzf --zsh)
