@@ -1,4 +1,4 @@
 [submodule "neovim/dot-config/nvim"]
-	path = neovim/dot-config/nvim
+	path = pkg/neovim/dot-config/nvim
 	url = https://github.com/MVanderloo/neovim
 	branch = main
