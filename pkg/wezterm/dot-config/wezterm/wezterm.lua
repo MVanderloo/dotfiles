@@ -41,6 +41,4 @@ config.keys = {
 	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
 }
 
--- config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
-
 return config
