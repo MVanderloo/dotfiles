@@ -1,30 +1,10 @@
+PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
+
 #------------------------------------------------------------------------------
 # Environment
 #------------------------------------------------------------------------------
 source "$HOME/.local/bin/load-env"
 export PATH="$HOME/.local/bin:$PATH"
-
-#------------------------------------------------------------------------------
-# Plugin Manager
-#------------------------------------------------------------------------------
-declare -A ZINIT
-ZINIT[HOME_DIR]="$HOME/.local/share/zinit/zinit.git"
-ZINIT[ZCOMPDUMP_PATH]="$HOME/.cache/zsh/compdump"
-ZINIT[NO_ALIASES]=1
-if [[ ! -d $ZINIT[HOME_DIR]/.git ]]; then
-	mkdir -p "$(dirname $ZINIT[HOME_DIR])"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT[HOME_DIR]"
-fi
-source "${ZINIT[HOME_DIR]}/zinit.zsh"
-
-#------------------------------------------------------------------------------
-# Prompt
-#------------------------------------------------------------------------------
-zinit ice wait lucid
-zinit ice as"command" from"gh-r" \
-	atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-	atpull"%atclone" src"init.zsh"
-zinit light starship/starship
 
 #------------------------------------------------------------------------------
 # History
@@ -157,17 +137,18 @@ zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=
 ZSH_AUTOSUGGEST_STRATEGY=( history completion )
 # ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-zinit ice wait lucid atload"!_zsh_autosuggest_start"
-zinit light zsh-users/zsh-autosuggestions
+if [[ ! -e "$PLUGIN_DIR/zsh-users/zsh-autosuggestions" ]]; then
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "$PLUGIN_DIR/zsh-autosuggestions"
+fi
+source "$PLUGIN_DIR/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 
 #------------------------------------------------------------------------------
 # Syntax Highlighting
 #------------------------------------------------------------------------------
-# zinit ice wait lucid atinit"zpcompinit; zpcdreplay"
-# zinit light zdharma-continuum/fast-syntax-highlighting
-
-zinit ice wait lucid
-zinit light zsh-users/zsh-syntax-highlighting
+if [[ ! -e "$PLUGIN_DIR/zsh-users/zsh-syntax-highlighting" ]]; then
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$PLUGIN_DIR/zsh-syntax-highlighting"
+fi
+source "$PLUGIN_DIR/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
 #------------------------------------------------------------------------------
 # Vim Bindings
@@ -182,18 +163,22 @@ MODE_CURSOR_SEARCH="underline"
 MODE_CURSOR_VISUAL="underline"
 MODE_CURSOR_VLINE="underline"
 
-zinit light softmoth/zsh-vim-mode
+if [[ ! -e "$PLUGIN_DIR/softmoth/zsh-vim-mode" ]]; then
+    git clone --depth=1 https://github.com/softmoth/zsh-vim-mode.git "$PLUGIN_DIR/zsh-vim-mode"
+fi
+source "$PLUGIN_DIR/softmoth/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 
 #------------------------------------------------------------------------------
 # Tools
 #------------------------------------------------------------------------------
 # https://github.com/mroth/evalcache.git
+# if [[ ! -e "$PLUGIN_DIR/evalcache" ]]; then
+#     git clone --depth=1 https://github.com/mroth/evalcache.git "$PLUGIN_DIR/evalcache"
+# fi
+# source "$PLUGIN_DIR/evalcache/evalcache.plugin.zsh"
 
-# use zinit to run expensive commands async
-# eval "$(mise activate zsh)"
-# eval "$(zoxide init zsh)"
-# zinit wait lucid as"null" id-as"shell-init" \
-#     atload'eval "$(mise activate zsh)"; eval "$(zoxide init zsh)"'\
-# 	for zdharma-continuum/null
+eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
+eval "$(zoxide init zsh)"
 
 source <(fzf --zsh)
