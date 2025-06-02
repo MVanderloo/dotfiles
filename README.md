@@ -17,8 +17,8 @@ By setting the pushRemote to an invalid ref `no-push`, it makes it much harder t
 Each branch off main targets an operating system. The setup commands below reference a branch and a path. Setting these two variables will allow you to paste the commands.
 
 ```shell
-branch="macos"
-dotfiles="$HOME/.dotfiles"
+branch="darwin"
+dotfiles="$HOME/.local/dotfiles"
 ```
 
 ### Simple Setup
@@ -47,23 +47,23 @@ git submodule update --init --recursive
 
 ## Install
 
-Every directory is a stow package. You can either select the packages you want, or install all of them.
+Every directory in packages/ is a stow package. You can either select the packages you want, or install all of them.
 
 ```shell
-stow */
+cd packages
 stow git neovim fzf
+# or
+stow */
 ```
 
 ## Supported Systems
 
 See branches for all supported systems. As of writing this it is
 
-- MacOS
-- Fedora
+- darwin (MacOS)
+- fedora
 
-The main branch can be considered a system independent set of configuration files. All branches are rebased off main, and configurations that are system specific are created as changes on top of main. To update all systems I commit to main, then rebase all branches.
-
-While it would be cool to support a wide range of OS this repo is purely an axe sharpening exercise, so I will only really be maintaining the things that I am using. My hope is that by organizing it in this way I will minimize the duplicate configuration I need to do for each system.
+The primary differences between system configs are the package manager and system utility scripts.
 
 ## Structure
 
@@ -123,41 +123,3 @@ In the .stowrc also sets the adopt flag. This means that if there is already a `
 - `--simulate`: add this flag to any stow command to see what it will do
 
 See the man page for more information
-
-## Packages
-
-Each directory in the root of the repo is considered a package. My goal is for each package to be functional on their own. Ideally they should each declare their dependencies (however is idiomatic for the package manager), declare their own environment variables, and include an idempotent install script if there is something to install.
-
-Here are some of the tools I have configured
-
-### Shells
-
-- fish
-- zsh
-
-### Editors
-
-- helix
-- neovim
-- vscode
-
-### CLI
-
-- bat
-- delta
-- fastfetch
-- fzf
-- git
-- just
-- lazygit
-- mise
-- python
-- ssh
-- starship
-
-### Terminals
-
-- ghostty
-- tmux
-- wezterm
-- zellij
