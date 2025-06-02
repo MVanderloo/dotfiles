@@ -5,7 +5,7 @@ PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
 #------------------------------------------------------------------------------
 source "$HOME/.local/bin/load-env"
 export PATH="$HOME/.local/bin:$PATH"
-source ./aliases.zsh
+source "$ZDOTDIR/aliases.zsh"
 
 #------------------------------------------------------------------------------
 # History
