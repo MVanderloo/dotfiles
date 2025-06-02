@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# update homebrew and it's packages
+brew upgrade && brew cleanup
+
+# upgrade neovim plugins
+nvim --headless "+Lazy! sync" +qa &
+
+# upgrade mise plugins
+mise upgrade &
+
+# remove .DS_Store files recursively
+rm-ds-store "$HOME" &
+
+wait

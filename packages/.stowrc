@@ -3,3 +3,4 @@
 --dotfiles
 --adopt
 --ignore="install.sh"
+--ignore="Brewfile"
