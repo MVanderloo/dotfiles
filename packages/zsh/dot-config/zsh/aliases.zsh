@@ -28,6 +28,7 @@ alias fim='fzf --multi --bind "enter:become(vim {})"'
 
 # git
 alias g='git'
+alias ga='git add'
 alias gd='git diff'
 alias gs='git status'
 alias gc='git commit'
