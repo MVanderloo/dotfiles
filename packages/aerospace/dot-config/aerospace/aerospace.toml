@@ -53,22 +53,38 @@ automatically-unhide-macos-hidden-apps = true
 	outer.right =      0
 
 [mode.main.binding]
+	# All possible keys:
+    # - Letters.        a, b, c, ..., z
+    # - Numbers.        0, 1, 2, ..., 9
+    # - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+    # - F-keys.         f1, f2, ..., f20
+    # - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
+    #                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+    #                   backspace, tab, pageUp, pageDown, home, end, forwardDelete,
+    #                   sectionSign (ISO keyboards only, european keyboards only)
+    # - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+    #                   keypadMinus, keypadMultiply, keypadPlus
+    # - Arrows.         left, down, up, right
+
+    # All possible modifiers: cmd, alt, ctrl, shift
+
+    # All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
     cmd-shift-c = 'reload-config'
 
-    cmd-enter = '''exec-and-forget osascript -e '
-    tell application "Ghostty"
-        do script
-        activate
-    end tell'
-    '''
+	cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
+	cmd-b = 'exec-and-forget open -n /Applications/Safari.app'
 
 	cmd-slash = 'layout tiles horizontal vertical'
 	cmd-shift-slash = 'layout accordion horizontal vertical'
+
+	cmd-backspace = 'close'
 
     cmd-h = 'focus left'
     cmd-j = 'focus down'
     cmd-k = 'focus up'
     cmd-l = 'focus right'
+	# cmd-semicolon = 'hide'
     # cmd-h = 'focus --boundaries-action wrap-around-the-workspace left'
     # cmd-j = 'focus --boundaries-action wrap-around-the-workspace down'
     # cmd-k = 'focus --boundaries-action wrap-around-the-workspace up'
@@ -85,6 +101,7 @@ automatically-unhide-macos-hidden-apps = true
     # cmd-shift-quote = 'join-with vertical'
 
     cmd-m = 'fullscreen'
+	cmd-shift-m = 'macos-native-fullscreen'
 
     # cmd-s = 'layout v_accordion' # 'layout stacking' in i3
     # cmd-w = 'layout h_accordion' # 'layout tabbed' in i3
@@ -117,7 +134,6 @@ automatically-unhide-macos-hidden-apps = true
     cmd-shift-0 = [ 'move-node-to-workspace 10', 'workspace 10']
 
 	cmd-e = 'balance-sizes'
-	# cmd-delete = 'enable toggle'
 
 	cmd-r = 'mode resize'
 	cmd-shift-semicolon = 'mode service'
@@ -145,13 +161,13 @@ automatically-unhide-macos-hidden-apps = true
 # 	alt-shift-k = ['join-with up', 'mode main']
 # 	alt-shift-l = ['join-with right', 'mode main']
 
-[[on-window-detected]]
-	if.app-id = 'com.mitchellh.ghostty'
-	run = "move-node-to-workspace 2"
+# [[on-window-detected]]
+# 	if.app-id = 'com.mitchellh.ghostty'
+# 	run = "move-node-to-workspace 2"
 
-[[on-window-detected]]
-	if.app-id = 'com.google.Chrome'
-	run = "move-node-to-workspace 3"
+# [[on-window-detected]]
+# 	if.app-id = 'com.google.Chrome'
+# 	run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 	if.app-id = 'com.microsoft.teams2'
