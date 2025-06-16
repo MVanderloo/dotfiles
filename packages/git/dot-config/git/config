@@ -44,6 +44,9 @@
 	autosetupremote = true
     default = current
 
+[pull]
+	rebase = merges
+
 [rerere]
 	enabled = 1
 
@@ -66,3 +69,6 @@
 
 [url "https://github.com/"]
 	insteadOf = "gh:"
+
+[url "https://gitlab.com/"]
+	insteadOf = "gl:"
