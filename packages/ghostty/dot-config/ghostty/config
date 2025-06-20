@@ -1,6 +1,6 @@
 # ansi colors
-theme = catppuccin-mocha
-# theme = tokyonight-storm
+# theme = catppuccin-mocha
+theme = tokyonight-storm
 
 # font
 font-family = MonaspiceNe Nerd Font Mono
