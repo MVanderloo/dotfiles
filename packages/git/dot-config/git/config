@@ -55,6 +55,7 @@
 
 [merge]
 	conflictstyle = zdiff3
+	autostash = true
 
 [diff]
 	colorMoved = zebra
