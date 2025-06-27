@@ -1,9 +1,12 @@
-PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
-
 #------------------------------------------------------------------------------
 # Environment
 #------------------------------------------------------------------------------
-source "$HOME/.local/bin/load-env"
+set -a
+for conf in "$HOME/.local/env/*.conf"; do
+    [ -f "$conf" ] && source "$conf"
+done
+set +a
+
 export PATH="$HOME/.local/bin:$PATH"
 source "$ZDOTDIR/aliases.zsh"
 
@@ -71,7 +74,7 @@ unsetopt LIST_BEEP        # who tf would keep this on
 
 # cache
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "~/.cache/zsh/compdump/"
+zstyle ':completion:*' cache-path "$HOME/.cache/zsh/compdump/"
 
 # completors
 zstyle ':completion:*' completer _extensions _complete _approximate
@@ -102,28 +105,27 @@ zstyle ':completion:*' complete-options true
 zstyle ':completion:*' list-colors 'di=34:fi=0:ln=36:pi=33:so=35:bd=33:cd=33:or=31:mi=0:ex=32:'
 
 #------------------------------------------------------------------------------
-# Auto-suggestions
+# Plugins
 #------------------------------------------------------------------------------
+PLUGIN_DIR="$HOME/.local/share/zsh/plugins"
+
+# Auto-suggestions
 # suggest commands based on history, fallback to completions
 ZSH_AUTOSUGGEST_STRATEGY=( history completion )
 # ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
-if [[ ! -e "$PLUGIN_DIR/zsh-users/zsh-autosuggestions" ]]; then
+if [[ ! -e "$PLUGIN_DIR/zsh-autosuggestions" ]]; then
     git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "$PLUGIN_DIR/zsh-autosuggestions"
 fi
-source "$PLUGIN_DIR/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+source "$PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 
-#------------------------------------------------------------------------------
 # Syntax Highlighting
-#------------------------------------------------------------------------------
-if [[ ! -e "$PLUGIN_DIR/zsh-users/zsh-syntax-highlighting" ]]; then
+if [[ ! -e "$PLUGIN_DIR/zsh-syntax-highlighting" ]]; then
     git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git "$PLUGIN_DIR/zsh-syntax-highlighting"
 fi
-source "$PLUGIN_DIR/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+source "$PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
 
-#------------------------------------------------------------------------------
 # Vim Bindings
-#------------------------------------------------------------------------------
 echo -ne '\e[6 q' # inital cursor style before lazy loading
 MODE_INDICATOR="" # starship handles keymap mode indicator
 KEYTIMEOUT=1      # reduce delay after hitting ESCAPE
@@ -134,22 +136,16 @@ MODE_CURSOR_SEARCH="underline"
 MODE_CURSOR_VISUAL="underline"
 MODE_CURSOR_VLINE="underline"
 
-if [[ ! -e "$PLUGIN_DIR/softmoth/zsh-vim-mode" ]]; then
+if [[ ! -e "$PLUGIN_DIR/zsh-vim-mode" ]]; then
     git clone --depth=1 https://github.com/softmoth/zsh-vim-mode.git "$PLUGIN_DIR/zsh-vim-mode"
 fi
-source "$PLUGIN_DIR/softmoth/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
+source "$PLUGIN_DIR/zsh-vim-mode/zsh-vim-mode.plugin.zsh"
 
 #------------------------------------------------------------------------------
 # Tools
 #------------------------------------------------------------------------------
-# https://github.com/mroth/evalcache.git
-# if [[ ! -e "$PLUGIN_DIR/evalcache" ]]; then
-#     git clone --depth=1 https://github.com/mroth/evalcache.git "$PLUGIN_DIR/evalcache"
-# fi
-# source "$PLUGIN_DIR/evalcache/evalcache.plugin.zsh"
-
 eval "$(starship init zsh)"
-eval "$(mise activate zsh)"
+# eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 source <(fzf --zsh)
