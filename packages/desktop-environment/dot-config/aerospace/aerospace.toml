@@ -1,12 +1,13 @@
-after-login-command = []
-
-# Add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
-
-# Start AeroSpace at login
 start-at-login = true
+after-login-command = ['exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false']
+after-startup-command = [ 'exec-and-forget borders' ]
+key-mapping.preset = 'qwerty'
+# for sketchybar
+# exec-on-workspace-change = [
+# 	'/bin/bash',
+# 	'-c',
+#     'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
+# ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -15,19 +16,13 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 30
+accordion-padding = 20
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
 
 # Possible values: horizontal|vertical|auto
-# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
-#               tall monitor (anything higher than wide) gets vertical orientation
 default-root-container-orientation = 'auto'
-
-# Possible values: (qwerty|dvorak)
-# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
-key-mapping.preset = 'qwerty'
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -45,12 +40,12 @@ automatically-unhide-macos-hidden-apps = true
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-	inner.horizontal = 0
-	inner.vertical =   0
-	outer.left =       0
-	outer.bottom =     0
-	outer.top =        0
-	outer.right =      0
+	inner.horizontal = 8
+	inner.vertical =   8
+	outer.left =       4
+	outer.bottom =     4
+	outer.top =        4
+	outer.right =      4
 
 [mode.main.binding]
 	# All possible keys:
@@ -78,17 +73,15 @@ automatically-unhide-macos-hidden-apps = true
 	cmd-slash = 'layout tiles horizontal vertical'
 	cmd-shift-slash = 'layout accordion horizontal vertical'
 
-	# cmd-backspace = 'close'
+	# cmd-q = 'quit'
+	# cmd-w = 'close'
 
+    # use 'focus --boundaries-action wrap-around-the-workspace left' to enable wrap
     cmd-h = 'focus left'
     cmd-j = 'focus down'
     cmd-k = 'focus up'
     cmd-l = 'focus right'
 	cmd-semicolon = 'macos-native-minimize'
-    # cmd-h = 'focus --boundaries-action wrap-around-the-workspace left'
-    # cmd-j = 'focus --boundaries-action wrap-around-the-workspace down'
-    # cmd-k = 'focus --boundaries-action wrap-around-the-workspace up'
-    # cmd-l = 'focus --boundaries-action wrap-around-the-workspace right'
 
     cmd-shift-h = 'move left'
     cmd-shift-j = 'move down'
@@ -100,17 +93,15 @@ automatically-unhide-macos-hidden-apps = true
     # cmd-shift-quote = 'join-with vertical'
 
     cmd-m = 'fullscreen'
-	cmd-f = 'macos-native-fullscreen'
+	# cmd-f = 'macos-native-fullscreen'
 
     # cmd-s = 'layout v_accordion' # 'layout stacking' in i3
     # cmd-w = 'layout h_accordion' # 'layout tabbed' in i3
 
-	# cmd-space is raycast/spotlight
-    # cmd-space = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
-    # cmd-shift-space = 'layout floating tiling' # 'floating toggle' in i3
-
 	cmd-comma = 'workspace prev'
+	# cmd-shift-comma = ''
 	cmd-period = 'workspace next'
+	# cmd-shift-period = ''
 
     cmd-1 = 'workspace 1'
     cmd-2 = 'workspace 2'
@@ -123,16 +114,16 @@ automatically-unhide-macos-hidden-apps = true
     cmd-9 = 'workspace 9'
     cmd-0 = 'workspace 10'
 
-    cmd-shift-1 = [ 'move-node-to-workspace 1', 'workspace 1']
-    cmd-shift-2 = [ 'move-node-to-workspace 2', 'workspace 2']
-    cmd-shift-3 = [ 'move-node-to-workspace 3', 'workspace 3']
-    cmd-shift-4 = [ 'move-node-to-workspace 4', 'workspace 4']
-    cmd-shift-5 = [ 'move-node-to-workspace 5', 'workspace 5']
-    cmd-shift-6 = [ 'move-node-to-workspace 6', 'workspace 6']
-    cmd-shift-7 = [ 'move-node-to-workspace 7', 'workspace 7']
-    cmd-shift-8 = [ 'move-node-to-workspace 8', 'workspace 8']
-    cmd-shift-9 = [ 'move-node-to-workspace 9', 'workspace 9']
-    cmd-shift-0 = [ 'move-node-to-workspace 10', 'workspace 10']
+    cmd-shift-1 = 'move-node-to-workspace 1'
+    cmd-shift-2 = 'move-node-to-workspace 2'
+    cmd-shift-3 = 'move-node-to-workspace 3'
+    cmd-shift-4 = 'move-node-to-workspace 4'
+    cmd-shift-5 = 'move-node-to-workspace 5'
+    cmd-shift-6 = 'move-node-to-workspace 6'
+    cmd-shift-7 = 'move-node-to-workspace 7'
+    cmd-shift-8 = 'move-node-to-workspace 8'
+    cmd-shift-9 = 'move-node-to-workspace 9'
+    cmd-shift-0 = 'move-node-to-workspace 10'
 
 	cmd-e = 'balance-sizes'
 	cmd-r = 'mode resize'
