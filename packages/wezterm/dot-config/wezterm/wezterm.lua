@@ -2,15 +2,15 @@ local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
 -- color scheme
-config.color_scheme = "Dark+" -- OneDark
+-- config.color_scheme = "Dark+" -- OneDark
 -- config.color_scheme = "Dark Pastel" -- Clean ANSI dark
--- config.color_scheme = "Tokyo Night"
+config.color_scheme = "Tokyo Night"
 -- config.color_scheme = "Catppuccin Mocha"
 -- config.color_scheme = "Eldritch"
 
 -- font settings
-config.font = wezterm.font_with_fallback({ "JetBrains Mono Nerd Font" })
-config.font_size = 13
+config.font = wezterm.font_with_fallback({ "CommitMono" })
+config.font_size = 12
 
 -- tab bar
 config.hide_tab_bar_if_only_one_tab = true
@@ -34,11 +34,11 @@ config.scrollback_lines = 1000000
 config.automatically_reload_config = true
 
 -- keybindings
-config.keys = {
-	{ key = "l", mods = "CMD", action = wezterm.action.ShowDebugOverlay },
-	{ key = "p", mods = "CMD", action = wezterm.action.ActivateCommandPalette },
-	{ key = "f", mods = "CTRL|CMD", action = wezterm.action.ToggleFullScreen },
-	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
-}
+-- config.keys = {
+-- 	{ key = "l", mods = "CMD", action = wezterm.action.ShowDebugOverlay },
+-- 	{ key = "p", mods = "CMD", action = wezterm.action.ActivateCommandPalette },
+-- 	{ key = "f", mods = "CTRL|CMD", action = wezterm.action.ToggleFullScreen },
+-- 	{ key = "w", mods = "CMD", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
+-- }
 
 return config
