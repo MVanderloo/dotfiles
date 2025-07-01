@@ -44,6 +44,7 @@ font-size = 14
 # adjust-font-baseline = 0
 
 # keybindings
+keybind = ctrl+r=reload_config
 # keybind = ctrl+a>ctrl+a=text:\x01
 # # keybind = ctrl+a>c=new_window
 # keybind = ctrl+a>c=new_tab
