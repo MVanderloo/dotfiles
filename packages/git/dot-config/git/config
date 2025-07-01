@@ -24,18 +24,19 @@
 
 [commit]
 	; gpgSign = true
-	template = commit-template
+	template = ~/.config/git/commit-template
 
 [core]
 	compression = 9
-	whitespace = error
+	whitespace = trailing-space
 	preloadindex = true
 
-# need to test how this interacts with delta
-# [diff]
-#     context = 3  # less context in diffs
-#     renames = copies  # detect copies as renames in diffs
-#     interHunkContext = 10  # merge near hunks in diffs
+[diff]
+	colorMoved = zebra
+	colorMovedWS = allow-indentation-change
+	context = 8
+	renames = copies
+	interHunkContext = 10
 
 [interactive]
     singlekey = true
@@ -57,15 +58,12 @@
 	conflictstyle = zdiff3
 	autostash = true
 
-[diff]
-	colorMoved = zebra
-
 [submodule]
 	recurse = true
 
 [alias]
-	graph = "log --graph --all --format=format:'%C(bold blue)%h%C(reset) - \
-%C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+	graph = "log --graph --all --format=format:'%C(blue)%h%C(reset) - \
+%C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
 	wt = "worktree"
 	sm = "submodule"
 
