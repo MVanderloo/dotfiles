@@ -24,7 +24,7 @@
 
 [commit]
 	; gpgSign = true
-	template = ~/.config/git/commit-template
+	; template = ~/.config/git/commit-template
 
 [core]
 	compression = 9
