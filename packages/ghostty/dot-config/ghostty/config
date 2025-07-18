@@ -1,6 +1,10 @@
 # ansi colors
+# theme = catppuccin-latte
+# theme = catppuccin-frappe
+theme = catppuccin-macchiato
 # theme = catppuccin-mocha
-theme = tokyonight-storm
+# theme = tokyonight-storm
+# theme = rose-pine-moon
 
 # font
 font-family = MonaspiceNe Nerd Font Mono
@@ -44,6 +48,7 @@ font-size = 14
 # adjust-font-baseline = 0
 
 # keybindings
+keybind = ctrl+alt+r=reload_config
 # keybind = ctrl+a>ctrl+a=text:\x01
 # # keybind = ctrl+a>c=new_window
 # keybind = ctrl+a>c=new_tab
