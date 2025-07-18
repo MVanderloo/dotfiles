@@ -1,6 +1,8 @@
 start-at-login = true
-after-login-command = ['exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false']
-after-startup-command = [ 'exec-and-forget borders' ]
+after-startup-command = [
+	# 'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
+	'exec-and-forget borders',
+]
 key-mapping.preset = 'qwerty'
 # for sketchybar
 # exec-on-workspace-change = [
@@ -16,13 +18,13 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 20
+accordion-padding = 10
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
 
 # Possible values: horizontal|vertical|auto
-default-root-container-orientation = 'auto'
+default-root-container-orientation = 'vertical'
 
 # Mouse follows focus when focused monitor changes
 # Drop it from your config, if you don't like this behavior
@@ -136,7 +138,6 @@ automatically-unhide-macos-hidden-apps = true
     l = 'resize width +50'
 	cmd-r = 'mode main'
 
-# ??????
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # [mode.service.binding]
@@ -161,8 +162,8 @@ automatically-unhide-macos-hidden-apps = true
 
 [[on-window-detected]]
 	if.app-id = 'com.microsoft.teams2'
-	run = "move-node-to-workspace 9"
+	run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
 	if.app-id = 'com.microsoft.Outlook'
-	run = "move-node-to-workspace 10"
+	run = "move-node-to-workspace 1"
