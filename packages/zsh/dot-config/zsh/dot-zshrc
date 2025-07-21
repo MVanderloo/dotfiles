@@ -149,3 +149,6 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 source <(fzf --zsh)
+
+eval "$(ATUIN_NOBIND="true" atuin init zsh)"
+bindkey '^r' atuin-search
