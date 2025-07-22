@@ -2,7 +2,7 @@
 # Environment
 #------------------------------------------------------------------------------
 set -a
-for conf in "$HOME/.local/env/*.conf"; do
+for conf in "$HOME/.local/env"/*.conf; do
     [ -f "$conf" ] && source "$conf"
 done
 set +a
@@ -13,7 +13,7 @@ source "$ZDOTDIR/aliases.zsh"
 #------------------------------------------------------------------------------
 # History
 #------------------------------------------------------------------------------
-HISTFILE="$HOME/.local/share/zsh/history"
+export HISTFILE="$HOME/.local/share/zsh/history"
 
 # Format
 setopt EXTENDED_HISTORY   # Format history entries as ':start:elapsed;command'
@@ -30,7 +30,7 @@ setopt INC_APPEND_HISTORY_TIME # Append events to history file immediately
 
 # Filtering
 setopt HIST_NO_STORE # Don't store the history command in history
-HISTORY_IGNORE="cd|cd ..|l[a,l,s,g,]*|cat *|clear" # ignore trivial
+export HISTORY_IGNORE="cd|cd ..|l[a,l,s,g,]*|cat *|clear" # ignore trivial
 
 
 #------------------------------------------------------------------------------
