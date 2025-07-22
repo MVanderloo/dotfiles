@@ -11,6 +11,7 @@ font-family = MonaspiceNe Nerd Font Mono
 # font-family = MonaspiceKr Nerd Font Mono
 # font-family = MonaspiceRn Nerd Font Mono
 
+cursor-opacity=0.5
 # cursor-style = block
 # cursor-style-blink = false
 # shell-integration-features = no-cursor
