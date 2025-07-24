@@ -1,7 +1,7 @@
 start-at-login = true
 after-startup-command = [
-	# 'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
 	'exec-and-forget borders',
+	# 'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
 ]
 key-mapping.preset = 'qwerty'
 # for sketchybar
@@ -70,7 +70,9 @@ automatically-unhide-macos-hidden-apps = true
     cmd-shift-c = 'reload-config'
 
 	cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app'
-	cmd-b = 'exec-and-forget open -n /Applications/Google\ Chrome.app/'
+	cmd-b = 'exec-and-forget open -n /Applications/Firefox.app/'
+	cmd-shift-b = 'exec-and-forget open -n /Applications/Google\ Chrome.app/'
+	cmd-y = 'exec-and-forget open -n /Applications/Claude.app/'
 
 	cmd-slash = 'layout tiles horizontal vertical'
 	cmd-shift-slash = 'layout accordion horizontal vertical'
@@ -78,7 +80,6 @@ automatically-unhide-macos-hidden-apps = true
 	# cmd-q = 'quit'
 	# cmd-w = 'close'
 
-    # use 'focus --boundaries-action wrap-around-the-workspace left' to enable wrap
     cmd-h = 'focus left'
     cmd-j = 'focus down'
     cmd-k = 'focus up'
@@ -89,10 +90,15 @@ automatically-unhide-macos-hidden-apps = true
     cmd-shift-j = 'move down'
     cmd-shift-k = 'move up'
     cmd-shift-l = 'move right'
+    cmd-alt-h = 'join-with left'
+    cmd-alt-j = 'join-with down'
+    cmd-alt-k = 'join-with up'
+    cmd-alt-l = 'join-with right'
+
 
     # Consider using 'join-with' command as a 'split' replacement if you want to enable normalizations
-    # cmd-quote = 'join-with horizontal'
-    # cmd-shift-quote = 'join-with vertical'
+    # cmd-leftSquareBracket = 'join-with left'
+    # cmd-rightSquareBracket = 'join-with right'
 
     cmd-m = 'fullscreen'
 	# cmd-f = 'macos-native-fullscreen'
@@ -127,8 +133,11 @@ automatically-unhide-macos-hidden-apps = true
     cmd-shift-9 = 'move-node-to-workspace 9'
     cmd-shift-0 = 'move-node-to-workspace 10'
 
+	# cmd-rightSquareBracket = 'move-workspace-to-monitor prev'
+	# cmd-leftSquareBracket = 'move-workspace-to-monitor next'
+
 	cmd-e = 'balance-sizes'
-	cmd-r = 'mode resize'
+	cmd-shift-r = 'mode resize'
 	# cmd-shift-semicolon = 'mode service'
 
 [mode.resize.binding]
@@ -136,7 +145,9 @@ automatically-unhide-macos-hidden-apps = true
     j = 'resize height +50'
     k = 'resize height -50'
     l = 'resize width +50'
-	cmd-r = 'mode main'
+	cmd-shift-r = 'mode main'
+	esc = 'mode main'
+
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
