@@ -16,6 +16,9 @@
 	autosetupmerge = always
 	; autosetuprebase = always
 
+[diff]
+	colorMoved = true
+
 [help]
 	autocorrect = prompt
 
@@ -50,6 +53,7 @@
 	context = 8
 	renames = copies
 	interHunkContext = 10
+	mnemonicPrefix = true
 
 [interactive]
 	singlekey = true
@@ -63,9 +67,11 @@
 
 [rerere]
 	enabled = 1
+	autoupdate = true
 
 [rebase]
 	autostash = true
+	autosquash = true
 
 [merge]
 	conflictstyle = zdiff3
