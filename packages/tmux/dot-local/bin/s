@@ -10,10 +10,10 @@ done
 
 if [[ $# -eq 0 ]]; then
     selection="$(
-        sesh list -i -z -t -c -d |
+        sesh list -i -t -c -d |
             fzf --tmux center,70% --ansi \
                 --header '^a all  ^t tmux  ^g configs  ^x zoxide  ^d kill' \
-                --bind 'tab:down,btab:up,ctrl-j:down,ctrl-k:up' \
+                --bind 'tab:down,btab:up,ctrl-j:down,ctrl-k:up,ctrl-n:down,ctrl-p:up' \
                 --bind 'ctrl-a:reload(sesh list -i -d)' \
                 --bind 'ctrl-t:reload(sesh list -i -t -d)' \
                 --bind 'ctrl-g:reload(sesh list -i -c -d)' \
