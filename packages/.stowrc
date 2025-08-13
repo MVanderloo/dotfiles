@@ -2,4 +2,5 @@
 --verbose
 --dotfiles
 --adopt
+--no-folding
 --ignore="install.sh"
