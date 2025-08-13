@@ -1,0 +1,87 @@
+input * {
+    repeat_delay 200,
+    repeat_rate 30,
+    natural_scroll enabled
+    xkb_options caps:swapescape,altwin:swap_alt_win
+}
+
+# font pango:Sans 12
+
+set $cl_high #009ddc
+set $cl_indi #d9d8d8
+set $cl_back #231f20
+set $cl_fore #d9d8d8
+set $cl_urge #ee2e24
+
+# Colors                border   bg       text     indi     childborder
+client.focused          $cl_high $cl_high $cl_fore $cl_indi $cl_high
+client.focused_inactive $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.unfocused        $cl_back $cl_back $cl_fore $cl_back $cl_back
+client.urgent           $cl_urge $cl_urge $cl_fore $cl_urge $cl_urge
+
+default_border pixel 1
+default_floating_border normal
+hide_edge_borders smart
+smart_gaps on
+gaps inner 10
+
+set $mod Mod4
+# set $background ~/Pictures/desktop.jpg
+set $browser google-chrome
+# set $browser firefox
+set $terminal foot
+
+# Run applications
+bindsym $mod+b exec $browser
+bindsym $mod+Return exec $terminal
+bindsym $mod+e exec $file-explorer
+
+
+# Window navigation
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Workspaces
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+# application actions - sends keys to focused window
+bindsym $mod+c exec wl-copy 
+bindsym $mod+v exec wl-paste
+bindsym $mod+x exec wl-copy && wl-paste --clear
+# bindsym $mod+z exec wtype -M ctrl -k z
+
+# window management
+bindsym $mod+q kill
+bindsym $mod+Shift+q output eDP-1 toggle
+
+# bindsym $mod+w kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+t exec wtype -M ctrl -k t
+bindsym $mod+d exec rofi -show drun
+
+
+# workspace navigation
+bindsym $mod+comma workspace prev
+bindsym $mod+period workspace next
+bindsym $mod+Tab exec swaymsg '[con_mark=_last] focus' || swaymsg focus prev
+
+
+bindsym $mod+Shift+c reload
+
+bindsym $mod+s split
