@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
 
-brew cleanup &
-mise cache clean &
-rm-ds-store &
+brew cleanup
 
-declare -a home_files=(".bash_history" ".duckdb_history" ".python_history" ".viminfo")
-for file in "${home_files[@]}"; do
-	file="${HOME}/${file}"
-	if [[ -f $file ]]; then
-		rm "$file"
-	fi
-done
+rm-ds-store
 
-wait
+rm -rf ~/.cache
