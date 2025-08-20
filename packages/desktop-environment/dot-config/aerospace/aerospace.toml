@@ -1,14 +1,10 @@
 start-at-login = true
-after-startup-command = [
-	'exec-and-forget borders',
-	# 'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
-]
+after-startup-command = [ 'exec-and-forget borders' ]
 key-mapping.preset = 'qwerty'
+
 # for sketchybar
 # exec-on-workspace-change = [
-# 	'/bin/bash',
-# 	'-c',
-#     'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
+# 	'/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
 # ]
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
