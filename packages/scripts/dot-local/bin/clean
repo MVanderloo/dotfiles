@@ -2,6 +2,6 @@
 
 brew cleanup
 
-rm-ds-store
+find ~ -name '.DS_Store' -type f -delete -maxdepth 5
 
 rm -rf ~/.cache
