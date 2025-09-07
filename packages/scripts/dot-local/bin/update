@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# update homebrew
+brew upgrade
+
+# update homebrew packages
+brew upgrade --cask
+
+wait

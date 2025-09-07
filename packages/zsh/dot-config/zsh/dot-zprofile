@@ -1,0 +1,4 @@
+if [[ -z "$BREW_ENV_SOURCED" ]]; then
+    export BREW_ENV_SOURCED=1
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi

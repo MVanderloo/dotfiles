@@ -1,0 +1,4 @@
+tap "joshmedeski/sesh"
+
+brew "sesh"
+brew "tmux"

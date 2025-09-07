@@ -4,3 +4,4 @@
 --adopt
 --no-folding
 --ignore="install.sh"
+--ignore="Brewfile"
