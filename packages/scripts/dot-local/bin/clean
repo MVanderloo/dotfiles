@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+brew cleanup &
+rm-ds-store &
+
+wait
