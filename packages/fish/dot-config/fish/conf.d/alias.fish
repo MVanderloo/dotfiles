@@ -11,6 +11,11 @@ alias cat bat
 alias vim nvim
 alias fim 'fzf --multi --bind "enter:become(vim {})"'
 
+alias .. 'cd ..'
+alias ... 'cd ../..'
+alias .... 'cd ../../..'
+alias ..... 'cd ../../../..'
+
 abbr lag lazygit
 abbr lad lazydocker
 abbr las lazysql
