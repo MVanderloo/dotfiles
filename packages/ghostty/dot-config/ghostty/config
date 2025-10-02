@@ -2,12 +2,12 @@ quit-after-last-window-closed = true
 
 # ansi colors
 # theme = Catppuccin Latte
-theme = Catppuccin Frappe
+# theme = Catppuccin Frappe
 # theme = Catppuccin Macchiato
 # theme = Catppuccin Mocha
 # theme = TokyoNight Storm
 # theme = nord
-# theme = Atom One Dark
+theme = Atom One Dark
 
 # font
 font-family = MonaspiceNe Nerd Font Mono
