@@ -15,10 +15,6 @@ font-family = MonaspiceNe Nerd Font Mono
 # font-family = MonaspiceRn Nerd Font Mono
 
 cursor-opacity=0.5
-# cursor-style = block
-# cursor-style-blink = false
-# shell-integration-features = no-cursor
-shell-integration = none
 
 # no confirmation on close, use tmux!
 confirm-close-surface = false
@@ -44,15 +40,16 @@ font-size = 14
 # background-opacity = 1
 # background-blur-radius = 20
 
-# window
-# window-padding-x = 8
-# window-padding-balance = true
+window-padding-x = 0
+window-padding-y = 8,0
 # window-padding-color = extend
-# window-step-resize = true
-# adjust-font-baseline = 0
+
+window-vsync = false
+window-inherit-working-directory = false
 
 # keybindings
-keybind = ctrl+alt+r=reload_config
+# keybind = clear
+keybind = cmd+ctrl+r=reload_config
 # keybind = ctrl+a>ctrl+a=text:\x01
 # # keybind = ctrl+a>c=new_window
 # keybind = ctrl+a>c=new_tab
