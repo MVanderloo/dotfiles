@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dependencies=(tmux sesh fzf)
+dependencies=(fzf git sesh tmux)
 for cmd in "${dependencies[@]}"; do
     command -v "$cmd" >/dev/null 2>&1 || {
         echo "$cmd not found"
@@ -35,6 +35,19 @@ dir="$1"
 abs_path="$(realpath "$dir")"
 session_name="$(basename "$abs_path")"
 
+# prepend parent for git worktrees to distinguish branches in bare repos
+if git -C "$abs_path" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    if [[ "$(git -C "$abs_path" rev-parse --is-bare-repository 2>/dev/null)" == "false" ]]; then
+        gitdir="$(git -C "$abs_path" rev-parse --git-dir 2>/dev/null)"
+        # worktrees have .git files pointing to gitdir, not .git directories
+        if [[ -f "$abs_path/.git" ]] || [[ "$gitdir" == *"/.git/worktrees/"* ]]; then
+            parent="$(dirname "$abs_path")"
+            parent_name="$(basename "$parent")"
+            session_name="${parent_name}/${session_name}"
+        fi
+    fi
+fi
+
 # handle session name conflicts by prepending parent dirs
 while tmux has-session -t "$session_name" 2>/dev/null; do
     existing_dir="$(tmux display-message -p -t "$session_name" '#{session_path}' 2>/dev/null)"
@@ -53,7 +66,7 @@ while tmux has-session -t "$session_name" 2>/dev/null; do
         break
     fi
 
-    session_name="${parent_name}-${session_name}"
+    session_name="${parent_name}/${session_name}"
 done
 
 tmux new-session -d -s "$session_name" -c "$abs_path"
