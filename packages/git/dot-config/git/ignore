@@ -1,11 +1,9 @@
 # committing .env should be explicit
 *.env
 
-# mise-en-place
-.mise.local.toml
-.mise.*.local.toml
-mise.local.toml
-mise.*.local.toml
-
 # direnv
 .envrc
+
+# OS specific files
+.DS_Store
+Thumbs.db

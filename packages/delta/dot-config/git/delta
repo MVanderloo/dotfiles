@@ -1,5 +1,5 @@
 [core]
-	pager = delta
+	pager = "DELTA_PAGER='less -S' delta"
 
 [delta]
 	syntax-theme = ansi
