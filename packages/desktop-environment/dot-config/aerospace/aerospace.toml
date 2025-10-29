@@ -107,9 +107,9 @@ cmd-m = 'fullscreen'
 # cmd-w = 'layout h_accordion' # 'layout tabbed' in i3
 
 cmd-comma = 'workspace prev'
-# cmd-shift-comma = ''
-cmd-period = 'workspace next'
-# cmd-shift-period = ''
+cmd-shift-comma = 'move-node-to-workspace --focus-follows-window prev'
+cmd-period = 'move-node-to-workspace --focus-follows-window next'
+cmd-shift-period = 'move-node-to-workspace --focus-follows-window next'
 
 cmd-1 = 'workspace 1'
 cmd-2 = 'workspace 2'
