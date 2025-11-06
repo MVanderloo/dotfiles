@@ -108,7 +108,7 @@ cmd-m = 'fullscreen'
 
 cmd-comma = 'workspace prev'
 cmd-shift-comma = 'move-node-to-workspace --focus-follows-window prev'
-cmd-period = 'move-node-to-workspace --focus-follows-window next'
+cmd-period = 'workspace next'
 cmd-shift-period = 'move-node-to-workspace --focus-follows-window next'
 
 cmd-1 = 'workspace 1'
