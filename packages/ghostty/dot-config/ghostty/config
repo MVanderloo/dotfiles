@@ -4,10 +4,10 @@ quit-after-last-window-closed = true
 # theme = Catppuccin Latte
 # theme = Catppuccin Frappe
 # theme = Catppuccin Macchiato
-# theme = Catppuccin Mocha
+theme = Catppuccin Mocha
 # theme = TokyoNight Storm
 # theme = nord
-theme = Atom One Dark
+# theme = Atom One Dark
 
 # font
 font-family = MonaspiceNe Nerd Font Mono
@@ -32,7 +32,7 @@ font-feature = ss09
 font-feature = calt
 font-feature = liga
 
-font-size = 14
+font-size = 16
 # adjust-cell-height = 6
 # adjust-font-baseline = 0
 
@@ -44,12 +44,21 @@ window-padding-x = 0
 window-padding-y = 8,0
 # window-padding-color = extend
 
+macos-titlebar-style = hidden
+macos-dock-drop-behavior = window
+
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = black
+macos-icon-screen-color = black
+
 window-vsync = false
 window-inherit-working-directory = false
 
 # keybindings
 # keybind = clear
 keybind = cmd+ctrl+r=reload_config
+keybind = cmd+t=ignore
 # keybind = ctrl+a>ctrl+a=text:\x01
 # # keybind = ctrl+a>c=new_window
 # keybind = ctrl+a>c=new_tab
