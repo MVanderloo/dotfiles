@@ -1,3 +1,5 @@
+fish_add_path "$HOME/.local/bin"
+
 set start_time (date +%s%N)
 function expand_vars
     set -l result $argv[1]
