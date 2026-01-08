@@ -1,5 +1,5 @@
 Host *
     AddKeysToAgent yes
     ControlMaster auto
-    ControlPersist 120
-    ControlPath ~/.ssh/sockets/socket-%r@%h:%p
+    ControlPersist 10m
+    ControlPath ~/.ssh/sockets/%C
