@@ -1,0 +1,13 @@
+function __right_prompt() {
+    local save='\e7'
+    local restore='\e8'
+    local cols=$COLUMNS
+    local text="$HOSTNAME"
+    local text_len=${#text}
+    local pos=$((cols - text_len))
+    printf '%b\e[%dG\e[1;34m%s\e[0m%b' "$save" "$pos" "$text" "$restore"
+}
+
+PS1='\n\[\e[1;32m\]\w\[\e[0m\]$(__right_prompt)\n\[\e[1;31m\]\u\[\e[0m\] $ '
+
+source -- ~/.local/share/blesh/ble.sh

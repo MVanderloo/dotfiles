@@ -1,0 +1,8 @@
+bleopt color_scheme=base16
+ble-face -s auto_complete fg=8
+ble-face -s syntax_error fg=red
+ble-face -s command_builtin fg=green
+
+ble-face -s menu_filter_fixed none
+ble-face -s menu_filter_input none
+ble-face -s menu_desc_default none
