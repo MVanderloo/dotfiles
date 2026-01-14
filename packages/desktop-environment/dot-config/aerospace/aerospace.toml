@@ -5,21 +5,9 @@ after-startup-command = [
 ]
 key-mapping.preset = 'qwerty'
 
-# for sketchybar
-# exec-on-workspace-change = [
-# 	'/bin/bash',
-# 	'-c',
-#     'sketchybar --trigger aerospace_workspace_change FOCUSED=$AEROSPACE_FOCUSED_WORKSPACE',
-# ]
-
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
-# The 'accordion-padding' specifies the size of accordion padding
-# You can set 0 to disable the padding feature
-accordion-padding = 10
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -28,20 +16,11 @@ default-root-container-layout = 'tiles'
 default-root-container-orientation = 'horizontal'
 
 # Mouse follows focus when focused monitor changes
-# Drop it from your config, if you don't like this behavior
-# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
-# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
-# Possible values:
-# - Constant:     gaps.outer.top = 8
-# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
-#                 In this example, 24 is a default value when there is no match.
-#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
-#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
@@ -71,14 +50,12 @@ outer.right = 4
 cmd-r = 'reload-config'
 
 cmd-enter = 'exec-and-forget open -n /Applications/Ghostty.app/'
-cmd-b = 'exec-and-forget open -n /Applications/Brave\ Browser.app/'
-cmd-shift-b = 'exec-and-forget open -n /Applications/Firefox.app/'
+cmd-b = 'exec-and-forget open -n "$BROWSER"'
 
 cmd-slash = 'layout tiles horizontal vertical'
 cmd-shift-slash = 'layout accordion horizontal vertical'
 
 cmd-w = 'close'
-# cmd-tab = 'focus-back-and-forth'
 
 cmd-h = 'focus left'
 cmd-j = 'focus down'
@@ -103,13 +80,10 @@ cmd-alt-l = 'join-with right'
 cmd-m = 'fullscreen'
 # cmd-f = 'macos-native-fullscreen'
 
-# cmd-s = 'layout v_accordion' # 'layout stacking' in i3
-# cmd-w = 'layout h_accordion' # 'layout tabbed' in i3
-
 cmd-comma = 'workspace prev'
-# cmd-shift-comma = ''
+cmd-shift-comma = 'move-node-to-workspace --focus-follows-window prev'
 cmd-period = 'workspace next'
-# cmd-shift-period = ''
+cmd-shift-period = 'move-node-to-workspace --focus-follows-window next'
 
 cmd-1 = 'workspace 1'
 cmd-2 = 'workspace 2'
@@ -138,7 +112,6 @@ cmd-shift-0 = 'move-node-to-workspace 10'
 
 cmd-e = 'balance-sizes'
 cmd-shift-r = 'mode resize'
-# cmd-shift-semicolon = 'mode service'
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -147,34 +120,3 @@ k = 'resize height -50'
 l = 'resize width +50'
 cmd-shift-r = 'mode main'
 esc = 'mode main'
-
-
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-# [mode.service.binding]
-# 	esc = ['reload-config', 'mode main']
-# 	r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#     # s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-# 	cmd-f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-# 	backspace = ['close-all-windows-but-current', 'mode main']
-#
-# 	alt-shift-h = ['join-with left', 'mode main']
-# 	alt-shift-j = ['join-with down', 'mode main']
-# 	alt-shift-k = ['join-with up', 'mode main']
-# 	alt-shift-l = ['join-with right', 'mode main']
-
-# [[on-window-detected]]
-# 	if.app-id = 'com.mitchellh.ghostty'
-# 	run = "move-node-to-workspace 2"
-
-# [[on-window-detected]]
-# 	if.app-id = 'com.google.Chrome'
-# 	run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.teams2'
-run = "move-node-to-workspace 1"
-
-[[on-window-detected]]
-if.app-id = 'com.microsoft.Outlook'
-run = "move-node-to-workspace 1"
