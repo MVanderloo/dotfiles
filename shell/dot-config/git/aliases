@@ -1,0 +1,9 @@
+[alias]
+	co = "checkout"
+	sm = "submodule"
+	sw = "switch"
+	st = "status"
+	graph = "log --graph --all"
+	clone-bare = "!f() { git clone $1 $2 && cd $(ls -dt */ | head -1) && git checkout $(git commit-tree $(git hash-object -t tree /dev/null) </dev/null) && echo '*' >.gitignore; } f"
+	ignore = "!f() { local IFS=',' curl -sL https://www.toptal.com/developers/gitignore/api/\"$*\" } f"
+	stashgrep = "!f() { for i in $(git stash list --format='%gd'); do git stash show -p $i | grep -H --label=\"$i\" \"$@\"; done; } f"

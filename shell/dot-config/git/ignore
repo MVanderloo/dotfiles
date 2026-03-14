@@ -1,9 +1,12 @@
-# committing .env should be explicit
-*.env
+# Global git ignore
+# Choose to commit any of these with `git add -f`
 
-# direnv
-.envrc
+# Committing .env files always explicit
+*.env
 
 # OS specific files
 .DS_Store
 Thumbs.db
+
+# direnv
+.envrc

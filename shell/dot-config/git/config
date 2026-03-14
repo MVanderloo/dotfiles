@@ -1,50 +1,13 @@
+[user]
+email = "me@mvanderloo.com"
+name = "Michael van der Loo"
+
 [include]
-	path = credentials
+  path = aliases
 	path = delta
 	path = difftool
-
-[advice]
-	addEmbeddedRepo
-	addEmptyPathspec = false
-	addIgnoredFile = false
-	amWorkDir = false
-	ambiguousFetchRefspec = false
-	checkoutAmbiguousRemoteBranchName = false
-	commitBeforeMerge = false
-	detachedHead = false
-	diverging = false
-	fetchShowForcedUpdates = false
-	forceDeleteBranch = false
-	ignoredHook = false
-	implicitIdentity = false
-	mergeConflict = false
-	nestedTag = false
-	pushAlreadyExists = false
-	pushFetchFirst = false
-	pushNeedsForce = false
-	pushNonFFCurrent = false
-	pushNonFFMatching = false
-	pushRefNeedsUpdate = false
-	pushUnqualifiedRefname = false
-	pushUpdateRejected = false
-	rebaseTodoError = false
-	refSyntax = false
-	resetNoRefresh = false
-	resolveConflict = false
-	rmHints = false
-	sequencerInUse = false
-	skippedCherryPicks = false
-	sparseIndexExpanded = false
-	statusAheadBehind = false
-	statusHints = false
-	statusUoption = false
-	submoduleAlternateErrorStrategyDie = false
-	submoduleMergeConflict = false
-	submodulesNotUpdated = false
-	suggestDetachingHead = false
-	updateSparsePath = false
-	waitingForEditor = false
-	worktreeAddOrphan = false
+  path = disable-advice
+  path = local # put machine local configs here
 
 [branch]
 	sort = -committerdate
@@ -67,7 +30,6 @@
 
 [commit]
 	verbose = true
-	; template = ~/.config/git/commit-template
 
 [core]
 	compression = 9
@@ -114,20 +76,6 @@
 
 [format]
 	pretty = "format:%C(yellow)%h%C(reset)%C(auto)%d%C(reset) - %C(white)%s%C(reset) %C(blue)(%ar)%C(reset) %C(dim white)- %an%C(reset)"
-	; pretty = "format:%C(yellow)%h%C(reset) - %C(white)%s%C(reset) %C(blue)(%ar)%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)"
-	; pretty = "format:%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)"
-	; pretty = "format:%C(red)%h%Creset - %s %C(green)(%cr)%C(reset)%d%n"
-
-[alias]
-	co = "checkout"
-	sm = "submodule"
-	sw = "switch"
-	wt = "worktree"
-	st = "status"
-	graph = "log --graph --all"
-	clone-bare = "!f() { git clone $1 $2 && cd $(ls -dt */ | head -1) && git checkout $(git commit-tree $(git hash-object -t tree /dev/null) </dev/null) && echo '*' >.gitignore; } f"
-	ignore = "!f() { local IFS=',' curl -sL https://www.toptal.com/developers/gitignore/api/\"$*\" } f"
-	stashgrep = "!f() { for i in $(git stash list --format='%gd'); do git stash show -p $i | grep -H --label=\"$i\" \"$@\"; done; } f"
 
 [url "https://github.com/"]
 	insteadOf = "gh:"
