@@ -1,0 +1,20 @@
+[diff]
+    tool = nvimdiff
+    guitool = nvimdiff
+    prompt = false
+
+[difftool]
+  prompt = false
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
+[merge]
+  tool = nvimdiff
+
+[mergetool]
+  prompt = false
+  keepBackup = false
+
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
