@@ -1,0 +1,6 @@
+[settings]
+experimental = true
+npm.bun = true
+python.uv_venv_auto = true
+activate_aggressive = true
+idiomatic_version_file_enable_tools = ["*"]

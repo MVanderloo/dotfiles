@@ -1,0 +1,9 @@
+# committing .env should be explicit
+*.env
+
+# direnv
+.envrc
+
+# OS specific files
+.DS_Store
+Thumbs.db
