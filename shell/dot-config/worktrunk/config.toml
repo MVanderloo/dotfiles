@@ -1,0 +1,48 @@
+worktree-path = "{{ repo_path }}/{{ branch | sanitize }}"
+
+[list]
+summary = false  # Enable LLM branch summaries (requires [commit.generation])
+full = false     # Show CI, main…± diffstat, and LLM summaries (--full)
+branches = false # Include branches without worktrees (--branches)
+remotes = false  # Include remote-only branches (--remotes)
+
+[commit]
+# Shared by `wt step commit`, `wt step squash`, and `wt merge`.
+stage = "all" # What to stage before commit: "all", "tracked", or "none"
+
+[merge]
+squash = true # Squash commits into one (--no-squash to preserve history)
+commit = true # Commit uncommitted changes first (--no-commit to skip)
+rebase = true # Rebase onto target before merge (--no-rebase to skip)
+remove = true # Remove worktree after merge (--no-remove to keep)
+verify = true # Run project hooks (--no-verify to skip)
+
+[switch.picker]
+# TODO: diffnav ?
+pager = "delta --paging=never"
+# timeout-ms = 200
+
+[aliases]
+# Command templates that run with `wt step <name>`
+# See `wt step` aliases: https://worktrunk.dev/step/#aliases
+greet = "echo Hello from {{ branch }}"
+url = "echo http://localhost:{{ branch | hash_port }}"
+
+# [pre-switch]
+## Before every switch (blocking)
+# [post-start]
+## After worktree created
+# [post-create]
+## After worktree created (blocking)
+# [post-switch]
+## After every switch
+# [pre-commit]
+## Before commit during merge (blocking)
+# [pre-merge]
+## Before merging to target (blocking)
+# [post-merge]
+## After successful merge (blocking)
+# [pre-remove]
+## Before worktree removed (blocking)
+# [post-remove]
+## After worktree removed
