@@ -1,0 +1,15 @@
+gui:
+  statusPanelView: allBranchesLog
+  showRootItemInFileTree: false
+  showRandomTip: false
+  showCommandLog: false
+  showBottomLine: false
+git:
+  pagers:
+    - pager: delta --dark --paging=never
+  autoFetch: false
+  allBranchesLogCmds:
+    - git graph
+  overrideGpg: true
+disableStartupPopups: true
+promptToReturnFromSubprocess: false
