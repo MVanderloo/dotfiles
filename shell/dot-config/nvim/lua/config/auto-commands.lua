@@ -1,13 +1,19 @@
--- check if we need to reload the file when it changed
--- vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
---   pattern = '*',
---   callback = function()
---     if vim.fn.mode() ~= 'c' then vim.cmd 'checktime' end
---   end,
--- })
-
--- above was giving me errors, folke recommended the below snippet
+-- check if file has changed when regaining focus
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, { command = 'checktime' })
+
+-- save on buffer switch
+vim.api.nvim_create_autocmd('BufLeave', {
+  callback = function()
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then
+      vim.cmd.update { bang = true }
+    end
+  end,
+})
+
+-- save all modified buffers on focus loss
+vim.api.nvim_create_autocmd('FocusLost', {
+  callback = function() vim.cmd.wall { mods = { silent = true, emsg_silent = true } } end,
+})
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd('TextYankPost', {

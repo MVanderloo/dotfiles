@@ -1,5 +1,7 @@
-vim.opt_local.wrap = false
-vim.opt_local.number = true
-vim.opt_local.relativenumber = false
+vim.o.wrap = false
+vim.o.number = true
+vim.o.relativenumber = false
 
-require('csvview').enable()
+vim.keymap.set('n', '<localleader>e', '<cmd>CsvViewEnable<cr>')
+vim.keymap.set('n', '<localleader>d', '<cmd>CsvViewDisable<cr>')
+vim.keymap.set('n', '<localleader>t', '<cmd>CsvViewToggle<cr>')

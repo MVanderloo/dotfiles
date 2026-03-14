@@ -1,33 +1,22 @@
-return {
-  {
-    'jiaoshijie/undotree',
-    dependencies = 'nvim-lua/plenary.nvim',
-    event = 'VeryLazy',
-    config = true,
-    keys = {
-      { '<leader>U', "<cmd>lua require('undotree').toggle()<cr>" },
-    },
-  },
-  {
-    'SunnyTamang/select-undo.nvim',
-    event = 'VeryLazy',
-    opts = {
-      persistent_undo = false, -- Enables persistent undo history
-      mapping = false, -- Enables default keybindings
-      line_mapping = 'gu', -- Undo for entire lines
-      -- partial_mapping = 'gcu', -- Undo for selected characters -- Note: dont use this line as gu can also handle partial undo
-    },
-  },
-  -- {
-  --   'tzachar/highlight-undo.nvim',
-  --   opts = {
-  --     hlgroup = 'CurSearch',
-  --     duration = 200,
-  --     pattern = { '*' },
-  --     -- ignored_filetypes = { 'neo-tree', 'fugitive', 'TelescopePrompt', 'mason', 'lazy' },
-  --     -- ignore_cb is in comma as there is a default implementation. Setting
-  --     -- to nil will mean no default os called.
-  --     -- ignore_cb = nil,
-  --   },
-  -- },
+-- enable undotree UI
+vim.cmd 'packadd nvim.undotree'
+
+local function undotree()
+  local close = require('undotree').open {
+    title = 'undotree',
+    command = 'topleft 30vnew',
+  }
+  if not close then vim.bo.filetype = 'undotree' end
+end
+
+vim.keymap.set('n', '<leader>U', undotree)
+
+vim.pack.add({
+  'gh:sunnytamang/select-undo.nvim',
+}, { confirm = false })
+
+require('select-undo').setup {
+  persistent_undo = false,
+  mapping = false,
+  line_mapping = 'gu',
 }

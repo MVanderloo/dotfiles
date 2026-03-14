@@ -1,0 +1,133 @@
+{
+  "plugins": {
+    "SchemaStore.nvim": {
+      "rev": "c4b3c25e5661600e04be787fbce8c6704583717f",
+      "src": "gh:b0o/SchemaStore.nvim"
+    },
+    "auto-session": {
+      "rev": "62437532b38495551410b3f377bcf4aaac574ebe",
+      "src": "gh:rmagatti/auto-session"
+    },
+    "blink-ripgrep.nvim": {
+      "rev": "9da32a88e611df82afbfd4671f3205483c372772",
+      "src": "gh:mikavilpas/blink-ripgrep.nvim"
+    },
+    "blink.cmp": {
+      "rev": "bae4bae0eedd1fa55f34b685862e94a222d5c6f8",
+      "src": "gh:saghen/blink.cmp",
+      "version": "'v1.6.0'"
+    },
+    "bullets.vim": {
+      "rev": "89294b8930e660936374fb763ac48a1ac51dd29c",
+      "src": "gh:bullets-vim/bullets.vim"
+    },
+    "catppuccin": {
+      "rev": "0a5de4da015a175f416d6ef1eda84661623e0500",
+      "src": "gh:catppuccin/nvim"
+    },
+    "colorful-menu.nvim": {
+      "rev": "b51a659459df8d078201aefc995db8175ed55e84",
+      "src": "gh:xzbdmw/colorful-menu.nvim"
+    },
+    "conform.nvim": {
+      "rev": "40dcec5555f960b0a04340d76eabdf4efe78599d",
+      "src": "gh:stevearc/conform.nvim"
+    },
+    "csvview.nvim": {
+      "rev": "7022e18a0fbae9aecf99a3ba02b2a541edc2b8a1",
+      "src": "gh:hat0uma/csvview.nvim"
+    },
+    "friendly-snippets": {
+      "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
+      "src": "gh:rafamadriz/friendly-snippets"
+    },
+    "fyler.nvim": {
+      "rev": "560c627769faf51bb37ed9414e6a0e869f83dafd",
+      "src": "gh:a7lavinraj/fyler.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "9f3c6dd7868bcc116e9c1c1929ce063b978fa519",
+      "src": "gh:lewis6991/gitsigns.nvim"
+    },
+    "guess-indent.nvim": {
+      "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
+      "src": "gh:nmac427/guess-indent.nvim"
+    },
+    "helpview.nvim": {
+      "rev": "518789535a0cb146224a428edf93a70f98b795db",
+      "src": "gh:oxy2dev/helpview.nvim"
+    },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "gh:lukas-reineke/indent-blankline.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "47f91c416daef12db467145e16bed5bbfe00add8",
+      "src": "gh:nvim-lualine/lualine.nvim"
+    },
+    "markview.nvim": {
+      "rev": "633e627f82011dc888ea4444a98c98bd783951b0",
+      "src": "gh:oxy2dev/markview.nvim"
+    },
+    "mini.ai": {
+      "rev": "4b0a6207341d895b6cfe9bcb1e4d3e8607bfe4f4",
+      "src": "gh:nvim-mini/mini.ai"
+    },
+    "mini.align": {
+      "rev": "4d45e0e4f1fd8baefb6ae52a44659704fe7ebe8b",
+      "src": "gh:nvim-mini/mini.align"
+    },
+    "mini.bracketed": {
+      "rev": "75369c33613b911d1ce304475dc4d30cd255c9ed",
+      "src": "gh:nvim-mini/mini.bracketed"
+    },
+    "mini.icons": {
+      "rev": "5b9076dae1bfbe47ba4a14bc8b967cde0ab5d77e",
+      "src": "gh:nvim-mini/mini.icons"
+    },
+    "mini.operators": {
+      "rev": "86b1ad0d89e7e6a2ae2f840edbbb5737465ae777",
+      "src": "gh:nvim-mini/mini.operators"
+    },
+    "mini.pairs": {
+      "rev": "b7fde3719340946feb75017ef9d75edebdeb0566",
+      "src": "gh:nvim-mini/mini.pairs"
+    },
+    "mini.pick": {
+      "rev": "8521fe21df86e08d9e4b3c3f3a7d50e47954e1af",
+      "src": "gh:nvim-mini/mini.pick"
+    },
+    "mini.surround": {
+      "rev": "d205d1741d1fcc1f3117b4e839bf00f74ad72fa2",
+      "src": "gh:nvim-mini/mini.surround"
+    },
+    "nvim-lspconfig": {
+      "rev": "ead0f5f342d8d323441e7d4b88f0fc436a81ad5f",
+      "src": "gh:neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "cb2cb74f3c3cbbcc17e79cada2060165d616d849",
+      "src": "gh:nvim-treesitter/nvim-treesitter"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "gh:stevearc/oil.nvim"
+    },
+    "quicker.nvim": {
+      "rev": "2d3f3276eab9352c7b212821c218aca986929f62",
+      "src": "gh:stevearc/quicker.nvim"
+    },
+    "select-undo.nvim": {
+      "rev": "d5aa1f0dbef93b7ed4219ef8c7bfae9691264ef7",
+      "src": "gh:sunnytamang/select-undo.nvim"
+    },
+    "tiny-inline-diagnostic.nvim": {
+      "rev": "ba133b3e932416e4b9507095731a6d7276878fe8",
+      "src": "gh:rachartier/tiny-inline-diagnostic.nvim"
+    },
+    "treesj": {
+      "rev": "186084dee5e9c8eec40f6e39481c723dd567cb05",
+      "src": "gh:wansmer/treesj"
+    }
+  }
+}

@@ -7,3 +7,6 @@ vim.filetype.add {
     ['.*/%.?git/.*'] = 'gitconfig',
   },
 }
+
+-- gnuplot
+vim.filetype.add { extension = { gp = 'gnuplot' } }
