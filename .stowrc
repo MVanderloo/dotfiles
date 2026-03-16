@@ -3,4 +3,4 @@
 --dotfiles
 --adopt
 --no-folding
---ignore="install.sh"
+--ignore="\.justfile$"
