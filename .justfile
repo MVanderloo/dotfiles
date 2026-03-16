@@ -23,31 +23,28 @@ check-dependencies package:
     just _check eza
     just _check fish
     just _check fzf
+    just _check just # lol?
     just _check nvim
     just _check sesh
+    just _check sl
     just _check starship
     just _check tmux
+    just _check yazi
     just _check zoxide
-    just _check_optional fastfetch
-    printf "\n"
-    just _section "General Purpose"
-    just _check just # lol?
+    just _check_optional btop
     just _check_optional checkexec
     just _check_optional cloc
-    just _check_optional devcontainer
-    just _check_optional duckdb
     just _check_optional dust
+    just _check_optional fastfetch
     just _check_optional fd
-    just _check_optional go-parquet-tools
     just _check_optional gpg
     just _check_optional jq
+    just _check_optional op
     just _check_optional prek
     just _check_optional rg
     just _check_optional sd
     just _check_optional systemfd
-    just _check_optional unzip
     just _check_optional watchexec
-    just _check_optional zip
     printf "\n"
     just _section "Version Control"
     just _check delta
@@ -59,13 +56,20 @@ check-dependencies package:
     just _check_optional glab
     just _check_optional jj
     just _check_optional lazygit
+    just _check_optional lazyjj
     just _check_optional worktrunk
     printf "\n"
-    just _section "TUI"
-    just _check yazi
-    just _check_optional btop
-    just _check_optional lazydocker
+    just _section "Data Tools"
+    just _check_optional clickhouse
+    just _check_optional duckdb
     just _check_optional lazysql
+    just _check_optional parquet-tools
+    just _check_optional psql
+    just _check_optional sqlit
+    just _check_optional sqlite
+    just _check_optional gzip
+    just _check_optional unzip
+    just _check_optional zip
     printf "\n"
     just _section "Toolchains"
     just _check_optional bun
@@ -103,6 +107,22 @@ check-dependencies package:
     just _check_optional taplo
     just _check_optional yamlfix
     just _check_optional zigfmt
+    printf "\n"
+    just _section "AI"
+    just _check_optional goose
+    just _check_optional ollama
+    just _check_optional opencode
+    printf "\n"
+    just _section "Containers"
+    just _check_optional devcontainer
+    just _check_optional docker
+    just _check_optional lazydocker
+    just _check_optional podman
+    printf "\n"
+    just _section "Cloud"
+    just _check_optional aws
+    just _check_optional az
+    just _check_optional gcloud
     printf "\n"
 
 [private]
