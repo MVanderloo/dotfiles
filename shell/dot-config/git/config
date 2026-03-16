@@ -2,6 +2,15 @@
 email = "me@mvanderloo.com"
 name = "Michael van der Loo"
 
+[url "git@github.com:MVanderloo/"]
+	insteadOf = "my:"
+
+[url "git@github.com:"]
+	insteadOf = "gh:"
+
+[url "git@gitlab.com:"]
+	insteadOf = "gl:"
+
 [include]
 	path = aliases
 	path = delta
@@ -76,12 +85,3 @@ name = "Michael van der Loo"
 
 [format]
 	pretty = "format:%C(yellow)%h%C(reset)%C(auto)%d%C(reset) - %C(white)%s%C(reset) %C(blue)(%ar)%C(reset) %C(dim white)- %an%C(reset)"
-
-[url "https://github.com/"]
-	insteadOf = "gh:"
-
-[url "https://gitlab.com/"]
-	insteadOf = "gl:"
-
-[url "https://github.com/mvanderloo/"]
-	insteadOf = "my:"
