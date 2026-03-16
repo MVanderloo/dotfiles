@@ -1,11 +1,11 @@
 vim.pack.add({
-  'gh:oxy2dev/markview.nvim',
-  'gh:oxy2dev/helpview.nvim',
-  'gh:hat0uma/csvview.nvim',
-  -- 'gh:owen-dechow/videre.nvim',
-  -- 'gh:owen-dechow/nvim_json_graph_view',
-  -- 'gh:owen-dechow/graph_view_yaml_parser',
-  -- 'gh:owen-dechow/graph_view_toml_parser',
+  'https://github.com/oxy2dev/markview.nvim',
+  'https://github.com/oxy2dev/helpview.nvim',
+  'https://github.com/hat0uma/csvview.nvim',
+  -- 'https://github.com/owen-dechow/videre.nvim',
+  -- 'https://github.com/owen-dechow/nvim_json_graph_view',
+  -- 'https://github.com/owen-dechow/graph_view_yaml_parser',
+  -- 'https://github.com/owen-dechow/graph_view_toml_parser',
 }, { confirm = false })
 
 require('csvview').setup {

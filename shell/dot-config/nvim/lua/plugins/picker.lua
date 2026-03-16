@@ -1,4 +1,4 @@
-vim.pack.add({ 'gh:nvim-mini/mini.pick' }, { confirm = false })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.pick' }, { confirm = false })
 
 require('mini.pick').setup()
 
@@ -15,7 +15,7 @@ vim.ui.select = function(items, opts, on_choice)
 end
 
 -- vim.pack.add({
---   'gh:ibhagwan/fzf-lua',
+--   'https://github.com/ibhagwan/fzf-lua',
 -- }, { confirm = false })
 --
 -- local fzf = require 'fzf-lua'

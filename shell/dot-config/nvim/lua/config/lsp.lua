@@ -1,5 +1,5 @@
-vim.pack.add({ 'gh:b0o/SchemaStore.nvim' }, { confirm = false })
-vim.pack.add({ 'gh:neovim/nvim-lspconfig' }, { confirm = false })
+vim.pack.add({ 'https://github.com/b0o/SchemaStore.nvim' }, { confirm = false })
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' }, { confirm = false })
 
 vim.lsp.enable {
   'ansiblels',

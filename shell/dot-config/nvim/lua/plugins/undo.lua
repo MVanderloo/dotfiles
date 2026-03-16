@@ -12,7 +12,7 @@ end
 vim.keymap.set('n', '<leader>U', undotree)
 
 vim.pack.add({
-  'gh:sunnytamang/select-undo.nvim',
+  'https://github.com/sunnytamang/select-undo.nvim',
 }, { confirm = false })
 
 require('select-undo').setup {

@@ -1,11 +1,11 @@
 vim.pack.add({
-  'gh:lukas-reineke/indent-blankline.nvim',
-  'gh:nmac427/guess-indent.nvim',
-  'gh:nvim-mini/mini.align',
-  'gh:nvim-mini/mini.operators',
-  'gh:nvim-mini/mini.pairs',
-  'gh:nvim-mini/mini.surround',
-  'gh:bullets-vim/bullets.vim',
+  'https://github.com/lukas-reineke/indent-blankline.nvim',
+  'https://github.com/nmac427/guess-indent.nvim',
+  'https://github.com/nvim-mini/mini.align',
+  'https://github.com/nvim-mini/mini.operators',
+  'https://github.com/nvim-mini/mini.pairs',
+  'https://github.com/nvim-mini/mini.surround',
+  'https://github.com/bullets-vim/bullets.vim',
 }, { confirm = false })
 
 require('ibl').setup()

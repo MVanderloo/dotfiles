@@ -1,9 +1,9 @@
 vim.pack.add({
-  'gh:nvim-treesitter/nvim-treesitter',
-  -- 'gh:nvim-treesitter/nvim-treesitter-textobjects',
-  -- 'gh:folke/ts-comments.nvim',
-  'gh:wansmer/treesj',
-  'gh:nvim-mini/mini.ai',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  -- 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
+  -- 'https://github.com/folke/ts-comments.nvim',
+  'https://github.com/wansmer/treesj',
+  'https://github.com/nvim-mini/mini.ai',
 }, { confirm = false })
 
 require('mini.ai').setup()

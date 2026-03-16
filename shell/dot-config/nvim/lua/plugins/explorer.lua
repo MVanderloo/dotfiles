@@ -1,7 +1,7 @@
 vim.pack.add({
-  'gh:a7lavinraj/fyler.nvim',
-  'gh:nvim-mini/mini.icons',
-  'gh:stevearc/oil.nvim',
+  'https://github.com/a7lavinraj/fyler.nvim',
+  'https://github.com/nvim-mini/mini.icons',
+  'https://github.com/stevearc/oil.nvim',
 }, { confirm = false })
 
 require('mini.icons').setup()

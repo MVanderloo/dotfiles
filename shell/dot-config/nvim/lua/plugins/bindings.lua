@@ -1,4 +1,4 @@
-vim.pack.add({ 'gh:nvim-mini/mini.bracketed' }, { confirm = false })
+vim.pack.add({ 'https://github.com/nvim-mini/mini.bracketed' }, { confirm = false })
 
 require('mini.bracketed').setup {
   buffer = { suffix = 'b', options = {} },

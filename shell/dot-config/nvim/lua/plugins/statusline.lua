@@ -1,4 +1,4 @@
-vim.pack.add({ 'gh:nvim-lualine/lualine.nvim' }, { confirm = false })
+vim.pack.add({ 'https://github.com/nvim-lualine/lualine.nvim' }, { confirm = false })
 
 local function macro_recording()
   local reg = vim.fn.reg_recording()

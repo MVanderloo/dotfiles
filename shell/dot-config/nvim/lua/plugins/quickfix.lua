@@ -1,4 +1,4 @@
-vim.pack.add({ 'gh:stevearc/quicker.nvim' }, { confirm = false })
+vim.pack.add({ 'https://github.com/stevearc/quicker.nvim' }, { confirm = false })
 
 local quicker = require 'quicker'
 

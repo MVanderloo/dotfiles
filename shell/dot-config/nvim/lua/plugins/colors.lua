@@ -1,9 +1,9 @@
 vim.pack.add({
-  -- 'gh:gbprod/nord.nvim',
-  { src = 'gh:catppuccin/nvim', name = 'catppuccin' },
-  -- 'gh:folke/tokyonight.nvim',
-  -- 'gh:navarasu/onedark.nvim',
-  -- { src = 'gh:rose-pine/neovim', name = 'rose-pine' },
+  -- 'https://github.com/gbprod/nord.nvim',
+  { src = 'https://github.com/catppuccin/nvim', name = 'catppuccin' },
+  -- 'https://github.com/folke/tokyonight.nvim',
+  -- 'https://github.com/navarasu/onedark.nvim',
+  -- { src = 'https://github.com/rose-pine/neovim', name = 'rose-pine' },
 }, { confirm = false })
 
 -- require('onedark').setup {
