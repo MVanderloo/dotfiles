@@ -7,13 +7,14 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | Package | Description |
 |---|---|
 | `shell` | My full CLI environment |
-| `server` | Use over ssh - Minimal dependencies and compatibility focused |
+| `server` | Minimal dependencies for servers I ssh into |
 | `wayland-desktop` | Linux desktop |
 | `darwin-desktop` | macOS desktop |
 
 ## Usage
 
 Clone the repo and stow whichever packages you need:
+
 ```sh
 git clone https://github.com/MVanderloo/dotfiles ~/.local/dotfiles
 cd ~/.local/dotfiles
