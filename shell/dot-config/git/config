@@ -3,11 +3,11 @@ email = "me@mvanderloo.com"
 name = "Michael van der Loo"
 
 [include]
-  path = aliases
+	path = aliases
 	path = delta
 	path = difftool
-  path = disable-advice
-  path = local # put machine local configs here
+	path = disable-advice
+	path = local # put machine local configs here
 
 [branch]
 	sort = -committerdate
