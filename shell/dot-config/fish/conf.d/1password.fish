@@ -1,1 +1,1 @@
-alias gh 'op plugin run -- gh'
+source ~/.config/op/plugins.sh
