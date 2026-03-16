@@ -1,6 +1,6 @@
 vim.pack.add({
   -- 'https://github.com/oxy2dev/markview.nvim',
-  'https://github.com/oxy2dev/helpview.nvim',
+  -- 'https://github.com/oxy2dev/helpview.nvim',
   'https://github.com/hat0uma/csvview.nvim',
 }, { confirm = false })
 
