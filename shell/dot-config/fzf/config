@@ -1,7 +1,6 @@
 --margin=0
 --border=bold
 --color=border:7
---prompt='> '
 --color=prompt:2
 --scrollbar=''
 --gutter=' '
