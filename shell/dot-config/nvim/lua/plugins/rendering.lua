@@ -1,11 +1,7 @@
 vim.pack.add({
-  'https://github.com/oxy2dev/markview.nvim',
+  -- 'https://github.com/oxy2dev/markview.nvim',
   'https://github.com/oxy2dev/helpview.nvim',
   'https://github.com/hat0uma/csvview.nvim',
-  -- 'https://github.com/owen-dechow/videre.nvim',
-  -- 'https://github.com/owen-dechow/nvim_json_graph_view',
-  -- 'https://github.com/owen-dechow/graph_view_yaml_parser',
-  -- 'https://github.com/owen-dechow/graph_view_toml_parser',
 }, { confirm = false })
 
 require('csvview').setup {
@@ -28,9 +24,3 @@ require('csvview').setup {
     -- jump_prev_row = { '<S-Enter>', mode = { 'n', 'v' } },
   },
 }
-
--- require('videre').setup {
---   round_units = false,
---   keymap_desc_deliminator = '->',
---   link_backward = 'H',
--- }
