@@ -7,7 +7,7 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | Package | Description |
 |---|---|
 | `shell` | My full CLI environment |
-| `server` | Use over ssh - Minimal dependencies and compatiblity focused |
+| `server` | Use over ssh - Minimal dependencies and compatibility focused |
 | `wayland-desktop` | Linux desktop |
 | `darwin-desktop` | macOS desktop |
 
