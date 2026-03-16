@@ -19,26 +19,47 @@ check-dependencies package:
     just _check atuin
     just _check bash
     just _check bat
+    just _check direnv
     just _check eza
     just _check fish
     just _check fzf
     just _check nvim
-    just _check rg
     just _check sesh
     just _check starship
     just _check tmux
     just _check zoxide
     just _check_optional fastfetch
+    printf "\n"
+    just _section "General Purpose"
+    just _check just # lol?
+    just _check_optional checkexec
+    just _check_optional cloc
+    just _check_optional devcontainer
+    just _check_optional duckdb
+    just _check_optional dust
     just _check_optional fd
-    just _check_optional just
+    just _check_optional go-parquet-tools
+    just _check_optional gpg
+    just _check_optional jq
+    just _check_optional prek
+    just _check_optional rg
+    just _check_optional sd
+    just _check_optional systemfd
+    just _check_optional unzip
+    just _check_optional watchexec
+    just _check_optional zip
     printf "\n"
     just _section "Version Control"
     just _check delta
     just _check git
+    just _check_optional diffnav
     just _check_optional gh
+    just _check_optional git-filter-repo
+    just _check_optional gitu
     just _check_optional glab
     just _check_optional jj
     just _check_optional lazygit
+    just _check_optional worktrunk
     printf "\n"
     just _section "TUI"
     just _check yazi
@@ -66,6 +87,7 @@ check-dependencies package:
     just _check_optional ruff
     just _check_optional rust-analyzer
     just _check_optional ty
+    just _check_optional yamllint
     just _check_optional zls
     printf "\n"
     just _section "Formatters"
