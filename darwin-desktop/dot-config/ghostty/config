@@ -3,9 +3,10 @@ config-file = "?local"
 
 quit-after-last-window-closed = true
 
-cursor-opacity=0.5
+# wrap shell with tmux
+# command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on; done'
+command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on || { echo "tmux exited with $?"; read _; break; }; done'
 
-# no confirmation on close, use tmux!
 confirm-close-surface = false
 
 # enable ligatures
@@ -21,9 +22,8 @@ font-feature = ss09
 font-feature = calt
 font-feature = liga
 
-window-padding-x = 0
-window-padding-y = 8,0
-# window-padding-color = extend
+window-padding-x = 8
+window-padding-y = 8
 
 macos-titlebar-style = hidden
 macos-dock-drop-behavior = window
@@ -33,7 +33,6 @@ macos-icon-frame = plastic
 macos-icon-ghost-color = black
 macos-icon-screen-color = black
 
-window-vsync = false
 window-inherit-working-directory = false
 
 # keybindings
