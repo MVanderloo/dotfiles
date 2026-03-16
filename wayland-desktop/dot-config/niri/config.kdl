@@ -2,7 +2,7 @@ spawn-at-startup "qs" "-c" "noctalia-shell"
 
 prefer-no-csd
 
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 
 overview {
   backdrop-color "#26233a"
@@ -14,7 +14,7 @@ input {
         repeat-rate 30
 
         xkb {
-            options "caps:ctrl_modifier"
+            options "caps:ctrl_modifier,altwin:swap_alt_win"
         }
 
         numlock
@@ -42,7 +42,7 @@ binds {
     Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Mod+Ctrl+Q { spawn-sh "swaylock"; }
     Mod+B { spawn-sh "brave"; }
-    MOD+E hotkey-overlay-title="File Manager: Nautilus" { spawn-sh "nautilus"; }
+    MOD+E { spawn-sh "nautilus"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -292,3 +292,5 @@ window-rule {
 
     block-out-from "screen-capture"
 }
+
+include "./noctalia.kdl"
