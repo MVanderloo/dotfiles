@@ -1,6 +1,13 @@
 [user]
-email = "me@mvanderloo.com"
-name = "Michael van der Loo"
+	email = "me@mvanderloo.com"
+	name = "Michael van der Loo"
+
+[include]
+	path = aliases
+	path = delta
+	path = difftool
+	path = disable-advice
+	path = local # put machine local configs here
 
 [url "git@github.com:MVanderloo/"]
 	insteadOf = "my:"
@@ -11,51 +18,47 @@ name = "Michael van der Loo"
 [url "git@gitlab.com:"]
 	insteadOf = "gl:"
 
-[include]
-	path = aliases
-	path = delta
-	path = difftool
-	path = disable-advice
-	path = local # put machine local configs here
+[url "git@codeberg.org:"]
+	insteadOf = "cb:"
 
 [branch]
-	sort = -committerdate
 	autosetupmerge = always
 	autosetuprebase = remote
-
-[diff]
-	colorMoved = true
-
-[tag]
-	sort = -version:refname
-
-[init]
-	defaultBranch = main
-
-[status]
-	branch = true
-	showStash = true
-	showUntrackedFiles = all
+	sort = -committerdate
 
 [commit]
 	verbose = true
 
 [core]
 	compression = 9
-	whitespace = trailing-space
 	preloadindex = true
+	whitespace = trailing-space
 
 [diff]
 	algorithm = histogram
 	colorMoved = zebra
 	colorMovedWS = allow-indentation-change
 	context = 8
-	renames = copies
 	interHunkContext = 10
 	mnemonicPrefix = true
+	renames = copies
+
+[format]
+	pretty = "format:%C(yellow)%h%C(reset)%C(auto)%d%C(reset) - %C(white)%s%C(reset) %C(blue)(%ar)%C(reset) %C(dim white)- %an%C(reset)"
+
+[init]
+	defaultBranch = main
 
 [interactive]
 	singlekey = true
+
+[maintenance]
+	auto = true
+	strategy = incremental
+
+[merge]
+	autostash = true
+	conflictstyle = zdiff3
 
 [push]
 	autosetupremote = true
@@ -65,23 +68,21 @@ name = "Michael van der Loo"
 	rebase = merges
 
 [rerere]
-	enabled = 1
 	autoupdate = true
+	enabled = 1
 
 [rebase]
-	autostash = true
 	autosquash = true
-
-[merge]
-	conflictstyle = zdiff3
 	autostash = true
 
 [submodule]
 	recurse = true
 
-[maintenance]
-	auto = true
-	strategy = incremental
+[status]
+	branch = true
+	showStash = true
+	showUntrackedFiles = all
 
-[format]
-	pretty = "format:%C(yellow)%h%C(reset)%C(auto)%d%C(reset) - %C(white)%s%C(reset) %C(blue)(%ar)%C(reset) %C(dim white)- %an%C(reset)"
+[tag]
+	sort = -version:refname
+
