@@ -1,8 +1,11 @@
+# load configs from ./local (if it exists) after this file has loaded
+config-file = "?local"
+
 quit-after-last-window-closed = true
 
-cursor-opacity=0.5
+# wrap shell with tmux
+command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on || { echo "tmux exited with $?"; read _; break; }; done'
 
-# no confirmation on close, use tmux!
 confirm-close-surface = false
 
 # enable ligatures
@@ -18,53 +21,9 @@ font-feature = ss09
 font-feature = calt
 font-feature = liga
 
-font-size = 12
-# adjust-cell-height = 6
-# adjust-font-baseline = 0
+window-padding-x = 8
+window-padding-y = 8
 
-# background
-# background-opacity = 1
-# background-blur-radius = 20
+window-inherit-working-directory = false
 
-window-padding-x = 0
-window-padding-y = 8,0
-# window-padding-color = extend
-
-# window-vsync = false
-# window-inherit-working-directory = false
-
-# keybindings
-# keybind = clear
 keybind = cmd+ctrl+r=reload_config
-keybind = cmd+t=ignore
-# keybind = ctrl+a>ctrl+a=text:\x01
-# # keybind = ctrl+a>c=new_window
-# keybind = ctrl+a>c=new_tab
-# keybind = ctrl+a>p=previous_tab
-# keybind = ctrl+a>n=next_tab
-# keybind = ctrl+a>.=last_tab
-# # goto_tab
-# # move_tab
-# keybind = ctrl+a>shift+p=move_tab:-1
-# keybind = ctrl+a>shift+n=move_tab:1
-# # toggle_tab_overview
-#
-# keybind = ctrl+a>shift+\=new_split:left
-# keybind = ctrl+a>-=new_split:down
-# keybind = ctrl+a>shift+-=new_split:up
-# keybind = ctrl+a>\=new_split:right
-#
-# keybind = ctrl+a>backspace=close_surface
-#
-# keybind = ctrl+a>h=goto_split:left
-# keybind = ctrl+a>j=goto_split:bottom
-# keybind = ctrl+a>k=goto_split:top
-# keybind = ctrl+a>l=goto_split:right
-#
-# keybind = ctrl+a>m=toggle_split_zoom
-# # keybind = ctrl+a>=resize_split
-# keybind = ctrl+a>;=equalize_splits
-# # inspector
-# # open_config
-# keybind = ctrl+a>shift+r=reload_config
-# # keybind = toggle_quick_terminal
