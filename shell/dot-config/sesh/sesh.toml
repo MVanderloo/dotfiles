@@ -1,0 +1,6 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+blacklist = []
+dir_length = 2
+
+[default_session]
+preview_command = "eza -T -L 2 --icons --color=always --group-directories-last {}"
