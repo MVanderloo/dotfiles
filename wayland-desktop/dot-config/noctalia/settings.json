@@ -44,12 +44,12 @@
         "barType": "simple",
         "capsuleColorKey": "none",
         "capsuleOpacity": 1,
-        "contentPadding": 6,
+        "contentPadding": 4,
         "density": "default",
         "displayMode": "always_visible",
         "enableExclusionZoneInset": true,
         "floating": false,
-        "fontScale": 1.2,
+        "fontScale": 1.3,
         "frameRadius": 12,
         "frameThickness": 8,
         "hideOnOverview": false,
@@ -79,33 +79,6 @@
             "center": [
                 {
                     "compactMode": false,
-                    "hideMode": "hidden",
-                    "hideWhenIdle": false,
-                    "id": "MediaMini",
-                    "maxWidth": 145,
-                    "panelShowAlbumArt": true,
-                    "scrollingMode": "hover",
-                    "showAlbumArt": true,
-                    "showArtistFirst": true,
-                    "showProgressRing": true,
-                    "showVisualizer": false,
-                    "textColor": "none",
-                    "useFixedWidth": false,
-                    "visualizerType": "linear"
-                }
-            ],
-            "left": [
-                {
-                    "colorizeDistroLogo": false,
-                    "colorizeSystemIcon": "primary",
-                    "customIconPath": "",
-                    "enableColorization": true,
-                    "icon": "noctalia",
-                    "id": "ControlCenter",
-                    "useDistroLogo": true
-                },
-                {
-                    "compactMode": false,
                     "diskPath": "/",
                     "iconColor": "primary",
                     "id": "SystemMonitor",
@@ -127,18 +100,34 @@
                     "usePadding": true
                 }
             ],
-            "right": [
+            "left": [
                 {
-                    "blacklist": [
-                    ],
-                    "chevronColor": "none",
-                    "colorizeIcons": false,
-                    "drawerEnabled": true,
-                    "hidePassive": false,
-                    "id": "Tray",
-                    "pinned": [
-                    ]
+                    "colorizeDistroLogo": false,
+                    "colorizeSystemIcon": "primary",
+                    "customIconPath": "",
+                    "enableColorization": true,
+                    "icon": "noctalia",
+                    "id": "ControlCenter",
+                    "useDistroLogo": true
                 },
+                {
+                    "compactMode": false,
+                    "hideMode": "hidden",
+                    "hideWhenIdle": false,
+                    "id": "MediaMini",
+                    "maxWidth": 145,
+                    "panelShowAlbumArt": true,
+                    "scrollingMode": "hover",
+                    "showAlbumArt": true,
+                    "showArtistFirst": true,
+                    "showProgressRing": true,
+                    "showVisualizer": false,
+                    "textColor": "none",
+                    "useFixedWidth": false,
+                    "visualizerType": "linear"
+                }
+            ],
+            "right": [
                 {
                     "characterCount": 2,
                     "colorizeIcons": false,
@@ -176,9 +165,6 @@
                     "id": "NotificationHistory",
                     "showUnreadBadge": true,
                     "unreadBadgeColor": "primary"
-                },
-                {
-                    "id": "plugin:screen-recorder"
                 }
             ]
         }
@@ -326,7 +312,7 @@
         "clockFormat": "hh\\nmm",
         "clockStyle": "custom",
         "compactLockScreen": false,
-        "dimmerOpacity": 0.2,
+        "dimmerOpacity": 0.1,
         "enableBlurBehind": true,
         "enableLockScreenCountdown": true,
         "enableLockScreenMediaControls": false,
@@ -335,7 +321,7 @@
         "iRadiusRatio": 0,
         "keybinds": {
             "keyDown": [
-                "Down"
+                "Ctrl+N"
             ],
             "keyEnter": [
                 "Return",
@@ -345,16 +331,16 @@
                 "Esc"
             ],
             "keyLeft": [
-                "Left"
+                "Ctrl+B"
             ],
             "keyRemove": [
-                "Del"
+                "Backspace"
             ],
             "keyRight": [
-                "Right"
+                "Ctrl+F"
             ],
             "keyUp": [
-                "Up"
+                "Ctrl+P"
             ]
         },
         "language": "",
@@ -619,7 +605,7 @@
         "monitorDirectories": [
         ],
         "overviewBlur": 0.4,
-        "overviewEnabled": false,
+        "overviewEnabled": true,
         "overviewTint": 0.6,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 3600,
