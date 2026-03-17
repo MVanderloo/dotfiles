@@ -14,7 +14,7 @@ input {
         repeat-rate 30
 
         xkb {
-            options "caps:ctrl_modifier,altwin:swap_alt_win"
+            options "caps:ctrl_modifier"
         }
 
         numlock
