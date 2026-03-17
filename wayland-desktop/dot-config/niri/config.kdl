@@ -4,10 +4,6 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
 
-overview {
-  backdrop-color "#26233a"
-}
-
 input {
     keyboard {
         repeat-delay 220
@@ -208,6 +204,7 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
+    Mod+Ctrl+P { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
@@ -229,24 +226,6 @@ binds {
     // Mod+Shift+P { power-off-monitors; }
 }
 
-// You can configure outputs by their name, which you can find
-// by running `niri msg outputs` while inside a niri instance.
-// The built-in laptop monitor is usually called "eDP-1".
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Outputs
-// Remember to uncomment the node by removing "/-"!
-// /-output "eDP-1" {
-//     mode "1920x1080@120.030"
-//
-//     scale 2
-//     transform "normal"
-//     position x=1280 y=0
-// }
-/- output "DP-1" {
-    mode "2560x1440@359.979" // Set resolution and refresh rate
-    scale 1 // No scaling (use 2 for HiDPI)
-}
-
 layout {
     gaps 4
 
@@ -254,18 +233,6 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-    }
-
-    focus-ring {
-        width 1.5
-
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-
-    }
-
-    border {
-        off
     }
 }
 
@@ -277,20 +244,5 @@ animations {
     slowdown 0.8
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
-window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-
-    block-out-from "screen-capture"
-}
-
 include "./noctalia.kdl"
+include "./local.kdl"
