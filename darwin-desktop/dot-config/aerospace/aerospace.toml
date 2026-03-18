@@ -1,6 +1,6 @@
 start-at-login = true
 after-startup-command = [
-  'exec-and-forget borders',
+  'exec-and-forget borders style=round width=6.0 hidpi=off active_color=0xFFFFFFFF inactive_border=0x00000000',
   # 'exec-and-forget defaults write -g NSAutomaticWindowAnimationsEnabled -bool false',
 ]
 key-mapping.preset = 'qwerty'
