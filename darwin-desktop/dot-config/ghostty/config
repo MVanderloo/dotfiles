@@ -4,8 +4,7 @@ config-file = "?local"
 quit-after-last-window-closed = true
 
 # wrap shell with tmux
-# command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on; done'
-command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on || { echo "tmux exited with $?"; read _; break; }; done'
+command = sh -c 'eval "$(/opt/homebrew/bin/brew shellenv)" && while true; do tmux new-session \; set-option destroy-unattached on || { echo "tmux exited with $?"; read _; break; }; done'
 
 confirm-close-surface = false
 
