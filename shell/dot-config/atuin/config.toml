@@ -105,3 +105,6 @@ filters = [
 
 [ui]
 columns = ["exit", "time", "duration", "command"]
+
+[logs]
+dir = "$XDG_STATE_HOME/atuin/logs"
