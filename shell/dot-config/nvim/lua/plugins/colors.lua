@@ -11,4 +11,7 @@ vim.pack.add({
 --   transparent = true,
 -- }
 
+-- Make window background transparent
+-- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+
 vim.cmd 'colorscheme catppuccin-mocha'

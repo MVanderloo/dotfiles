@@ -21,20 +21,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
--- goto last cursor location when opening file
-vim.api.nvim_create_autocmd('BufReadPost', {
-  callback = function(event)
-    local exclude = {}
-
-    local buf = event.buf
-    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].last_cursor_loc then return end
-    vim.b[buf].last_cursor_loc = true
-    local mark = vim.api.nvim_buf_get_mark(buf, '"')
-    local lcount = vim.api.nvim_buf_line_count(buf)
-    if mark[1] > 0 and mark[1] <= lcount then pcall(vim.api.nvim_win_set_cursor, 0, mark) end
-  end,
-})
-
 -- create all intermediate directories along path when saving a file
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   callback = function(event)
@@ -84,7 +70,54 @@ vim.api.nvim_create_autocmd({ 'BufDelete', 'BufWipeout' }, {
   command = 'wshada',
 })
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight on yank',
-  callback = function() vim.hl.on_yank { higroup = 'Visual', priority = 250 } end,
+-- Install tree-sitter parser
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(event)
+    local lang = vim.treesitter.language.get_lang(event.match)
+    if not lang then return end
+    local ok = pcall(vim.treesitter.start, event.buf, lang)
+    if not ok then
+      local parsers = require 'nvim-treesitter.parsers'
+      if not parsers[lang] then return end
+      require('nvim-treesitter').install { lang }
+      vim.notify('Installing tree-sitter parser for ' .. lang, vim.log.levels.INFO)
+    end
+  end,
+})
+
+-- Auto resize
+vim.api.nvim_create_autocmd('VimResized', {
+  callback = function() vim.cmd.wincmd '=' end,
+})
+
+-- Restore cursor, folds, etc.
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  callback = function() vim.cmd 'silent! mkview' end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function() vim.cmd 'silent! loadview' end,
+})
+
+-- Automatic sessions
+local session_dir = vim.fn.stdpath 'data' .. '/sessions'
+vim.fn.mkdir(session_dir, 'p')
+
+-- local function session_path() return session_dir .. '/' .. vim.fn.getcwd():gsub('/', '%%') .. '.vim' end
+local function session_path() return vim.fn.getcwd() .. '/Session.vim' end
+
+vim.api.nvim_create_autocmd('VimLeavePre', {
+  desc = 'Save session',
+  callback = function() vim.cmd('mksession! ' .. vim.fn.fnameescape(session_path())) end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Restore session',
+  nested = true,
+  callback = function()
+    if vim.fn.argc() == 0 then
+      local path = session_path()
+      if vim.fn.filereadable(path) == 1 then vim.cmd('silent source ' .. vim.fn.fnameescape(path)) end
+    end
+  end,
 })

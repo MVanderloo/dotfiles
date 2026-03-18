@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'white' })
+vim.api.nvim_set_hl(0, 'winseparator', { fg = 'white' })
 
 require 'config.options'
 require 'config.keymaps'
@@ -22,7 +22,6 @@ require 'plugins.git'
 require 'plugins.picker'
 require 'plugins.quickfix'
 require 'plugins.rendering'
-require 'plugins.session'
 require 'plugins.statusline'
 require 'plugins.treesitter'
 require 'plugins.undo'

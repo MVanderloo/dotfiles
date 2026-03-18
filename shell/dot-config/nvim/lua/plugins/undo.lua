@@ -9,7 +9,7 @@ local function undotree()
   if not close then vim.bo.filetype = 'undotree' end
 end
 
-vim.keymap.set('n', '<leader>U', undotree)
+vim.keymap.set('n', '<leader>u', undotree)
 
 vim.pack.add({
   'https://github.com/sunnytamang/select-undo.nvim',

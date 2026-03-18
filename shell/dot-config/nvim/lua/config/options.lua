@@ -24,17 +24,13 @@ vim.o.scrolloff = 10
 vim.o.showmode = false
 vim.o.cursorline = true
 vim.o.list = true
-vim.o.listchars = 'trail:·,nbsp:␣,tab:  '
+-- vim.o.listchars = 'trail:·,nbsp:␣,tab:  '
+vim.o.listchars = 'trail:·,nbsp:␣,tab:│ '
 vim.o.winborder = 'bold' -- "single" "rounded" "bold"
-
--- Make window background transparent
--- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 
 -- Files
 vim.o.autowriteall = true
-vim.o.autowrite = true
 vim.o.updatetime = 500
-vim.o.hidden = true
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undodir = vim.fn.stdpath 'data' .. '/undo'
@@ -45,7 +41,7 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,globals,help,localoptions,opt
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.errorbells = false
-vim.o.shortmess = 'a'
+-- vim.o.shortmess = 'a'
 
 vim.o.iskeyword = vim.o.iskeyword .. ',-'
 vim.o.virtualedit = 'block'
@@ -53,7 +49,7 @@ vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 
 -- Completion
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = 'menuone,noselect'
 
 -- Key timeout
 vim.o.timeoutlen = 1000

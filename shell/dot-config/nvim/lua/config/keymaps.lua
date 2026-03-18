@@ -18,17 +18,11 @@ set('n', '<Esc>', '<cmd>nohlsearch<cr>')
 set('n', '<Tab>', 'za', { silent = true, noremap = true })
 
 -- Ctrl-i is the same thing as tab - use ctrl-shift-o to jump forward
-set('n', '<C-S-o>', '<C-i>', { silent = true, noremap = true })
+-- set('n', '<C-S-o>', '<C-i>', { silent = true, noremap = true })
 
 -- Keep highlight when indenting block
 set('v', '<', '<gv', { noremap = true })
 set('v', '>', '>gv', { noremap = true })
-
--- Resize window using <ctrl> arrow keys
-set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase Window Height' })
-set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease Window Height' })
-set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Width' })
-set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- Center the cursor after these operations
 set({ 'n', 'x', 'o' }, 'n', 'nzz')
@@ -39,10 +33,9 @@ set('n', 'gla', function() vim.lsp.buf.code_action { apply = true } end, { desc 
 set('n', 'glr', function() vim.lsp.buf.rename() end, { desc = 'Rename' })
 
 set({ 'n', 'x' }, '<leader>r', '<cmd>restart<cr>', { desc = 'Restart' })
-set({ 'n', 'x' }, '<leader>u', function() vim.pack.update() end, { desc = 'Update plugins' })
 
-set({ 'n', 'x' }, '[t', 'gt', { desc = 'previous tab' })
-set({ 'n', 'x' }, ']t', 'gt', { desc = 'next tab' })
+set({ 'n', 'x' }, '[t', 'gT', { desc = 'Previous tab' })
+set({ 'n', 'x' }, ']t', 'gt', { desc = 'Next tab' })
 
 -- undo using U
 set({ 'n', 'x' }, 'U', '<C-r>', { noremap = true })
