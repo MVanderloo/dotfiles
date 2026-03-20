@@ -1,4 +1,4 @@
-worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/{{ branch | sanitize }}"
 skip-shell-integration-prompt = true
 skip-commit-generation-prompt = true
 
@@ -27,17 +27,20 @@ pager = "delta --paging=never"
 [aliases]
 url = "echo http://localhost:{{ branch | hash_port }}"
 
-# [pre-switch]
+[pre-switch]
+debug = "echo {{worktree_path}}"
+# tmux-session = "sesh connect {{worktree_path}}"
+
 # [post-start]
 
 [post-create]
-enter-tmux-session = "sesh connect {{worktree_path}}"
 git-submodules = "git submodule update --init --recursive"
 trust-direnv = "direnv allow || true"
 trust-nvim = "nvim -es .nvim.lua -c 'trust' +qa || true"
 
-# [post-switch]
-# tmux-session = "sesh connect ."
+[post-switch]
+debug = "echo {{worktree_path}}"
+tmux-session = "sesh connect {{worktree_path}}"
 
 # [pre-commit]
 ## Before commit during merge (blocking)
