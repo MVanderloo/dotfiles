@@ -1,16 +1,19 @@
-worktree-path = "{{ repo_path }}/{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 skip-shell-integration-prompt = true
 skip-commit-generation-prompt = true
 
 [list]
-summary = false  # Enable LLM branch summaries (requires [commit.generation])
-full = false     # Show CI, main…± diffstat, and LLM summaries (--full)
-branches = false # Include branches without worktrees (--branches)
-remotes = false  # Include remote-only branches (--remotes)
+summary = false # Enable LLM branch summaries (requires [commit.generation])
+full = false    # Show CI, main…± diffstat, and LLM summaries (--full)
+branches = true # Include branches without worktrees (--branches)
+remotes = false # Include remote-only branches (--remotes)
 
 [commit]
 # Shared by `wt step commit`, `wt step squash`, and `wt merge`.
 stage = "all" # What to stage before commit: "all", "tracked", or "none"
+
+# [commit.generation]
+# command = "opencode run -m ollama/mistral:7b"
 
 [merge]
 squash = true # Squash commits into one (--no-squash to preserve history)
@@ -18,29 +21,30 @@ commit = true # Commit uncommitted changes first (--no-commit to skip)
 rebase = true # Rebase onto target before merge (--no-rebase to skip)
 remove = true # Remove worktree after merge (--no-remove to keep)
 verify = true # Run project hooks (--no-verify to skip)
+no-ff = false # Create a merge commit even when fast-forward is possible (--no-ff)
+
+[switch]
+no-cd = true
 
 [switch.picker]
 # TODO: diffnav ?
 pager = "delta --paging=never"
-# timeout-ms = 200
+timeout-ms = 500
 
 [aliases]
 url = "echo http://localhost:{{ branch | hash_port }}"
 
 [pre-switch]
-debug = "echo {{worktree_path}}"
+tmux-session = "sesh connect {{worktree_path}}"
+# [post-switch]
 # tmux-session = "sesh connect {{worktree_path}}"
 
-# [post-start]
+[post-start]
+trust-nvim = "nvim -es .nvim.lua -c 'trust' +qa || true"
+git-submodules = "git submodule update --init --recursive"
 
 [post-create]
-git-submodules = "git submodule update --init --recursive"
 trust-direnv = "direnv allow || true"
-trust-nvim = "nvim -es .nvim.lua -c 'trust' +qa || true"
-
-[post-switch]
-debug = "echo {{worktree_path}}"
-tmux-session = "sesh connect {{worktree_path}}"
 
 # [pre-commit]
 ## Before commit during merge (blocking)
@@ -48,11 +52,16 @@ tmux-session = "sesh connect {{worktree_path}}"
 # [pre-merge]
 ## Before merging to target (blocking)
 
-# [post-merge]
-## After successful merge (blocking)
+[post-merge]
+# After successful merge (blocking)
+tmux-session = "sesh connect {{target_worktree_path}}"
+
+# [pre-remove]
+# previous-session = "sesh last"
 
 [pre-remove]
-previous-session = "sesh last"
+# tmux-connect-upstream = "sesh connect {{ target_worktree_path }}"
+debug = "echo '{{ target_worktree_path }}'"
 
 [post-remove]
 kill-tmux-sessions = """
