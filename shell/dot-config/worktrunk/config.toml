@@ -1,4 +1,5 @@
-worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+# worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
+worktree-path = "{{ repo_path }}/{{ branch | sanitize }}"
 skip-shell-integration-prompt = true
 skip-commit-generation-prompt = true
 
@@ -34,16 +35,18 @@ timeout-ms = 500
 [aliases]
 url = "echo http://localhost:{{ branch | hash_port }}"
 
-[pre-switch]
+# [pre-switch]
+# debug = "echo '{{target}}'"
+# tmux-session = "sesh connect {{target_worktree_path}}"
+
+[post-switch]
 tmux-session = "sesh connect {{worktree_path}}"
-# [post-switch]
-# tmux-session = "sesh connect {{worktree_path}}"
 
 [post-start]
 trust-nvim = "nvim -es .nvim.lua -c 'trust' +qa || true"
-git-submodules = "git submodule update --init --recursive"
 
-[post-create]
+[pre-start]
+git-submodules = "git submodule update --init --recursive"
 trust-direnv = "direnv allow || true"
 
 # [pre-commit]
@@ -52,16 +55,15 @@ trust-direnv = "direnv allow || true"
 # [pre-merge]
 ## Before merging to target (blocking)
 
-[post-merge]
+# [post-merge]
 # After successful merge (blocking)
-tmux-session = "sesh connect {{target_worktree_path}}"
-
-# [pre-remove]
-# previous-session = "sesh last"
+# tmux-session = "sesh connect {{target_worktree_path}}"
 
 [pre-remove]
-# tmux-connect-upstream = "sesh connect {{ target_worktree_path }}"
 debug = "echo '{{ target_worktree_path }}'"
+tmux-connect-upstream = "sesh connect {{ target_worktree_path }}"
+debug2 = "echo '{{ target_worktree_path }}'"
+# previous-session = "sesh last"
 
 [post-remove]
 kill-tmux-sessions = """
