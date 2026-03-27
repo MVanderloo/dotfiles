@@ -103,8 +103,8 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
 local session_dir = vim.fn.stdpath 'data' .. '/sessions'
 vim.fn.mkdir(session_dir, 'p')
 
--- local function session_path() return session_dir .. '/' .. vim.fn.getcwd():gsub('/', '%%') .. '.vim' end
-local function session_path() return vim.fn.getcwd() .. '/Session.vim' end
+local function session_path() return session_dir .. '/' .. vim.fn.getcwd():gsub('/', '%%') .. '.vim' end
+-- local function session_path() return vim.fn.getcwd() .. '/Session.vim' end
 
 vim.api.nvim_create_autocmd('VimLeavePre', {
   desc = 'Save session',
