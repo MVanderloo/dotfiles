@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client:supports_method 'textDocument/codeAction' then map('n', 'gla', vim.lsp.buf.code_action) end
     if client:supports_method 'textDocument/rename' then map('n', 'glr', vim.lsp.buf.rename) end
     if client:supports_method 'textDocument/hover' then map({ 'n', 'x' }, 'K', vim.lsp.buf.hover) end
-    if client:supports_method 'textDocument/documentColor' then vim.lsp.document_color.enable(true, args.buf) end
+    -- if client:supports_method 'textDocument/documentColor' then vim.lsp.document_color.enable(true, args.buf) end
     if client:supports_method 'textDocument/signatureHelp' then map({ 'i' }, '<C-k>', vim.lsp.buf.signature_help) end
     if client:supports_method 'textDocument/documentHighlight' then
       vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
