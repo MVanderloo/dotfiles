@@ -9,6 +9,7 @@ end
 require('lualine').setup {
   refresh = { statusline = 1, tabline = 10, winbar = 10 },
   options = {
+    theme = 'auto',
     component_separators = { left = '|', right = '|' },
     section_separators = { left = '', right = '' },
   },
