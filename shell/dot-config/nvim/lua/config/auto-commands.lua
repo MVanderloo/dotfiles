@@ -52,14 +52,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  desc = 'Disable features in big files',
-  pattern = 'bigfile',
-  callback = function(args)
-    vim.schedule(function() vim.bo[args.buf].syntax = vim.filetype.match { buf = args.buf } or '' end)
-  end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
   desc = 'Close with <q>',
   pattern = { 'git', 'help', 'man', 'qf', 'query', 'scratch' },
   callback = function(args) vim.keymap.set('n', 'q', '<cmd>quit<cr>', { buffer = args.buf }) end,
@@ -90,14 +82,15 @@ vim.api.nvim_create_autocmd('VimResized', {
   callback = function() vim.cmd.wincmd '=' end,
 })
 
--- Restore cursor, folds, etc.
-vim.api.nvim_create_autocmd('BufWinLeave', {
-  callback = function() vim.cmd 'silent! mkview' end,
-})
-
-vim.api.nvim_create_autocmd('BufWinEnter', {
-  callback = function() vim.cmd 'silent! loadview' end,
-})
+-- This is already handled with sessions
+-- -- Restore cursor, folds, etc.
+-- vim.api.nvim_create_autocmd('BufWinLeave', {
+--   callback = function() vim.cmd 'silent! mkview' end,
+-- })
+--
+-- vim.api.nvim_create_autocmd('BufWinEnter', {
+--   callback = function() vim.cmd 'silent! loadview' end,
+-- })
 
 -- Automatic sessions
 local session_dir = vim.fn.stdpath 'data' .. '/sessions'
