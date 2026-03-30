@@ -26,4 +26,5 @@ window-padding-y = 8
 
 window-inherit-working-directory = false
 
+keybind = clear
 keybind = cmd+ctrl+r=reload_config
