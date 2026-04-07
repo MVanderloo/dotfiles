@@ -35,4 +35,5 @@ macos-icon-screen-color = black
 window-inherit-working-directory = false
 
 # keybindings
+keybind = clear
 keybind = cmd+ctrl+r=reload_config
