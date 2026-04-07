@@ -22,10 +22,10 @@ commit = true # Commit uncommitted changes first (--no-commit to skip)
 rebase = true # Rebase onto target before merge (--no-rebase to skip)
 remove = true # Remove worktree after merge (--no-remove to keep)
 verify = true # Run project hooks (--no-verify to skip)
-no-ff = false # Create a merge commit even when fast-forward is possible (--no-ff)
+ff = true
 
 [switch]
-no-cd = true
+cd = false
 
 [switch.picker]
 # TODO: diffnav ?
@@ -36,7 +36,6 @@ timeout-ms = 500
 url = "echo http://localhost:{{ branch | hash_port }}"
 
 # [pre-switch]
-# debug = "echo '{{target}}'"
 # tmux-session = "sesh connect {{target_worktree_path}}"
 
 [post-switch]
@@ -60,9 +59,7 @@ trust-direnv = "direnv allow || true"
 # tmux-session = "sesh connect {{target_worktree_path}}"
 
 [pre-remove]
-debug = "echo '{{ target_worktree_path }}'"
 tmux-connect-upstream = "sesh connect {{ target_worktree_path }}"
-debug2 = "echo '{{ target_worktree_path }}'"
 # previous-session = "sesh last"
 
 [post-remove]
@@ -71,5 +68,3 @@ tmux list-sessions -F '#{session_name} #{session_path}' \
   | awk '$2 == "{{ worktree_path }}" {print $1}' \
   | xargs -I{} tmux kill-session -t {} 2>/dev/null || true
 """
-
-[projects]
