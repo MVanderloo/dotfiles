@@ -8,3 +8,9 @@ preview_command = "eza -T -L 2 --icons --color=always --group-directories-last {
 [[session]]
 name = "Dotfiles"
 path = "~/.local/dotfiles/"
+
+[[session]]
+name = "Downloads"
+path = "~/Downloads"
+preview_command = "eza -al --sort=modified -r"
+startup_command = "eza -al --sort=modified"
