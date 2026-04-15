@@ -84,13 +84,13 @@ vim.api.nvim_create_autocmd('VimResized', {
 
 -- This is already handled with sessions
 -- -- Restore cursor, folds, etc.
--- vim.api.nvim_create_autocmd('BufWinLeave', {
---   callback = function() vim.cmd 'silent! mkview' end,
--- })
---
--- vim.api.nvim_create_autocmd('BufWinEnter', {
---   callback = function() vim.cmd 'silent! loadview' end,
--- })
+vim.api.nvim_create_autocmd('BufWinLeave', {
+  callback = function() vim.cmd 'silent! mkview' end,
+})
+
+vim.api.nvim_create_autocmd('BufWinEnter', {
+  callback = function() vim.cmd 'silent! loadview' end,
+})
 
 -- Automatic sessions
 local session_dir = vim.fn.stdpath 'data' .. '/sessions'
