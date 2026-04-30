@@ -18,7 +18,7 @@ require('conform').setup {
     go = { 'goimports', 'gofmt' },
     less = { 'prettier' },
     lua = { 'stylua' },
-    markdown = { 'mdformat' },
+    markdown = { 'prettier' },
     python = { 'ruff_format', 'ruff_fix' },
     roc = { 'roc' },
     rust = { 'rustfmt' },
