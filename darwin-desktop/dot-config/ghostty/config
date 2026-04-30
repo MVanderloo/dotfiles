@@ -36,4 +36,10 @@ window-inherit-working-directory = false
 
 # keybindings
 keybind = clear
-keybind = cmd+ctrl+r=reload_config
+keybind = super+ctrl+r=reload_config
+keybind = super+==increase_font_size:1
+keybind = super++=increase_font_size:1
+keybind = super+-=decrease_font_size:1
+# keybind = copy=copy_to_clipboard:mixed
+keybind = paste=paste_from_clipboard
+keybind = super+v=paste_from_clipboard
