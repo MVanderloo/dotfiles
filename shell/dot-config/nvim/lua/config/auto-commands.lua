@@ -114,3 +114,10 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = ".nvim.lua",
+  callback = function(ev)
+    vim.secure.trust({ action = "allow", path = vim.api.nvim_buf_get_name(ev.buf) })
+  end,
+})
