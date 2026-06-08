@@ -79,8 +79,8 @@ cmd-alt-l = 'join-with right'
 # cmd-leftSquareBracket = 'join-with left'
 # cmd-rightSquareBracket = 'join-with right'
 
-cmd-m = 'fullscreen'
-# cmd-f = 'macos-native-fullscreen'
+cmd-f = 'fullscreen'
+cmd-shift-f = 'macos-native-fullscreen'
 
 cmd-comma = 'workspace prev'
 cmd-shift-comma = 'move-node-to-workspace --focus-follows-window prev'
