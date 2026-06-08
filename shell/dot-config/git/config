@@ -51,30 +51,30 @@
 	defaultBranch = main
 
 [interactive]
-	singlekey = true
+	singleKey = true
 
 [maintenance]
 	auto = true
 	strategy = incremental
 
 [merge]
-	autostash = true
-	conflictstyle = zdiff3
+	autoStash = true
+	conflictStyle = zdiff3
 
 [push]
-	autosetupremote = true
+	autoSetupRemote = true
 	default = current
 
 [pull]
 	rebase = merges
 
 [rerere]
-	autoupdate = true
+	autoUpdate = true
 	enabled = 1
 
 [rebase]
-	autosquash = true
-	autostash = true
+	autoSquash = true
+	autoStash = true
 
 [submodule]
 	fetchJobs = 0
@@ -87,4 +87,3 @@
 
 [tag]
 	sort = -version:refname
-
