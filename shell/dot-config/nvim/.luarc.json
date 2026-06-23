@@ -4,10 +4,12 @@
     "version": "LuaJIT"
   },
   "workspace": {
+
     "library": [
       "lua",
       "$VIMRUNTIME",
-      "${3rd}/luv/library"
+      "${3rd}/luv/library",
+      "~/.local/share/nvim/site/pack/core/opt"
     ],
     "checkThirdParty": false
   }
