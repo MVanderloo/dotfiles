@@ -14,6 +14,7 @@ require('conform').setup {
     javascript = { 'prettier' },
     json = { 'prettier' },
     jsonc = { 'prettier' },
+    json5 = { 'prettier' },
     justfile = { 'just' }, -- TODO: test
     go = { 'goimports', 'gofmt' },
     less = { 'prettier' },
