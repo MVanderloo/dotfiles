@@ -4,7 +4,6 @@
     "version": "LuaJIT"
   },
   "workspace": {
-
     "library": [
       "lua",
       "$VIMRUNTIME",
@@ -12,5 +11,9 @@
       "~/.local/share/nvim/site/pack/core/opt"
     ],
     "checkThirdParty": false
+  },
+  "diagnostics": {
+    "globals": ["vim"],
+    "disable": ["missing-fields"]
   }
 }
