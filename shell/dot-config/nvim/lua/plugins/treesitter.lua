@@ -3,7 +3,6 @@ vim.pack.add({
   -- 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
   -- 'https://github.com/folke/ts-comments.nvim',
   'https://github.com/wansmer/treesj',
-  'https://github.com/nvim-mini/mini.ai',
 }, { confirm = false })
 
 local ts_spec = require('mini.ai').gen_spec.treesitter

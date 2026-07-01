@@ -1,5 +1,3 @@
-vim.pack.add({ 'https://github.com/nvim-mini/mini.bracketed' }, { confirm = false })
-
 require('mini.bracketed').setup {
   buffer = { suffix = 'b', options = {} },
   comment = { suffix = 'c', options = {} },

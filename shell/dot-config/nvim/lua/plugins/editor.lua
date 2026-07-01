@@ -1,10 +1,6 @@
 vim.pack.add({
   'https://github.com/lukas-reineke/indent-blankline.nvim',
   'https://github.com/nmac427/guess-indent.nvim',
-  'https://github.com/nvim-mini/mini.align',
-  'https://github.com/nvim-mini/mini.operators',
-  'https://github.com/nvim-mini/mini.pairs',
-  'https://github.com/nvim-mini/mini.surround',
   'https://github.com/bullets-vim/bullets.vim',
 }, { confirm = false })
 

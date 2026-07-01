@@ -1,5 +1,3 @@
-vim.pack.add({ 'https://github.com/nvim-mini/mini.pick' }, { confirm = false })
-
 require('mini.pick').setup()
 
 vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>Pick files<cr>', { noremap = true, silent = true })

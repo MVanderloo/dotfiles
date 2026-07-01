@@ -1,6 +1,5 @@
 vim.pack.add({
   'https://github.com/a7lavinraj/fyler.nvim',
-  'https://github.com/nvim-mini/mini.icons',
   'https://github.com/stevearc/oil.nvim',
 }, { confirm = false })
 
