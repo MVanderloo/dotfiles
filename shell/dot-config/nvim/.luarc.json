@@ -7,8 +7,7 @@
     "library": [
       "lua",
       "$VIMRUNTIME",
-      "${3rd}/luv/library",
-      "~/.local/share/nvim/site/pack/core/opt"
+      "${3rd}/luv/library"
     ],
     "checkThirdParty": false
   },
