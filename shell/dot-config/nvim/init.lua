@@ -10,11 +10,10 @@ require 'config.filetype'
 require 'config.lsp'
 require 'config.ui'
 
-require 'plugins.colors'
-
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' }, { confirm = false })
 
 require 'plugins.bindings'
+require 'colorscheme'
 require 'plugins.completion'
 require 'plugins.diagnostics'
 require 'plugins.editor'

@@ -6,12 +6,4 @@ vim.pack.add({
   -- { src = 'https://github.com/rose-pine/neovim', name = 'rose-pine' },
 }, { confirm = false })
 
--- require('onedark').setup {
---   style = 'darker',
---   transparent = true,
--- }
-
--- Make window background transparent
--- vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-
-vim.cmd 'colorscheme catppuccin-mocha'
+vim.cmd 'colorscheme catppuccin-macchiato'
