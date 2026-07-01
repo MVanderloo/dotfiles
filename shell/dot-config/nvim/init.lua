@@ -12,7 +12,6 @@ require 'config.ui'
 
 vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' }, { confirm = false })
 
-require 'plugins.bindings'
 require 'colorscheme'
 require 'plugins.completion'
 require 'plugins.diagnostics'
