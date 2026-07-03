@@ -36,8 +36,9 @@ binds {
     Mod+W { close-window; }
     Mod+Return { spawn "ghostty"; }
     Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Mod+D { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
     Mod+Ctrl+Q { spawn-sh "swaylock"; }
-    Mod+B { spawn-sh "brave"; }
+    Mod+B { spawn-sh "helium-browser"; }
     MOD+E { spawn-sh "nautilus"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
@@ -172,12 +173,12 @@ binds {
     // * adjust width as a percentage of screen width: "-10%" or "+10%"
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    // Mod+Minus { set-column-width "-10%"; }
+    // Mod+Equal { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    // Mod+Shift+Minus { set-window-height "-10%"; }
+    // Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -233,5 +234,4 @@ animations {
     slowdown 0.8
 }
 
-include "./noctalia.kdl"
 include "./local.kdl"
