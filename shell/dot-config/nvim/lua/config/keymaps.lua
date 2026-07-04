@@ -14,11 +14,9 @@ set({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { desc = 'Up', expr = true, 
 -- Have Esc clear highlighted search
 set('n', '<Esc>', '<cmd>nohlsearch<cr>')
 
--- toggle folds with tab
+-- toggle folds with tab while retaining C-i for jumplist
+set('n', '<C-i>', '<C-i>', { silent = true, noremap = true })
 set('n', '<Tab>', 'za', { silent = true, noremap = true })
-
--- Ctrl-i is the same thing as tab - use ctrl-shift-o to jump forward
--- set('n', '<C-S-o>', '<C-i>', { silent = true, noremap = true })
 
 -- Keep highlight when indenting block
 set('v', '<', '<gv', { noremap = true })
