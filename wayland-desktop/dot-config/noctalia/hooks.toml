@@ -1,0 +1,5 @@
+# ── Hooks ─────────────────────────────────────────────────────────────────────
+# Shared automation hooks. Add machine-specific hooks in local/machine.toml.
+
+[hooks]
+battery_low_percent_threshold = 0

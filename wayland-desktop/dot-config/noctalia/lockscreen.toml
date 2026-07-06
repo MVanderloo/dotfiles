@@ -1,0 +1,37 @@
+# ── Lock Screen ───────────────────────────────────────────────────────────────
+# Shared lock screen settings.
+
+[lockscreen]
+enabled                 = true
+fingerprint             = true
+allow_empty_password    = false
+blurred_desktop         = false
+blur_intensity          = 0.5
+tint_intensity          = 0.3
+wallpaper               = ""
+monitors                = []
+
+# ── Lock Screen Widgets ──────────────────────────────────────────────────────
+
+[lockscreen_widgets]
+enabled = true
+widget_order = ["clock", "weather"]
+
+[lockscreen_widgets.widget.clock]
+type     = "clock"
+output   = "eDP-1"
+cx       = 960.0
+cy       = 200.0
+
+[lockscreen_widgets.widget.clock.settings]
+format = "{:%H:%M}"
+background_opacity = 0.0
+
+[lockscreen_widgets.widget.weather]
+type     = "weather"
+output   = "eDP-1"
+cx       = 960.0
+cy       = 880.0
+
+[lockscreen_widgets.widget.weather.settings]
+background_opacity = 0.0

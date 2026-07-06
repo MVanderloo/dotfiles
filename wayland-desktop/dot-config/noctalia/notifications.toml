@@ -1,0 +1,12 @@
+# ── Notifications ─────────────────────────────────────────────────────────────
+# Shared notification settings.
+
+[notification]
+enable_daemon      = true
+show_app_name      = true
+show_actions       = true
+layer              = "top"          # top | overlay
+scale              = 1.0
+background_opacity = 0.97
+offset_x           = 20
+offset_y           = 8
