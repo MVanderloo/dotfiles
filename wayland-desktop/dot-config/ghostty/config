@@ -1,5 +1,5 @@
-# load configs from ./local (if it exists) after this file has loaded
-config-file = "?local"
+clipboard-read = allow
+clipboard-write = allow
 
 quit-after-last-window-closed = true
 
@@ -7,6 +7,8 @@ quit-after-last-window-closed = true
 command = sh -c 'while true; do tmux new-session \; set-option destroy-unattached on || { echo "tmux exited with $?"; read _; break; }; done'
 
 confirm-close-surface = false
+
+window-decoration = false
 
 # enable ligatures
 font-feature = ss01
@@ -27,4 +29,14 @@ window-padding-y = 8
 window-inherit-working-directory = false
 
 keybind = clear
-keybind = cmd+ctrl+r=reload_config
+keybind = super+ctrl+r=reload_config
+keybind = super+==increase_font_size:1
+keybind = super++=increase_font_size:1
+keybind = super+-=decrease_font_size:1
+keybind = paste=paste_from_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = ctrl+v=paste_from_clipboard
+
+# load configs from ./local (if it exists) after this file has loaded
+config-file = "?local"
+theme = noctalia
