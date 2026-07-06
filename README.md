@@ -4,12 +4,12 @@ Managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| `shell` | My full CLI environment |
-| `server` | Minimal dependencies for servers I ssh into |
-| `wayland-desktop` | Linux desktop |
-| `darwin-desktop` | macOS desktop |
+| Package           | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `shell`           | My full CLI environment                     |
+| `server`          | Minimal dependencies for servers I ssh into |
+| `wayland-desktop` | Linux desktop                               |
+| `darwin-desktop`  | macOS desktop                               |
 
 ## Usage
 
