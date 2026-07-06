@@ -19,17 +19,19 @@ check-dependencies package:
     just _check atuin
     just _check bash
     just _check bat
+    just _check delta
     just _check direnv
     just _check eza
     just _check fd
     just _check fish
     just _check fzf
+    just _check git
     just _check just # lol?
     just _check nvim
+    just _check rg
     just _check sesh
     just _check sl
     just _check starship
-    just _check rg
     just _check tmux
     just _check yazi
     just _check zoxide
@@ -38,26 +40,17 @@ check-dependencies package:
     just _check_optional cloc
     just _check_optional dust
     just _check_optional fastfetch
+    just _check_optional gh
+    just _check_optional glab
     just _check_optional gpg
+    just _check_optional jj
     just _check_optional jq
     just _check_optional op
     just _check_optional prek
     just _check_optional sd
+    just _check_optional worktrunk
     just _check_optional systemfd
     just _check_optional watchexec
-    printf "\n"
-    just _section "Version Control"
-    just _check delta
-    just _check git
-    just _check_optional diffnav
-    just _check_optional gh
-    just _check_optional git-filter-repo
-    just _check_optional gitu
-    just _check_optional glab
-    just _check_optional jj
-    just _check_optional lazygit
-    just _check_optional lazyjj
-    just _check_optional worktrunk
     printf "\n"
     just _section "Data Tools"
     just _check_optional clickhouse
@@ -65,6 +58,7 @@ check-dependencies package:
     just _check_optional lazysql
     just _check_optional parquet-tools
     just _check_optional psql
+    just _check_optional rsync
     just _check_optional sqlit
     just _check_optional sqlite
     just _check_optional gzip
