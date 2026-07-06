@@ -107,7 +107,7 @@ filters = [
 columns = ["exit", "time", "duration", "command"]
 
 [logs]
-dir = "$XDG_STATE_HOME/atuin/logs"
+dir = "~/.local/share/atuin/logs"
 
 [ai]
 enabled = false
