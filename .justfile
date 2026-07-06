@@ -21,6 +21,7 @@ check-dependencies package:
     just _check bat
     just _check direnv
     just _check eza
+    just _check fd
     just _check fish
     just _check fzf
     just _check just # lol?
@@ -28,6 +29,7 @@ check-dependencies package:
     just _check sesh
     just _check sl
     just _check starship
+    just _check rg
     just _check tmux
     just _check yazi
     just _check zoxide
@@ -36,12 +38,10 @@ check-dependencies package:
     just _check_optional cloc
     just _check_optional dust
     just _check_optional fastfetch
-    just _check_optional fd
     just _check_optional gpg
     just _check_optional jq
     just _check_optional op
     just _check_optional prek
-    just _check_optional rg
     just _check_optional sd
     just _check_optional systemfd
     just _check_optional watchexec
@@ -108,15 +108,8 @@ check-dependencies package:
     just _check_optional yamlfix
     just _check_optional zigfmt
     printf "\n"
-    just _section "AI"
-    just _check_optional goose
-    just _check_optional ollama
-    just _check_optional opencode
-    printf "\n"
     just _section "Containers"
-    just _check_optional devcontainer
     just _check_optional docker
-    just _check_optional lazydocker
     just _check_optional podman
     printf "\n"
     just _section "Cloud"
