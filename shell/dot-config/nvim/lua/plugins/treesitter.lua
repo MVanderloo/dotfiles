@@ -26,7 +26,7 @@ require('nvim-treesitter').setup {
   indent = { enable = true },
 }
 
-require('nvim-treesitter').install({ 'lua', 'vim', 'vimdoc', 'bash' }):wait(300000)
+-- require('nvim-treesitter').install({ 'lua', 'vim', 'vimdoc', 'bash' })
 
 require('treesj').setup {
   use_default_keymaps = true,
