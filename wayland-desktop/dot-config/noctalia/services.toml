@@ -1,31 +1,28 @@
-# ── Services ──────────────────────────────────────────────────────────────────
-# Shared service settings (weather, audio, brightness, nightlight, location, idle).
-
 [weather]
-enabled         = true
+enabled = true
 refresh_minutes = 30
-unit            = "celsius"
-effects         = true
+unit = "celsius"
+effects = true
 
 [audio]
 enable_overdrive = false
-enable_sounds    = false
-sound_volume     = 0.5
+enable_sounds = false
+sound_volume = 0.5
 volume_change_sound = ""
-notification_sound  = ""
+notification_sound = ""
 
 [brightness]
 enable_ddcutil = false
 
 [nightlight]
-enabled           = false
-force             = false
-temperature_day   = 6500
+enabled = false
+force = false
+temperature_day = 6500
 temperature_night = 4000
 
 [location]
 auto_locate = true
-address     = ""
+address = ""
 
 [idle.behavior.lock]
 timeout = 300
@@ -39,9 +36,9 @@ resume_command = "noctalia:dpms-on"
 enabled = true
 
 [system.monitor]
-enabled           = true
-cpu_poll_seconds  = 2.0
-gpu_poll_seconds  = 5.0
+enabled = true
+cpu_poll_seconds = 2.0
+gpu_poll_seconds = 5.0
 memory_poll_seconds = 2.0
 network_poll_seconds = 3.0
 disk_poll_seconds = 10.0

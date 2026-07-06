@@ -1,0 +1,13 @@
+[dock]
+active_monitor_only = true
+auto_hide = true
+cross_axis_padding = 4
+enabled = true
+icon_size = 39
+item_spacing = 0
+main_axis_padding = 10
+margin_edge = 0
+radius = 0
+reserve_space = false
+shadow = false
+show_dots = true
