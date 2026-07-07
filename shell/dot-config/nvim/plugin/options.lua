@@ -67,3 +67,6 @@ vim.o.spelloptions = 'camel'
 
 -- Execute .nvim.lua for project config
 vim.o.exrc = true
+
+-- Efficient macros
+vim.o.lazyredraw = true

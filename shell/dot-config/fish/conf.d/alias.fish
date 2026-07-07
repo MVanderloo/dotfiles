@@ -1,4 +1,4 @@
-set EZA_PARAMS "--icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale=size"
+set EZA_PARAMS --icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale=size
 
 alias ls 'eza $EZA_PARAMS'
 alias la 'eza --all $EZA_PARAMS'
@@ -20,7 +20,7 @@ abbr lag lazygit
 abbr lad lazydocker
 abbr las lazysql
 
-abbr g 'git'
+abbr g git
 abbr ga 'git add'
 abbr gd 'git diff'
 abbr gs 'git status'
