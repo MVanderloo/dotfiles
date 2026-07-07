@@ -3,8 +3,6 @@ vim.pack.add({
   'https://github.com/xzbdmw/colorful-menu.nvim',
   'https://github.com/mikavilpas/blink-ripgrep.nvim',
   'https://github.com/rafamadriz/friendly-snippets',
-  -- 'https://github.com/OXY2DEV/markview.nvim',
-  -- 'https://github.com/kristijanhusak/vim-dadbod-completion',
 }, { confirm = false })
 
 vim.lsp.config('*', { capabilities = require('blink.cmp').get_lsp_capabilities() })
@@ -23,6 +21,7 @@ require('blink.cmp').setup {
     ['<C-n>'] = { 'select_next', 'fallback' },
     ['<C-p>'] = { 'select_prev', 'fallback' },
     ['<C-y>'] = { 'accept', 'select_and_accept' },
+    ['<CR>'] = { 'accept', 'fallback' },
 
     -- documentation
     ['<C-z>'] = { 'show', 'show_documentation', 'hide_documentation' },
@@ -54,7 +53,6 @@ require('blink.cmp').setup {
   cmdline = { enabled = true },
   sources = {
     default = { 'lsp', 'path', 'snippets', 'buffer', 'ripgrep' },
-    -- per_filetype = { sql = { 'snippets', 'dadbod', 'buffer' } },
     providers = {
       lsp = { score_offset = 100 },
       path = {
@@ -87,8 +85,6 @@ require('blink.cmp').setup {
           },
         },
       },
-
-      -- dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
     },
   },
   fuzzy = { implementation = 'prefer_rust_with_warning' },
