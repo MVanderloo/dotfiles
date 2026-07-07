@@ -6,6 +6,7 @@
   "workspace": {
     "library": [
       "lua",
+      "plugin",
       "$VIMRUNTIME",
       "${3rd}/luv/library"
     ],

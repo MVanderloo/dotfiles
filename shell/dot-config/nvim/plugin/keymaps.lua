@@ -27,9 +27,6 @@ set({ 'n', 'x', 'o' }, 'n', 'nzz')
 set({ 'n', 'x', 'o' }, 'N', 'Nzz')
 set({ 'n', 'x' }, 'G', 'Gzz')
 
-set('n', 'gla', function() vim.lsp.buf.code_action { apply = true } end, { desc = 'Code actions' })
-set('n', 'glr', function() vim.lsp.buf.rename() end, { desc = 'Rename' })
-
 set({ 'n', 'x' }, '<leader>r', '<cmd>restart<cr>', { desc = 'Restart' })
 
 set({ 'n', 'x' }, '[t', 'gT', { desc = 'Previous tab' })

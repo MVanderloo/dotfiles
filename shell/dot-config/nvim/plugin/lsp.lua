@@ -43,33 +43,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- if client:supports_method 'textDocument/documentColor' then vim.lsp.document_color.enable(true, args.buf) end
     if client:supports_method 'textDocument/signatureHelp' then map({ 'i' }, '<C-k>', vim.lsp.buf.signature_help) end
     if client:supports_method 'textDocument/documentHighlight' then
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
+      Config.new_autocmd({ 'CursorHold', 'InsertLeave' }, {
         desc = 'Highlight references under the cursor',
         buffer = args.buf,
         callback = vim.lsp.buf.document_highlight,
       })
-      vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
+      Config.new_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
         desc = 'Clear highlight references',
         buffer = args.buf,
         callback = vim.lsp.buf.clear_references,
       })
     end
   end,
-})
-
-vim.api.nvim_create_user_command('LspInfo', 'checkhealth vim.lsp', {
-  desc = 'Show LSP Info',
-})
-
-vim.api.nvim_create_user_command('LspLog', function(_)
-  local state_path = vim.fn.stdpath 'state'
-  local log_path = vim.fs.joinpath(state_path, 'lsp.log')
-
-  vim.cmd(string.format('edit %s', log_path))
-end, {
-  desc = 'Show LSP log',
-})
-
-vim.api.nvim_create_user_command('LspRestart', 'lsp restart', {
-  desc = 'Restart LSP',
+  group = Config.my_augroup,
 })

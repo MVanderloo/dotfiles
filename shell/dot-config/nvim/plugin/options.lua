@@ -6,7 +6,6 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.wrap = true
 vim.o.breakindent = true
-vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- Search
 vim.o.incsearch = true
@@ -56,8 +55,6 @@ vim.o.timeoutlen = 1000
 vim.o.ttimeoutlen = 0
 
 -- Folds
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldtext = '' -- enables syntax highlighting
 vim.o.foldlevel = 99
 
