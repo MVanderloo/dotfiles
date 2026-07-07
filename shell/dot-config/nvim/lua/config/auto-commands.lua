@@ -77,10 +77,10 @@ vim.api.nvim_create_autocmd({ 'BufDelete', 'BufWipeout' }, {
 --   end,
 -- })
 
--- Auto resize
-vim.api.nvim_create_autocmd('VimResized', {
-  callback = function() vim.cmd.wincmd '=' end,
-})
+-- -- Auto resize
+-- vim.api.nvim_create_autocmd('VimResized', {
+--   callback = function() vim.cmd.wincmd '=' end,
+-- })
 
 -- This is already handled with sessions
 -- -- Restore cursor, folds, etc.
