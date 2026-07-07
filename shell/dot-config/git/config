@@ -1,7 +1,3 @@
-[user]
-	email = "me@mvanderloo.com"
-	name = "Michael van der Loo"
-
 [include]
 	path = aliases
 	path = delta
