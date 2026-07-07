@@ -29,8 +29,6 @@ input {
         xkb {
             options "caps:ctrl_modifier,altwin:swap_lalt_lwin"
         }
-
-        numlock
     }
 
     touchpad {
