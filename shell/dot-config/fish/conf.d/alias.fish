@@ -1,4 +1,4 @@
-set EZA_PARAMS --icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale
+set EZA_PARAMS "--icons=always --classify --group-directories-first --time-style=long-iso --group --color-scale=size"
 
 alias ls 'eza $EZA_PARAMS'
 alias la 'eza --all $EZA_PARAMS'
