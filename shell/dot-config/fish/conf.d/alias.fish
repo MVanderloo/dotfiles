@@ -16,6 +16,8 @@ alias ... 'cd ../..'
 alias .... 'cd ../../..'
 alias ..... 'cd ../../../..'
 
+alias dotfiles 'git -C ~/.local/dotfiles'
+
 abbr lag lazygit
 abbr lad lazydocker
 abbr las lazysql
