@@ -9,3 +9,11 @@ function __right_prompt() {
 }
 
 PS1='\n\[\e[1;32m\]\w\[\e[0m\]$(__right_prompt)\n\[\e[1;31m\]\u\[\e[0m\] $ '
+
+function cd {
+    builtin cd "$@" && ls -F --color=auto
+}
+
+# unbounded histfile
+HISTSIZE=
+HISTFILESIZE=
