@@ -1,3 +1,5 @@
+config-version = 2
+
 start-at-login = true
 after-startup-command = [
   'exec-and-forget borders style=round width=6.0 hidpi=off active_color=0xFFFFFFFF inactive_border=0x00000000',
