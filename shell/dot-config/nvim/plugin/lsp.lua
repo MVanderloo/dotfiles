@@ -43,15 +43,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- if client:supports_method 'textDocument/documentColor' then vim.lsp.document_color.enable(true, args.buf) end
     if client:supports_method 'textDocument/signatureHelp' then map({ 'i' }, '<C-k>', vim.lsp.buf.signature_help) end
     if client:supports_method 'textDocument/documentHighlight' then
-      Config.new_autocmd({ 'CursorHold', 'InsertLeave' }, {
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'InsertLeave' }, {
         desc = 'Highlight references under the cursor',
         buffer = args.buf,
         callback = vim.lsp.buf.document_highlight,
+        group = Config.my_augroup,
       })
-      Config.new_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
+      vim.api.nvim_create_autocmd({ 'CursorMoved', 'InsertEnter', 'BufLeave' }, {
         desc = 'Clear highlight references',
         buffer = args.buf,
         callback = vim.lsp.buf.clear_references,
+        group = Config.my_augroup,
       })
     end
   end,
