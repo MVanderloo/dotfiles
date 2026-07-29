@@ -6,6 +6,9 @@ set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remove the default s binding in favor of surround mappings (sa, sr, sd)
 set({ 'n', 'x' }, 's', '<Nop>', { silent = true })
 
+-- Remove the default gl binding to allow LSP gl* mappings
+set({ 'n', 'x' }, 'gl', '<Nop>', { silent = true })
+
 -- j and k will move to the character visually below the cursor, to deal with line wrap
 -- don't use this behavior if there is a count so that relative line numbering is true
 set({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { desc = 'Down', expr = true, silent = true })

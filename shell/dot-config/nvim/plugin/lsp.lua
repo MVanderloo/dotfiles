@@ -24,6 +24,7 @@ vim.lsp.enable {
   'systemd_ls',
   'taplo',
   'tinymist',
+  'ty',
   'yamlls',
   'zls',
 }
@@ -33,12 +34,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
     local map = function(mode, lhs, rhs) vim.keymap.set(mode, lhs, rhs, { buffer = args.buf }) end
-    if client:supports_method 'textDocument/definition' then map('n', 'gd', vim.lsp.buf.definition) end
-    if client:supports_method 'textDocument/references' then map('n', 'gr', vim.lsp.buf.references) end
-    if client:supports_method 'textDocument/typeDefinition' then map('n', 'gy', vim.lsp.buf.type_definition) end
+    if client:supports_method 'textDocument/definition' then
+      map('n', 'gld', vim.lsp.buf.definition)
+      map('n', 'gd', vim.lsp.buf.definition)
+    end
+    if client:supports_method 'textDocument/references' then map('n', 'glr', vim.lsp.buf.references) end
+    if client:supports_method 'textDocument/typeDefinition' then map('n', 'glt', vim.lsp.buf.type_definition) end
     if client:supports_method 'textDocument/implementation' then map('n', 'gli', vim.lsp.buf.implementation) end
     if client:supports_method 'textDocument/codeAction' then map('n', 'gla', vim.lsp.buf.code_action) end
-    if client:supports_method 'textDocument/rename' then map('n', 'glr', vim.lsp.buf.rename) end
+    if client:supports_method 'textDocument/rename' then map('n', 'gln', vim.lsp.buf.rename) end
     if client:supports_method 'textDocument/hover' then map({ 'n', 'x' }, 'K', vim.lsp.buf.hover) end
     -- if client:supports_method 'textDocument/documentColor' then vim.lsp.document_color.enable(true, args.buf) end
     if client:supports_method 'textDocument/signatureHelp' then map({ 'i' }, '<C-k>', vim.lsp.buf.signature_help) end
