@@ -1,3 +1,7 @@
 if status is-interactive
-    starship init fish | source
+    if type -q starship
+        starship init fish | source
+    else
+        echo >&2 "starship: not found, skipping prompt"
+    end
 end
